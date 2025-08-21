@@ -1,0 +1,278 @@
+# Overview
+# Jekyll-based, data-driven portfolio (English-only). Lively, brand-like copy; fixed Segoe UI. Edit only `_data/projects.yml` to manage projects.
+
+====================
+File: _config.yml
+====================
+baseurl: ""
+url: ""
+
+# Site info
+title: "Yihan Wang — Portfolio"
+description: "Industrial Designer · Interaction · Prototyping"
+
+====================
+File: _data/projects.yml
+====================
+# Edit this file to add/remove projects.
+# Fields:
+# - title (required)
+# - cover (required, put images in assets/img)
+# - url (optional)
+# - description (optional)
+# - tags: [Tag, Tag] (optional)
+
+- title: Retro EV Microcar for Seniors
+  cover: assets/img/project-elder-ev.jpg
+  url: 
+  description: Streamlined, dignified mobility with safety-first ergonomics and easy boarding.
+  tags: [Industrial Design, Mobility, CMF]
+
+- title: One-Stop TCM Service Framework
+  cover: assets/img/project-tcm-service.jpg
+  url: 
+  description: End‑to‑end experience architecture inspired by crisp, coffee‑like flows.
+  tags: [UX, Service Design]
+
+- title: Arduino Whack‑A‑Mole
+  cover: assets/img/project-arduino-whack.jpg
+  url: 
+  description: LED timing, buzzer feedback, and a clean state machine in a fun hardware prototype.
+  tags: [Hardware, Prototype, C/C++]
+
+- title: Hutong Fire‑Tool Box System
+  cover: assets/img/project-hutong-firebox.jpg
+  url: 
+  description: Modular, street‑smart storage for faster response and better community access.
+  tags: [Public Design, Modular]
+
+====================
+File: index.html
+====================
+---
+layout: none
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="stylesheet" href="/assets/css/main.css" />
+</head>
+<body>
+  <header class="hdr">
+    <div class="container nav">
+      <a class="brand" href="#top">Yihan Wang</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="container">
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Industrial Designer & Interaction Maker<br/>Less noise, more signal.</h1>
+      <p>I design clear systems, thoughtful interfaces, and buildable prototypes. From fuzzy problem to crisp experience—fast.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:youremail@example.com">Say hello</a>
+        <a class="btn" href="/assets/CV.pdf" target="_blank" rel="noopener">Download CV</a>
+      </div>
+    </section>
+
+    <section id="work" class="section" aria-labelledby="work-title">
+      <div class="title">
+        <h2 id="work-title">Selected Work</h2>
+        <span class="subtitle">Edit <code>_data/projects.yml</code> to update</span>
+      </div>
+
+      <div class="grid">
+        {%- assign projects = site.data.projects | default: [] -%}
+        {%- if projects.size == 0 -%}
+          <p class="muted">No projects yet. Add some in <code>_data/projects.yml</code>.</p>
+        {%- endif -%}
+
+        {%- for p in projects -%}
+        <article class="card">
+          {%- assign href = p.url | default: '#' -%}
+          <a href="{{ href }}" class="thumb" aria-label="{{ p.title }}">
+            <img src="/{{ p.cover }}" alt="{{ p.title }}" onerror="this.parentElement.style.background='var(--card)'; this.remove();" />
+          </a>
+          <div class="meta">
+            <h3>{{ p.title }}</h3>
+            {%- if p.description -%}
+            <p>{{ p.description }}</p>
+            {%- endif -%}
+            {%- if p.tags -%}
+            <div class="tags">
+              {%- for t in p.tags -%}
+              <span class="tag">{{ t }}</span>
+              {%- endfor -%}
+            </div>
+            {%- endif -%}
+          </div>
+        </article>
+        {%- endfor -%}
+      </div>
+    </section>
+
+    <section id="about" class="section" aria-labelledby="about-title">
+      <div class="title">
+        <h2 id="about-title">About</h2>
+        <span class="subtitle">Beijing University of Technology · Industrial Design · 2027</span>
+      </div>
+      <div class="about">
+        <div>
+          <p class="muted">I focus on taking products from 0→1: research, rough structures, interaction prototypes, and design systems. Complex to simple, then simple to shipped.</p>
+          <div class="list" aria-label="Skills">
+            <div class="chip">Rhino / KeyShot</div>
+            <div class="chip">Figma / FigJam</div>
+            <div class="chip">Arduino / KiCad</div>
+            <div class="chip">Python / C</div>
+            <div class="chip">Prototyping</div>
+            <div class="chip">Design Systems</div>
+          </div>
+        </div>
+        <div>
+          <div class="callout">
+            <h3>Let’s collaborate</h3>
+            <p class="muted">Open to brand collabs, course projects, and research assistant roles.</p>
+            <a class="btn primary" href="mailto:youremail@example.com">Email me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="title">
+        <h2 id="contact-title">Contact</h2>
+        <span class="subtitle">Direct and simple</span>
+      </div>
+      <div class="contact">
+        <div>
+          <p class="muted">Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p class="muted">Social: <a href="#">LinkedIn</a> · <a href="#">Behance</a> · <a href="#">Instagram</a></p>
+        </div>
+        <a class="btn" href="mailto:youremail@example.com?subject=Let’s work together">Start a thread</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ftr">
+    <div class="container">
+      <small>© <span id="y"></span> Yihan Wang · Built with Jekyll on GitHub Pages · Typography: Segoe UI · Make it work. Make it wow.</small>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.pushState(null, '', id);
+      });
+    });
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
+
+====================
+File: assets/css/main.css
+====================
+:root{--bg:#fff;--fg:#0a0a0a;--muted:#6b7280;--card:#f7f7f8;--line:#e5e7eb;--accent:#0a84ff;--radius:20px;--maxw:1120px}
+@media (prefers-color-scheme:dark){:root{--bg:#0b0b0c;--fg:#f5f5f7;--muted:#a1a1aa;--card:#131316;--line:#2a2a2e;--accent:#0a84ff}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:"Segoe UI", Arial, sans-serif;line-height:1.6;letter-spacing:.01em}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+a{color:inherit;text-decoration:none}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;border:1px solid var(--line);background:transparent;transition:transform .2s ease,background-color .2s ease,border-color .2s ease}
+.btn:hover{transform:translateY(-1px);border-color:var(--fg)}
+.btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.btn.primary:hover{filter:brightness(1.1)}
+.muted{color:var(--muted)}
+/* header */
+.hdr{position:sticky;top:0;backdrop-filter:saturate(180%) blur(12px);background:color-mix(in oklab,var(--bg) 80%,transparent);border-bottom:1px solid var(--line);z-index:10}
+.nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{font-weight:700;letter-spacing:.02em}
+nav ul{list-style:none;display:flex;gap:22px;padding:0;margin:0}
+nav a{color:var(--muted);font-weight:500}
+nav a:hover{color:var(--fg)}
+/* hero */
+.hero{padding:96px 0 64px;display:grid;gap:18px}
+.hero h1{font-size:clamp(36px,6vw,64px);line-height:1.06;letter-spacing:-.02em;margin:0}
+.hero p{font-size:clamp(18px,2.5vw,20px);color:var(--muted);max-width:720px;margin:0}
+.hero .actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
+/* section */
+.section{padding:56px 0}
+.section .title{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px}
+.section h2{font-size:clamp(24px,4vw,32px);margin:0;letter-spacing:-.01em}
+.section .subtitle{color:var(--muted);font-size:14px}
+/* grid */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.card{grid-column:span 6;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:clip;transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px color-mix(in oklab,var(--fg) 12%,transparent);border-color:color-mix(in oklab,var(--fg) 30%,var(--line))}
+.thumb{aspect-ratio:16/10;width:100%;background:linear-gradient(135deg,color-mix(in oklab,var(--accent) 35%,transparent),transparent);display:grid;place-items:center}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.meta{padding:18px}
+.meta h3{margin:0 0 6px;font-size:18px;letter-spacing:-.01em}
+.meta p{margin:0;color:var(--muted);font-size:14px}
+.tags{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.tag{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+@media (max-width:900px){.card{grid-column:span 12}}
+/* about */
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
+.about p{color:var(--muted)}
+.list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.chip{padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);font-size:14px}
+.callout{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+@media (max-width:900px){.about{grid-template-columns:1fr}}
+/* contact */
+.contact{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--card)}
+/* footer */
+.ftr{padding:48px 0 72px;border-top:1px solid var(--line);color:var(--muted)}
+
+====================
+File: README.md
+====================
+# How to use (GitHub Pages + Jekyll)
+
+1) Create a repo, ideally `your-username.github.io`.
+2) Keep this structure:
+```
+_config.yml
+_data/projects.yml
+index.html
+assets/css/main.css
+assets/img/   (put your covers here)
+assets/CV.pdf (optional)
+```
+3) Commit & push → go to **Settings → Pages** → Source: `Deploy from a branch` (main / root).
+4) Open `https://your-username.github.io`.
+5) Update projects by editing `_data/projects.yml`. Drop images into `assets/img/` and reference them in `cover:`.
+
+## Optional: detail pages
+If you want a page per project, add a `project.html` layout or a `_projects` collection. This starter keeps it single‑page on purpose: fast to ship, easy to maintain.
+
+## Typography
+Locked to `Segoe UI` (falls back to Arial on macOS if Segoe isn’t available). Webfont licensing for Segoe is tricky—this setup avoids that.
+
+## Local preview (optional)
+If you want to run Jekyll locally:
+```
+bundle init
+bundle add jekyll
+bundle exec jekyll serve
+```
+(You can also skip local tools—GitHub Pages will build it for you.)
