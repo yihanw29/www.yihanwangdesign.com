@@ -3,20 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yihan Wang — Portfolio</title>
+  <title>Yihan Wang — Portfolio · About · Contact</title>
   <meta name="description" content="Industrial Designer · Interaction · Prototyping" />
   <link rel="icon" href="favicon.ico" />
   <style>
     /* ===== Apple‑style monochrome, Segoe UI ===== */
     :root{
       --bg:#ffffff; --fg:#0a0a0a; --muted:#6b7280; --line:#e5e7eb; --card:#f7f7f8; --radius:20px; --maxw:1180px;
+      --accent:#0a84ff; /* Apple iOS blue */
+      --accent-ink:#0b5ed7; /* pressed */
     }
     @media (prefers-color-scheme: dark){
-      :root{ --bg:#0b0b0c; --fg:#f5f5f7; --muted:#a1a1aa; --line:#2a2a2e; --card:#121214; }
+      :root{ --bg:#0b0b0c; --fg:#f5f5f7; --muted:#a1a1aa; --line:#2a2a2e; --card:#121214; --accent:#0a84ff; --accent-ink:#66a3ff; }
+    }
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:"Segoe UI", Arial, sans-serif;line-height:1.6;letter-spacing:.01em}
+    body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:"Segoe UI Variable Text","Segoe UI", "Segoe UI Historic", Arial, sans-serif;line-height:1.6;letter-spacing:.01em;font-weight:350;font-variation-settings:"wght" 350;}
     img{max-width:100%;display:block}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
@@ -35,9 +38,9 @@
     h1{margin:0;font-size:clamp(38px,6vw,68px);line-height:1.06;letter-spacing:-.02em}
     .lead{margin:0;color:var(--muted);font-size:clamp(18px,2.4vw,20px);max-width:760px}
     .actions{display:flex;gap:12px;margin-top:16px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;border:1px solid var(--line)}
-    .btn.primary{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-    .btn:hover{transform:translateY(-1px)}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:inherit;transition:transform .2s ease, border-color .2s ease, background-color .2s ease}
+    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn:hover{transform:translateY(-1px);border-color:var(--fg)}
 
     /* Sections */
     section{padding:56px 0}
@@ -86,123 +89,79 @@
   <main id="top" class="container">
     <!-- Hero -->
     <section class="hero" aria-labelledby="hero-title">
-      <span class="eyebrow">Design · Code · Labs</span>
-      <h1 id="hero-title">Less noise. More signal.<br>Design that ships, experiments that play.</h1>
-      <p class="lead">Monochrome, focused, and fast to scan. Swap images and text; no JS frameworks required. Fully static, GitHub Pages‑ready.</p>
+      <span class="eyebrow">Portfolio · About · Contact</span>
+      <h1 id="hero-title">Calm craft. Clear signals.<br>Design, medicine, and a touch of code.</h1>
+      <p class="lead">I’m an industrial designer and licensed TCM practitioner exploring where products, human movement, and simple technology meet. Minimal visuals, maximum intent.</p>
       <div class="actions">
-        <a class="btn primary" href="mailto:youremail@example.com">Say hello</a>
-        <a class="btn" href="#work">See work</a>
+        <a class="btn primary" href="#work">See portfolio</a>
+        <a class="btn" href="#about">About me</a>
       </div>
     </section>
 
     <!-- Work -->
     <section id="work" aria-labelledby="work-title">
       <div class="titlebar">
-        <h2 id="work-title">Selected Work</h2>
-        <span class="subtitle">Replace cards with your projects</span>
+        <h2 id="work-title">Portfolio</h2>
+        <span class="subtitle">A quiet stage for useful things</span>
       </div>
       <div class="grid">
         <article class="card">
-          <img class="thumb" src="images/project-1.jpg" alt="Retro EV Microcar for Seniors">
+          <img class="thumb" src="images/project-elder-ev.jpg" alt="Retro EV Microcar for Seniors">
           <div class="meta">
             <h3>Retro EV Microcar for Seniors</h3>
-            <p>Streamlined, dignified mobility with safety‑first ergonomics.</p>
+            <p>Dignified, easy‑boarding mobility. No drama—just go.</p>
             <div class="tags"><span class="tag">Industrial Design</span><span class="tag">Mobility</span></div>
           </div>
         </article>
         <article class="card">
-          <img class="thumb" src="images/project-2.jpg" alt="One‑Stop TCM Service Framework">
+          <img class="thumb" src="images/tcm-service.jpg" alt="One‑Stop TCM Service Framework">
           <div class="meta">
             <h3>One‑Stop TCM Service Framework</h3>
-            <p>End‑to‑end experience architecture with coffee‑like flows.</p>
-            <div class="tags"><span class="tag">UX</span><span class="tag">Service Design</span></div>
+            <p>Clinic‑to‑home flows, as crisp as your morning coffee.</p>
+            <div class="tags"><span class="tag">UX</span><span class="tag">Service</span></div>
           </div>
         </article>
       </div>
     </section>
 
     <!-- Code -->
-    <section id="code" aria-labelledby="code-title">
-      <div class="titlebar">
-        <h2 id="code-title">Open Source</h2>
-        <span class="subtitle">Repos, snippets, and tools</span>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <a href="https://github.com/your-github/arduino-whack-a-mole"><img class="thumb" src="images/code-1.jpg" alt="Arduino Whack‑A‑Mole"></a>
-          <div class="meta">
-            <h3><a href="https://github.com/your-github/arduino-whack-a-mole">Arduino Whack‑A‑Mole</a></h3>
-            <p>LED timing, buzzer feedback, and a crisp state machine.</p>
-            <div class="tags"><span class="tag">C/C++</span><span class="tag">Arduino</span><span class="tag">Open Source</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <a href="https://github.com/your-github/tcm-labs"><img class="thumb" src="images/code-2.jpg" alt="TCM Labs"></a>
-          <div class="meta">
-            <h3><a href="https://github.com/your-github/tcm-labs">TCM Labs</a></h3>
-            <p>Sensor fusion experiments for posture & rehab insights.</p>
-            <div class="tags"><span class="tag">Python</span><span class="tag">Data</span></div>
-          </div>
-        </article>
-      </div>
-    </section>
+    
 
     <!-- Writing -->
-    <section id="writing" aria-labelledby="writing-title">
-      <div class="titlebar">
-        <h2 id="writing-title">Writing</h2>
-        <span class="subtitle">Notes, essays, and build logs</span>
-      </div>
-      <div class="grid">
-        <article class="card">
-          <div class="meta">
-            <h3><a href="#">Hello, World. Let’s build together.</a></h3>
-            <p>Short manifesto: share process, ship small, invite remix.</p>
-            <div class="tags"><span class="tag">Open Source</span><span class="tag">Process</span></div>
-          </div>
-        </article>
-        <article class="card">
-          <div class="meta">
-            <h3><a href="#">From fuzzy to crisp</a></h3>
-            <p>Turning complex systems into clean, shippable experiences.</p>
-            <div class="tags"><span class="tag">Design</span></div>
-          </div>
-        </article>
-      </div>
-    </section>
+    
 
     <!-- About + Contact -->
     <section id="about" aria-labelledby="about-title">
       <div class="titlebar">
         <h2 id="about-title">About</h2>
-        <span class="subtitle">Beijing University of Technology · Industrial Design · 2027</span>
+        <span class="subtitle">Design · Traditional Chinese Medicine · Rehab tech curiosities</span>
       </div>
       <div class="split">
         <div>
-          <p class="subtitle">I design products and systems, write about process, and publish tools for others to build with. Make it work, make it wow.</p>
-          <div class="tags" aria-label="Skills" style="margin-top:10px">
+          <p class="subtitle" style="margin-top:0">I design with restraint: fewer parts, fewer steps, fewer doubts. Alongside design, I practice Traditional Chinese Medicine—reading the body’s signals the way we read a product brief. Different tools, same pursuit: clarity that helps people feel better.</p>
+          <p class="subtitle">Interests: posture & motion, warm materials, modular systems, tiny helpful tools. Methods: quick paper rigs, plain‑English specs, tight feedback loops.</p>
+          <div class="tags" aria-label="Skills" style="margin-top:12px">
             <span class="tag">Rhino / KeyShot</span>
             <span class="tag">Figma</span>
             <span class="tag">Arduino</span>
-            <span class="tag">Python / C</span>
+            <span class="tag">Python</span>
+            <span class="tag">TCM · Pulse & Pattern</span>
           </div>
         </div>
         <div class="box" id="contact">
-          <h3>Let’s collaborate</h3>
-          <p class="subtitle">Open to brand collabs, course projects, and research roles.</p>
+          <h3>Contact</h3>
+          <p class="subtitle">Prefer calm email over loud meetings.</p>
           <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
           <p>Social: <a href="#">LinkedIn</a> · <a href="#">Behance</a> · <a href="#">Instagram</a></p>
-          <p><a class="btn" href="mailto:youremail@example.com?subject=Let’s work together">Start a thread</a></p>
+          <p><a class="btn" href="mailto:youremail@example.com?subject=Let’s work together">Say hello</a></p>
         </div>
       </div>
-    </section>
   </main>
 
   <footer>
     <div class="container">
-      <small>© <script>document.write(new Date().getFullYear())</script> Yihan Wang · Static site · Typography: Segoe UI.</small>
+      <small>© <script>document.write(new Date().getFullYear())</script> Yihan Wang · Industrial Designer & TCM Practitioner · Segoe UI · Built for GitHub Pages.</small>
     </div>
   </footer>
 </body>
 </html>
-
