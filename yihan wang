@@ -2,47 +2,68 @@
 <div class="container nav"><a class="brand" href="#top">yihan wang</a><nav>
 <ul>
 <li><a href="#welcome">welcome</a></li>
-<li><a href="#about">about</a></li>
-<li><a href="#partners">partners</a></li>
+<li><a>about me</a></li>
+<li><a>see the work</a></li>
 <li><a href="#contact">contact</a></li>
 </ul>
 </nav></div>
 </header><main id="top" class="container"><!-- welcome -->
 <section id="welcome" class="hero">
-<h1>hi, i’m yihan wang :)</h1>
-<p class="lead">i cut the clutter, keep the spark, and design like i actually mean it.</p>
-<div class="actions"><a class="btn primary" href="#portfolio">explore portfolio</a> <a class="btn" href="#about">about me</a></div>
+<h1> </h1>
+<h1>hi, i’m yihan wang</h1>
+<p> </p>
+<p>i design like i mean it.</p>
+<p> </p>
+<div class="actions"><a class="btn primary" href="#portfolio">about me</a> <a class="btn" href="#about">see the work</a></div>
 </section>
 <!-- about -->
 <section id="about">
+<h2> </h2>
+<h2> </h2>
 <h2>about</h2>
-<p class="lead">industrial designer and tcm practitioner. </p>
-<p>sharp with ideas, sharper with needles, balanced with herbs.</p>
+<p> </p>
+<p> </p>
+<p>designer and tcm practitioner. </p>
+<p> </p>
+<p>i keep it sharp — in form, in pulse, then balanced with herbs.</p>
+<p> </p>
+<p> </p>
 </section>
 <!-- partners -->
 <section id="partners">
 <h2>partners &amp; clients</h2>
+<p> </p>
 <p class="lead">amazing friends who believe in bold ideas and simple forms.</p>
+<p> </p>
+<p> </p>
 <div class="grid">
-<div class="logo"><img src="images/logo-apple.svg" alt="apple"></div>
-<div class="logo"><img src="images/logo-ikea.svg" alt="ikea"></div>
-<div class="logo"><img src="images/logo-hospital.svg" alt="hospital"></div>
-<div class="logo"><img src="images/logo-studio.svg" alt="studio"></div>
+<div class="logo"><img class="post__image" src="images/logo-csvaluegroup.svg" alt="CS-Value Group"></div>
+<div class="logo"><img class="post__image" src="images/logo-keshiku.svg" alt="KESHIKU"></div>
+<div class="logo"><img class="post__image" src="images/logo-BGI.svg" alt="BGI Group"></div>
+<div class="logo"><img class="post__image" src="images/logo-CCEA.svg" alt="CCEA"></div>
 </div>
 </section>
 <!-- contact -->
 <section id="contact">
+<h2> </h2>
+<h2> </h2>
 <h2>contact</h2>
-<p class="lead">drop me a line, share a thought, or spark the next big thing.</p>
+<p> </p>
+<p> </p>
+<p class="lead">drop a note. let's build something crisp.</p>
+<p> </p>
 <div class="contact">
 <div>
-<p class="lead">email: yihanwangdesign@gmail.com</p>
-<p class="lead">social: <a href="#">linkedin</a> · <a href="#">behance</a> · <a href="#">instagram</a></p>
+<p class="lead">email: www.yihanwangdesign@gmail.com</p>
+<p class="lead">social:  <a href="#">instagram</a></p>
+<p> </p>
 </div>
-<a class="btn primary" href="mailto:youremail@example.com?subject=let’s connect">say hello</a></div>
+<a class="btn primary" href="mailto:youremail@example.com?subject=let’s connect">say hi</a></div>
 </section>
 </main><footer>
 <div class="container"><small>©
-<script>document.write(new Date().getFullYear())</script>
+<script>
+				document.write(new Date().getFullYear())
+			</script>
 yihan wang · portfolio for sharing &amp; connecting · segoe ui</small></div>
 </footer>
