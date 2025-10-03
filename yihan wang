@@ -1,194 +1,48 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Yihan Wang — Portfolio / About / Contact</title>
-  <meta name="description" content="Industrial Designer · TCM Practitioner · Portfolio" />
-  <link rel="icon" href="favicon.ico" />
-  <style>
-    /* ===============================
-       APPLE-STYLE MONOCHROME THEME
-       • Edit like a PPT: replace text & images where you see EDIT tags
-       • Typography: Segoe UI (thin/clean)
-       • Colors: monochrome + iOS blue accent
-       =============================== */
-    :root{
-      --bg:#ffffff; --fg:#0a0a0a; --muted:#6b7280; --line:#e5e7eb; --card:#f7f7f8; --accent:#0a84ff; --radius:20px; --maxw:1180px;
-    }
-    @media (prefers-color-scheme: dark){
-      :root{ --bg:#0b0b0c; --fg:#f5f5f7; --muted:#a1a1aa; --line:#2a2a2e; --card:#131316; }
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{margin:0;background:var(--bg);color:var(--fg);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;letter-spacing:.01em;line-height:1.6;font-weight:350;font-variation-settings:"wght" 350}
-    img{max-width:100%;display:block}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-
-    /* HEADER */
-    header{position:sticky;top:0;z-index:10;background:color-mix(in oklab, var(--bg) 82%, transparent);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
-    .nav{height:72px;display:flex;align-items:center;justify-content:space-between}
-    .brand{font-weight:600;letter-spacing:.02em}
-    nav ul{list-style:none;display:flex;gap:22px;margin:0;padding:0}
-    nav a{color:var(--muted)}
-    nav a:hover{color:var(--fg)}
-
-    /* SECTIONS */
-    section{padding:56px 0}
-    .titlebar{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px}
-    h1{margin:0;font-size:clamp(36px,6vw,64px);letter-spacing:-.02em;line-height:1.06}
-    h2{margin:0;font-size:clamp(24px,3.6vw,32px);letter-spacing:-.01em}
-    .subtitle{color:var(--muted);font-size:14px}
-    .lead{color:var(--muted);font-size:clamp(18px,2.4vw,20px);max-width:760px}
-
-    /* BUTTONS */
-    .actions{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:11px 16px;border-radius:999px;border:1px solid var(--line)}
-    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-
-    /* GRID / CARDS (for Portfolio) */
-    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
-    .card{grid-column:span 6;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
-    @media (max-width:900px){.card{grid-column:span 12}}
-    .thumb{aspect-ratio:16/10;object-fit:cover;width:100%;background:#d9d9d9}
-    .meta{padding:18px}
-    .meta h3{margin:0 0 6px;font-size:18px;letter-spacing:-.01em}
-    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-    .tag{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
-
-    /* SPLIT (About + Contact) */
-    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:24px}
-    .box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-    @media (max-width:900px){.split{grid-template-columns:1fr}}
-
-    /* LIGHTBOX (click image to zoom) */
-    #modal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center}
-    #modal img{max-width:92%;max-height:92%;box-shadow:0 20px 60px rgba(0,0,0,.4);border-radius:12px}
-  </style>
-</head>
-<body>
-  <!-- ================= HEADER ================= -->
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#top">Yihan Wang</a>
-      <nav aria-label="Primary">
-        <ul>
-          <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main id="top" class="container">
-    <!-- ================= HERO (EDIT text only) ================= -->
-    <section style="padding:96px 0 48px">
-      <!-- EDIT: Headline & subline -->
-      <h1>Less noise. More signal.</h1>
-      <p class="lead">Industrial designer & TCM practitioner. Calm visuals, clear structure, small tools that help.</p>
-      <div class="actions" style="margin-top:16px">
-        <a class="btn primary" href="#portfolio">See work</a>
-        <a class="btn" href="#contact">Say hello</a>
-      </div>
-    </section>
-
-    <!-- ================= PORTFOLIO ================= -->
-    <section id="portfolio" aria-labelledby="work-title">
-      <div class="titlebar">
-        <h2 id="work-title">Portfolio</h2>
-        <span class="subtitle">Replace cards like PPT slides</span>
-      </div>
-
-      <div class="grid">
-        <!-- CARD TEMPLATE — COPY / PASTE to add more -->
-        <!-- EDIT: Replace image src + title + description + tags -->
-        <article class="card">
-          <img class="thumb" src="images/placeholder-1.jpg" alt="Project cover" onclick="openModal(this.src)">
-          <div class="meta">
-            <h3><!-- EDIT -->Retro EV Microcar for Seniors</h3>
-            <p class="subtitle"><!-- EDIT -->Dignified, easy‑boarding mobility. No drama—just go.</p>
-            <div class="tags">
-              <span class="tag">Industrial Design</span><span class="tag">Mobility</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <img class="thumb" src="images/placeholder-2.jpg" alt="Project cover" onclick="openModal(this.src)">
-          <div class="meta">
-            <h3><!-- EDIT -->One‑Stop TCM Service Framework</h3>
-            <p class="subtitle"><!-- EDIT -->Clinic‑to‑home flows, as crisp as your morning coffee.</p>
-            <div class="tags">
-              <span class="tag">UX</span><span class="tag">Service</span><span class="tag">TCM</span>
-            </div>
-          </div>
-        </article>
-        <!-- END CARD TEMPLATE -->
-      </div>
-    </section>
-
-    <!-- ================= ABOUT ================= -->
-    <section id="about" aria-labelledby="about-title">
-      <div class="titlebar">
-        <h2 id="about-title">About</h2>
-        <span class="subtitle">Design · Traditional Chinese Medicine</span>
-      </div>
-      <div class="split">
-        <div>
-          <!-- EDIT: Write your short bio here -->
-          <p class="subtitle">I design with restraint: fewer parts, fewer steps, fewer doubts. I also practice Traditional Chinese Medicine—reading the body's signals like a product brief. Same goal: clarity that helps people feel better.</p>
-          <div class="tags" aria-label="Skills" style="margin-top:12px">
-            <!-- EDIT: add/remove chips -->
-            <span class="tag">Rhino / KeyShot</span>
-            <span class="tag">Figma</span>
-            <span class="tag">Arduino</span>
-            <span class="tag">Python</span>
-            <span class="tag">TCM · Pulse & Pattern</span>
-          </div>
-        </div>
-        <div class="box">
-          <h3>Now</h3>
-          <!-- EDIT: what you're exploring now -->
-          <p class="subtitle">Exploring rehab tech, motion clarity, and tiny helpful tools.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONTACT ================= -->
-    <section id="contact" aria-labelledby="contact-title">
-      <div class="titlebar">
-        <h2 id="contact-title">Contact</h2>
-        <span class="subtitle">Prefer calm email over loud meetings</span>
-      </div>
-      <div class="box" style="display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap">
-        <!-- EDIT: your email & socials -->
-        <div>
-          <p class="subtitle">Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-          <p class="subtitle">Social: <a href="#">LinkedIn</a> · <a href="#">Behance</a> · <a href="#">Instagram</a></p>
-        </div>
-        <a class="btn" href="mailto:youremail@example.com?subject=Let’s work together">Say hello</a>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <small>© <script>document.write(new Date().getFullYear())</script> Yihan Wang · Industrial Designer & TCM Practitioner · Segoe UI · GitHub Pages‑ready</small>
-    </div>
-  </footer>
-
-  <!-- ================= LIGHTBOX (click-to-zoom) ================= -->
-  <div id="modal" onclick="this.style.display='none'">
-    <img id="modal-img" src="" alt="zoomed image" />
-  </div>
-  <script>
-    function openModal(src){
-      const m = document.getElementById('modal');
-      document.getElementById('modal-img').src = src;
-      m.style.display = 'flex';
-    }
-  </script>
-</body>
-</html>
+<header>
+<div class="container nav"><a class="brand" href="#top">yihan wang</a><nav>
+<ul>
+<li><a href="#welcome">welcome</a></li>
+<li><a href="#about">about</a></li>
+<li><a href="#partners">partners</a></li>
+<li><a href="#contact">contact</a></li>
+</ul>
+</nav></div>
+</header><main id="top" class="container"><!-- welcome -->
+<section id="welcome" class="hero">
+<h1>hi, i’m yihan wang :)</h1>
+<p class="lead">i cut the clutter, keep the spark, and design like i actually mean it.</p>
+<div class="actions"><a class="btn primary" href="#portfolio">explore portfolio</a> <a class="btn" href="#about">about me</a></div>
+</section>
+<!-- about -->
+<section id="about">
+<h2>about</h2>
+<p class="lead">industrial designer and tcm practitioner. </p>
+<p>sharp with ideas, sharper with needles, balanced with herbs.</p>
+</section>
+<!-- partners -->
+<section id="partners">
+<h2>partners &amp; clients</h2>
+<p class="lead">amazing friends who believe in bold ideas and simple forms.</p>
+<div class="grid">
+<div class="logo"><img src="images/logo-apple.svg" alt="apple"></div>
+<div class="logo"><img src="images/logo-ikea.svg" alt="ikea"></div>
+<div class="logo"><img src="images/logo-hospital.svg" alt="hospital"></div>
+<div class="logo"><img src="images/logo-studio.svg" alt="studio"></div>
+</div>
+</section>
+<!-- contact -->
+<section id="contact">
+<h2>contact</h2>
+<p class="lead">drop me a line, share a thought, or spark the next big thing.</p>
+<div class="contact">
+<div>
+<p class="lead">email: yihanwangdesign@gmail.com</p>
+<p class="lead">social: <a href="#">linkedin</a> · <a href="#">behance</a> · <a href="#">instagram</a></p>
+</div>
+<a class="btn primary" href="mailto:youremail@example.com?subject=let’s connect">say hello</a></div>
+</section>
+</main><footer>
+<div class="container"><small>©
+<script>document.write(new Date().getFullYear())</script>
+yihan wang · portfolio for sharing &amp; connecting · segoe ui</small></div>
+</footer>
