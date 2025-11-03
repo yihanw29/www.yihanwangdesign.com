@@ -11,83 +11,71 @@ body {
 
 /* ========== layout container ========== */
 /* 首页容器：黑底、弹性布局、自动换行，给导航留出空间 */
+/* ==== hard override: turn absolute layout into responsive grid ==== */
+
+/* 页面容器：用 CSS Grid 自动多列排布 */
 .v1_15{
-  min-height: 100vh;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
+  gap: 32px !important;
+  align-content: start !important;
+  padding: 96px 48px 48px !important; /* 顶部给导航留空间 */
   background: #000 !important;
-  display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
-  gap: 24px;
-  padding: 96px 36px 48px;
-  position: relative;
-  overflow: hidden;
 }
 
-/* 旧层：黑色遮罩，关闭避免挡住内容 */
-.v1_2{ display: none !important; }
-
-/* 旧 logo/图片位，先隐藏（没有图片资源也不影响布局） */
-.v1_18{ display: none !important; }
-
-/* ========== nav ========== */
+/* 导航条占满一行并吸顶 */
 .v1_16{
-  order: 1;
-  flex: 1 0 100%;
+  grid-column: 1 / -1 !important;
   height: 64px !important;
   background: #e6e6e6 !important;
-  position: sticky; top: 0; z-index: 10;
-  display: flex; align-items: center; justify-content: flex-end;
-  padding: 0 24px;
-  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+  position: sticky !important; top: 0; z-index: 10;
+  display: flex !important; align-items: center !important; justify-content: flex-end !important;
+  padding: 0 24px !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08) !important;
 }
 
-/* 去掉旧导出的多余背景/边框 */
-.v1_3, .v1_13{
-  all: unset; /* 清空旧样式 */
-  display: none;
+/* 清掉老的层 */
+.v1_2, .v1_18, .v1_3, .v1_13{
+  display: none !important;
+  background: none !important;
 }
 
-/* 导航文字（about / works / contact） */
+/* 导航文字 */
 .v1_7, .v1_8, .v1_10{
   position: static !important;
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
+  margin-left: 32px !important;
+  font-family: "Playfair Display", serif !important;
+  font-weight: 400 !important;
   font-size: 20px !important;
   color: #111 !important;
-  margin-left: 32px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: opacity .2s ease;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: opacity .2s ease !important;
 }
-.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity: .65; }
+.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity: .65 !important; }
 
-/* ========== red dots grid ========== */
-/* 统一红点样式，取消绝对定位，使用弹性网格自动排布 */
+/* 圆点：统一尺寸，去绝对定位，放入网格 */
 .v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
 .v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
-.v14_37, .v14_30 {
+.v14_37, .v14_30{
   position: static !important;
-  width: 180px !important;
-  height: 180px !important;
-  background: #e60000 !important;
+  top: auto !important; left: auto !important;
+  width: 180px !important; height: 180px !important;
   border-radius: 50% !important;
-  flex: 0 0 180px;
-  order: 2; /* 放在导航之后 */
+  background: #e60000 !important;
+  justify-self: center !important; /* 居中对齐每个格子 */
 }
 
-/* ========== type tweaks ========== */
-@media (max-width: 1024px){
-  .v1_16{ height: 56px !important; padding: 0 16px; }
-  .v1_7, .v1_8, .v1_10{ font-size: 18px !important; margin-left: 24px; }
-}
+/* 移动端缩小圆点与间距 */
 @media (max-width: 768px){
-  .v1_15{ gap: 16px; padding: 72px 20px 32px; }
-  .v1_7, .v1_8, .v1_10{ font-size: 16px !important; margin-left: 20px; }
+  .v1_15{ gap: 20px !important; padding: 72px 20px 32px !important; }
   .v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
   .v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
-  .v14_37, .v14_30 {
-    width: 120px !important;
-    height: 120px !important;
-    flex: 0 0 120px;
+  .v14_37, .v14_30{
+    width: 120px !important; height: 120px !important;
+  }
+  .v1_7, .v1_8, .v1_10{ font-size: 16px !important; margin-left: 20px !important; }
+}
+
   }
 }
