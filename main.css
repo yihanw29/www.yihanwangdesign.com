@@ -1,212 +1,93 @@
-* {
-  box-sizing: border-box;
-}
+/* ========== base ========== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
+  margin: 0;
   font-size: 14px;
+  background: #000; /* 整体黑底，与你的设计一致 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.v1_2 {
-  width: 100%;
-  height: 900px;
-  background: rgba(0,0,0,1);
-  opacity: 1;
+/* ========== layout container ========== */
+/* 首页容器：黑底、弹性布局、自动换行，给导航留出空间 */
+.v1_15{
+  min-height: 100vh;
+  background: #000 !important;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 24px;
+  padding: 96px 36px 48px;
   position: relative;
-  top: 0px;
-  left: 0px;
-  overflow: hidden;
-}
-.v1_18 {
-  width: 508px;
-  height: 242px;
-  background: url("../images/v1_18.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 385px;
-  left: 329px;
   overflow: hidden;
 }
 
-.v1_3 {
-  width: 100%;
-  height: 109px;
-  background: rgba(255,255,255,0.8500000238418579);
-  opacity: 1;
-  position: relative;
-  top: 0px;
-  left: 0px;
-  border: 1px solid rgba(0,0,0,1);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
-  overflow: hidden;
+/* 旧层：黑色遮罩，关闭避免挡住内容 */
+.v1_2{ display: none !important; }
+
+/* 旧 logo/图片位，先隐藏（没有图片资源也不影响布局） */
+.v1_18{ display: none !important; }
+
+/* ========== nav ========== */
+.v1_16{
+  order: 1;
+  flex: 1 0 100%;
+  height: 64px !important;
+  background: #e6e6e6 !important;
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding: 0 24px;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
 }
-.v1_13 {
-  width: 144px;
-  height: 68px;
-  background: url("../images/v1_13.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-  opacity: 1;
-  position: absolute;
-  top: 20px;
-  left: 65px;
-  overflow: hidden;
+
+/* 去掉旧导出的多余背景/边框 */
+.v1_3, .v1_13{
+  all: unset; /* 清空旧样式 */
+  display: none;
 }
-.v1_7 {
-  width: 82px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 31px;
-  left: 95px;
-  font-family: Playfair Display;
-  font-weight: Regular;
-  font-size: 32px;
-  opacity: 1;
-  text-align: left;
+
+/* 导航文字（about / works / contact） */
+.v1_7, .v1_8, .v1_10{
+  position: static !important;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: 20px !important;
+  color: #111 !important;
+  margin-left: 32px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity .2s ease;
 }
-.v1_10 {
-  width: 107px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 31px;
-  left: 463px;
-  font-family: Playfair Display;
-  font-weight: Regular;
-  font-size: 32px;
-  opacity: 1;
-  text-align: left;
+.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity: .65; }
+
+/* ========== red dots grid ========== */
+/* 统一红点样式，取消绝对定位，使用弹性网格自动排布 */
+.v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
+.v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
+.v14_37, .v14_30 {
+  position: static !important;
+  width: 180px !important;
+  height: 180px !important;
+  background: #e60000 !important;
+  border-radius: 50% !important;
+  flex: 0 0 180px;
+  order: 2; /* 放在导航之后 */
 }
-.v1_8 {
-  width: 88px;
-  color: rgba(0,0,0,1);
-  position: absolute;
-  top: 31px;
-  left: 276px;
-  font-family: Playfair Display;
-  font-weight: Regular;
-  font-size: 32px;
-  opacity: 1;
-  text-align: left;
+
+/* ========== type tweaks ========== */
+@media (max-width: 1024px){
+  .v1_16{ height: 56px !important; padding: 0 16px; }
+  .v1_7, .v1_8, .v1_10{ font-size: 18px !important; margin-left: 24px; }
 }
-.v14_3 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 147px;
-  left: 309px;
-  border-radius: 50%;
-}
-.v14_21 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 147px;
-  left: 165px;
-  border-radius: 50%;
-}
-.v14_25 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 147px;
-  left: 451px;
-  border-radius: 50%;
-}
-.v14_23 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 147px;
-  left: 143px;
-  border-radius: 50%;
-}
-.v14_32 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 406px;
-  left: 281px;
-  border-radius: 50%;
-}
-.v14_27 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 685px;
-  left: 309px;
-  border-radius: 50%;
-}
-.v14_28 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 685px;
-  left: 165px;
-  border-radius: 50%;
-}
-.v14_29 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 685px;
-  left: 451px;
-  border-radius: 50%;
-}
-.v14_35 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 147px;
-  left: 27px;
-  border-radius: 50%;
-}
-.v14_36 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 406px;
-  left: 161px;
-  border-radius: 50%;
-}
-.v14_37 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 685px;
-  left: 27px;
-  border-radius: 50%;
-}
-.v14_30 {
-  width: 180px;
-  height: 180px;
-  background: rgba(230,0,0,1);
-  opacity: 1;
-  position: absolute;
-  top: 685px;
-  left: 143px;
-  border-radius: 50%;
+@media (max-width: 768px){
+  .v1_15{ gap: 16px; padding: 72px 20px 32px; }
+  .v1_7, .v1_8, .v1_10{ font-size: 16px !important; margin-left: 20px; }
+  .v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
+  .v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
+  .v14_37, .v14_30 {
+    width: 120px !important;
+    height: 120px !important;
+    flex: 0 0 120px;
+  }
 }
