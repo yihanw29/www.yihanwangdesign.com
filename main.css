@@ -77,5 +77,67 @@ body {
   .v1_7, .v1_8, .v1_10{ font-size: 16px !important; margin-left: 20px !important; }
 }
 
+/* 容器：页面黑底与内边距 */
+.v1_15{
+  background:#000 !important;
+  min-height:100vh;
+  padding:96px 48px 48px; /* 顶部留给导航 */
+}
+
+/* 导航吸顶 */
+.v1_16{
+  position:sticky !important;
+  top:0; z-index:10;
+  height:64px !important;
+  background:#e6e6e6 !important;
+  display:flex !important; justify-content:flex-end !important; align-items:center !important;
+  padding:0 24px !important;
+}
+
+/* 新增：红点网格 */
+.dots{
+  max-width:1260px;      /* 内容宽度 */
+  margin:0 auto;         /* 居中 */
+  display:grid !important;
+  grid-template-columns: repeat(6, 180px); /* 一行 6 个 */
+  gap:48px;              /* 圆点间距 */
+  align-content:start;
+}
+
+/* 统一红点样式，彻底关闭绝对定位 */
+.dots > [class^="v14_"]{
+  position: static !important;
+  top:auto !important; left:auto !important;
+  width:180px !important; height:180px !important;
+  border-radius:50% !important;
+  background:#e60000 !important;
+}
+
+/* 旧层隐藏（避免干扰） */
+.v1_2, .v1_18, .v1_3, .v1_13{ display:none !important; }
+
+/* 导航文字样式 */
+.v1_7, .v1_8, .v1_10{
+  position:static !important;
+  margin-left:32px !important;
+  font-family:"Playfair Display", serif !important;
+  font-size:20px !important; color:#111 !important;
+  text-decoration:none !important; cursor:pointer !important;
+  transition:opacity .2s ease !important;
+}
+.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity:.65 !important; }
+
+/* 响应式：窄屏减列 & 缩小圆 */
+@media (max-width: 1024px){
+  .dots{ grid-template-columns: repeat(4, 160px); gap:36px; }
+  .dots > [class^="v14_"]{ width:160px !important; height:160px !important; }
+}
+@media (max-width: 768px){
+  .v1_15{ padding:72px 20px 32px; }
+  .dots{ grid-template-columns: repeat(3, 120px); gap:20px; }
+  .dots > [class^="v14_"]{ width:120px !important; height:120px !important; }
+  .v1_7, .v1_8, .v1_10{ font-size:16px !important; margin-left:20px !important; }
+}
+
   }
 }
