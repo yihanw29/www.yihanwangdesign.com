@@ -138,6 +138,39 @@ body {
   .dots > [class^="v14_"]{ width:120px !important; height:120px !important; }
   .v1_7, .v1_8, .v1_10{ font-size:16px !important; margin-left:20px !important; }
 }
+/* 页面容器 */
+.v1_15{ background:#000; min-height:100vh; padding:96px 48px 48px; }
+
+/* 导航条 */
+.v1_16{
+  position:sticky; top:0; z-index:10; height:64px;
+  background:#e6e6e6; display:flex; justify-content:flex-end; align-items:center;
+  padding:0 24px;
+}
+
+/* 只在 .dots 中渲染红点为网格 */
+.dots{
+  max-width:1260px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(6,180px); gap:48px; align-content:start;
+}
+
+/* 红点样式（放进网格） */
+.dots > [class^="v14_"]{
+  position:static !important; width:180px !important; height:180px !important;
+  border-radius:50% !important; background:#e60000 !important; justify-self:center;
+}
+
+/* 把容器里**直接**挂在 v1_15 下的旧红点全部隐藏，避免左侧竖排 */
+.v1_15 > [class^="v14_"]{ display:none !important; }
+
+/* 隐藏无用旧层 */
+.v1_2, .v1_3, .v1_13, .v1_18{ display:none !important; }
+
+/* 导航文字 */
+.v1_7, .v1_8, .v1_10{
+  position:static !important; margin-left:32px;
+  font-family:"Playfair Display",serif; font-size:20px; color:#111; text-decoration:none;
+}
 
   }
 }
