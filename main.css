@@ -1,176 +1,86 @@
-/* ========== base ========== */
-* { box-sizing: border-box; }
-html, body { height: 100%; }
+* {
+	margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/* 其余CSS代码保持不变 */
 body {
-  margin: 0;
-  font-size: 14px;
-  background: #000; /* 整体黑底，与你的设计一致 */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #000; 
+  color: #000;
+  font-family: 'Playfair Display', serif;
+  min-height: 100vh;
+  position: relative;
 }
 
-/* ========== layout container ========== */
-/* 首页容器：黑底、弹性布局、自动换行，给导航留出空间 */
-/* ==== hard override: turn absolute layout into responsive grid ==== */
-
-/* 页面容器：用 CSS Grid 自动多列排布 */
-.v1_15{
-  display: grid !important;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)) !important;
-  gap: 32px !important;
-  align-content: start !important;
-  padding: 96px 48px 48px !important; /* 顶部给导航留空间 */
-  background: #000 !important;
+.navbar {
+  width: 100%;
+  height: 109px;
+  background: rgba(255, 255, 255, 0.85); 
+  border: 1px solid #000;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 65px;
+  position: relative; 
+  z-index: 100; 
 }
 
-/* 导航条占满一行并吸顶 */
-.v1_16{
-  grid-column: 1 / -1 !important;
-  height: 64px !important;
-  background: #e6e6e6 !important;
-  position: sticky !important; top: 0; z-index: 10;
-  display: flex !important; align-items: center !important; justify-content: flex-end !important;
-  padding: 0 24px !important;
-  box-shadow: 0 1px 0 rgba(0,0,0,.08) !important;
+.logo img {
+  width: 144px;
+  height: 68px;
+  display: block; 
 }
 
-/* 清掉老的层 */
-.v1_2, .v1_18, .v1_3, .v1_13{
-  display: none !important;
-  background: none !important;
+.nav-links {
+  display: flex;
+  gap: 80px; 
 }
 
-/* 导航文字 */
-.v1_7, .v1_8, .v1_10{
-  position: static !important;
-  margin-left: 32px !important;
-  font-family: "Playfair Display", serif !important;
-  font-weight: 400 !important;
-  font-size: 20px !important;
-  color: #111 !important;
-  text-decoration: none !important;
-  cursor: pointer !important;
-  transition: opacity .2s ease !important;
-}
-.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity: .65 !important; }
-
-/* 圆点：统一尺寸，去绝对定位，放入网格 */
-.v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
-.v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
-.v14_37, .v14_30{
-  position: static !important;
-  top: auto !important; left: auto !important;
-  width: 180px !important; height: 180px !important;
-  border-radius: 50% !important;
-  background: #e60000 !important;
-  justify-self: center !important; /* 居中对齐每个格子 */
+.nav-link {
+  color: #000; 
+  font-size: 32px;
+  text-decoration: none;
 }
 
-/* 移动端缩小圆点与间距 */
-@media (max-width: 768px){
-  .v1_15{ gap: 20px !important; padding: 72px 20px 32px !important; }
-  .v14_3, .v14_21, .v14_25, .v14_23, .v14_32,
-  .v14_27, .v14_28, .v14_29, .v14_35, .v14_36,
-  .v14_37, .v14_30{
-    width: 120px !important; height: 120px !important;
-  }
-  .v1_7, .v1_8, .v1_10{ font-size: 16px !important; margin-left: 20px !important; }
+.container {
+  padding-top: 20px; 
 }
 
-/* 容器：页面黑底与内边距 */
-.v1_15{
-  background:#000 !important;
-  min-height:100vh;
-  padding:96px 48px 48px; /* 顶部留给导航 */
+.dots-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px; 
 }
 
-/* 导航吸顶 */
-.v1_16{
-  position:sticky !important;
-  top:0; z-index:10;
-  height:64px !important;
-  background:#e6e6e6 !important;
-  display:flex !important; justify-content:flex-end !important; align-items:center !important;
-  padding:0 24px !important;
+.dot-row {
+  display: flex;
+  gap:68px; 
+  align-items: center;
 }
 
-/* 新增：红点网格 */
-.dots{
-  max-width:1260px;      /* 内容宽度 */
-  margin:0 auto;         /* 居中 */
-  display:grid !important;
-  grid-template-columns: repeat(6, 180px); /* 一行 6 个 */
-  gap:48px;              /* 圆点间距 */
-  align-content:start;
+.dot {
+  width: 160px;
+  height: 160px;
+  background-color: #e60000; 
+  border-radius: 50%;
 }
 
-/* 统一红点样式，彻底关闭绝对定位 */
-.dots > [class^="v14_"]{
-  position: static !important;
-  top:auto !important; left:auto !important;
-  width:180px !important; height:180px !important;
-  border-radius:50% !important;
-  background:#e60000 !important;
+.center-logo {
+	width: 377px;
+	height: 180px;
+	display: inherit;
+	align-items: center;
+	justify-content: center;
 }
 
-/* 旧层隐藏（避免干扰） */
-.v1_2, .v1_18, .v1_3, .v1_13{ display:none !important; }
-
-/* 导航文字样式 */
-.v1_7, .v1_8, .v1_10{
-  position:static !important;
-  margin-left:32px !important;
-  font-family:"Playfair Display", serif !important;
-  font-size:20px !important; color:#111 !important;
-  text-decoration:none !important; cursor:pointer !important;
-  transition:opacity .2s ease !important;
-}
-.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity:.65 !important; }
-
-/* 响应式：窄屏减列 & 缩小圆 */
-@media (max-width: 1024px){
-  .dots{ grid-template-columns: repeat(4, 160px); gap:36px; }
-  .dots > [class^="v14_"]{ width:160px !important; height:160px !important; }
-}
-@media (max-width: 768px){
-  .v1_15{ padding:72px 20px 32px; }
-  .dots{ grid-template-columns: repeat(3, 120px); gap:20px; }
-  .dots > [class^="v14_"]{ width:120px !important; height:120px !important; }
-  .v1_7, .v1_8, .v1_10{ font-size:16px !important; margin-left:20px !important; }
-}
-/* 页面容器 */
-.v1_15{ background:#000; min-height:100vh; padding:96px 48px 48px; }
-
-/* 导航条 */
-.v1_16{
-  position:sticky; top:0; z-index:10; height:64px;
-  background:#e6e6e6; display:flex; justify-content:flex-end; align-items:center;
-  padding:0 24px;
-}
-
-/* 只在 .dots 中渲染红点为网格 */
-.dots{
-  max-width:1260px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(6,180px); gap:48px; align-content:start;
-}
-
-/* 红点样式（放进网格） */
-.dots > [class^="v14_"]{
-  position:static !important; width:180px !important; height:180px !important;
-  border-radius:50% !important; background:#e60000 !important; justify-self:center;
-}
-
-/* 把容器里**直接**挂在 v1_15 下的旧红点全部隐藏，避免左侧竖排 */
-.v1_15 > [class^="v14_"]{ display:none !important; }
-
-/* 隐藏无用旧层 */
-.v1_2, .v1_3, .v1_13, .v1_18{ display:none !important; }
-
-/* 导航文字 */
-.v1_7, .v1_8, .v1_10{
-  position:static !important; margin-left:32px;
-  font-family:"Playfair Display",serif; font-size:20px; color:#111; text-decoration:none;
-}
-
-  }
+.logo-placeholder {
+  width: 100%;
+  height: 100%;
+  background: url("../images/v1_18.png") center/contain no-repeat;
+  background-color: #e60000;
 }
