@@ -54,12 +54,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 40px; 
+  gap: 100px; 
 }
 
 .dot-row {
   display: flex;
-  gap:68px; 
+  gap:120px; 
   align-items: center;
 }
 
