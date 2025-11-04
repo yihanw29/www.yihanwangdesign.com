@@ -54,7 +54,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 100px; 
+  gap: 90px; 
 }
 
 .dot-row {
@@ -83,4 +83,18 @@ body {
   height: 100%;
   background: url("../images/v1_18.png") center/contain no-repeat;
   background-color: #e60000;
+}
+.site-footer {
+  color: #fff; /* 文字设为白色 */
+}
+
+.site-footer p,
+.site-footer .legal {
+  white-space: nowrap; /* 强制文字不换行，保持一行 */
+  text-align: center; /* 可选：文字居中 */
+}
+
+.site-footer a {
+  color: #fff; /* 链接也设为白色 */
+  text-decoration: underline; /* 可选：给链接加下划线以区分 */
 }
