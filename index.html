@@ -78,36 +78,60 @@
   </style>
 </head>
 
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet" />
+  <link href="HOME-figma-to-html/css/main.css" rel="stylesheet" />
+  <title>Yihan Wang Design</title>
+</head>
 <body>
-  <!-- 主内容：保留你从 Figma 导出的结构 -->
-
-   <!-- 页面容器 -->
-  <div class="v1_15">
-    <!-- 导航栏 -->
-    <div class="v1_16">
-      <a class="v1_7" href="#about">about</a>
-      <a class="v1_8" href="#works">works</a>
-      <a class="v1_10" href="#contact">contact</a>
+  <!-- 顶部导航栏（放在最上层） -->
+  <div class="navbar">
+    <div class="logo">
+      <img src="HOME-figma-to-html/images/v1_13.png" width="377" height="179" alt=""/>
     </div>
-<!-- 新增这一层容器 -->
+    <div class="nav-links">
+      <a href="#" class="nav-link">about</a>
+      <a href="#" class="nav-link">works</a>
+      <a href="#" class="nav-link">contact</a>
+    </div>
+  </div>
 
-<div class="dots">
-  <div class="v14_3"></div>
-  <div class="v14_21"></div>
-  <div class="v14_25"></div>
-  <div class="v14_23"></div>
-  <div class="v14_32"></div>
-  <div class="v14_27"></div>
-  <div class="v14_28"></div>
-  <div class="v14_29"></div>
-  <div class="v14_35"></div>
-  <div class="v14_36"></div>
-  <div class="v14_37"></div>
-  <div class="v14_30"></div>
-</div>
-
+  <!-- 主体内容区 -->
+  <div class="container">
+    <!-- 红色圆点区域 -->
+    <div class="dots-container">
+      <!-- 第一行圆点 -->
+      <div class="dot-row">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      
+      <!-- 第二行圆点区域 -->
+      <div class="dot-row">
+        <div class="dot"></div>
+        <div class="logo-wrapper">
+          <img src="HOME-figma-to-html/images/v1_18.png" width="377" height="180" alt="" class="center-logo" />
+        </div>
+        <div class="dot"></div>
+      </div>
+      
+      <!-- 第三行圆点 -->
+      <div class="dot-row">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+    </div>
+  </div>
+</body>
 </html>
-
   <!-- 页脚 -->
   <footer class="site-footer">
     <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
