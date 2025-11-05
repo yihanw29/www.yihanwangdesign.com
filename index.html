@@ -11,6 +11,21 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
   <link href="./main.css" rel="stylesheet"/>
 </head>
+<script>
+  // 读取导航真实高度（含字体变化/换行/缩放），写入 --navH，防止遮挡
+  (function(){
+    const nav = document.querySelector('.navbar.fullwidth');
+    function setNavH(){
+      if(!nav) return;
+      const h = Math.ceil(nav.getBoundingClientRect().height) + 'px';
+      document.documentElement.style.setProperty('--navH', h);
+    }
+    window.addEventListener('load', setNavH, {once:true});
+    window.addEventListener('resize', setNavH, {passive:true});
+    window.addEventListener('orientationchange', setNavH, {passive:true});
+    setNavH();
+  })();
+</script>
 
 <body>
   <!-- 全宽固定导航（始终铺满屏幕） -->
