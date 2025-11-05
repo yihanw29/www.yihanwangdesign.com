@@ -65,3 +65,15 @@ body{
   .nav-links{ gap:36px }
   .navbar.fullwidth{ padding:0 20px }
 }
+/* ==== FIX: navbar 自动让出高度，避免遮住画布 ==== */
+:root{ --navH: 109px; }                /* 初始值，JS 会实时更新 */
+
+.navbar.fullwidth{
+  height: var(--navH);
+}
+
+.frame-wrap{
+  /* 导航高度由 CSS 变量控制，始终不会被遮住 */
+  padding-top: var(--navH);
+  height: calc(100svh - var(--navH));
+}
