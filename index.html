@@ -4,71 +4,76 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
+  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
+  <meta name="theme-color" content="#000000"/>
 
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet"/>
+  <!-- 字体与样式 -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
   <link href="./main.css" rel="stylesheet"/>
 </head>
-<body>
 
-  <!-- 导航放外面：始终全宽 -->
+<body>
+  <!-- 全宽固定导航（始终铺满屏幕） -->
   <div class="navbar fullwidth">
-    <div class="logo"><img src="v1_13.png" alt=""></div>
-    <div class="nav-links">
+    <div class="logo">
+      <img src="v1_13.png" alt="yihan wang design logo" width="144" height="68">
+    </div>
+    <nav class="nav-links">
       <a href="about.html" class="nav-link">about</a>
       <a href="works.html" class="nav-link">works</a>
       <a href="contact.html" class="nav-link">contact</a>
-    </div>
+    </nav>
   </div>
 
+  <!-- 固定画布外层：等比缩放、居中显示 -->
   <div class="frame-wrap">
+    <!-- 固定画布：你的设计基准尺寸（1440×900） -->
     <div id="stage" class="stage-1440x900">
-      <!-- 你的红点 + logo + footer 内容 -->
-    </div>
-
-
-      <div class="container">
-        <div class="dots-container">
+      <!-- ===== 主页内容（保持你原有版式） ===== -->
+      <main class="container">
+        <section class="dots-container">
+          <!-- 第1行 -->
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-
+          <!-- 第2行（中间logo） -->
           <div class="dot-row">
-            <div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="logo-wrapper">
-              <img src="v1_18.png" width="377" height="180" alt="yihan wang design wordmark" class="center-logo"/>
+              <img src="v1_18.png" class="center-logo" alt="yihan wang design wordmark" width="377" height="180">
             </div>
-            <div class="dot"></div><div class="dot">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-
+          <!-- 第3行 -->
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-        </div>
-      </div>
+        </section>
+      </main>
 
+      <!-- 页脚（在画布内） -->
       <footer class="site-footer">
         <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
           <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
         </p>
         <p class="legal">This is the only official website. Unauthorized copies or mirrors are invalid.</p>
       </footer>
-      <!-- ===== 你的原内容到此结束 ===== -->
     </div>
   </div>
 
-  <!-- 等比缩放脚本：把 1440×900 画布按窗口尺寸整体缩放 -->
+  <!-- 等比缩放脚本：把 1440×900 画布按窗口尺寸整体缩放（像 PDF 一样） -->
   <script>
     (function(){
-      const BASE_W = 1440, BASE_H = 900;     // 和 .stage-1440x900 尺寸一致
+      const BASE_W = 1440, BASE_H = 900;      // 与 .stage-1440x900 保持一致
       const stage  = document.getElementById('stage');
       const wrap   = document.querySelector('.frame-wrap');
       function fit(){
         const ww = wrap.clientWidth, wh = wrap.clientHeight;
-        const scale = Math.min(ww/BASE_W, wh/BASE_H);
+        const scale = Math.min(ww / BASE_W, wh / BASE_H);
         stage.style.transform = `scale(${scale})`;
       }
       addEventListener('resize', fit, {passive:true});
