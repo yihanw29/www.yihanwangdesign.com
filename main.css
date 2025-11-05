@@ -1,205 +1,50 @@
-* {
-	margin: 0;
-	padding: 0;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-}
-
-/* 其余CSS代码保持不变 */
-body {
-  background-color: #000; 
-  color: #000;
-  font-family: 'Playfair Display', serif;
-  min-height: 100vh;
-  position: relative;
-}
-
-.navbar {
-  width: 100%;
-  height: 109px;
-  background: rgba(255, 255, 255, 0.85); 
-  border: 1px solid #000;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 65px;
-  position: relative; 
-  z-index: 100; 
-}
-
-.logo img {
-  width: 144px;
-  height: 68px;
-  display: block; 
-}
-
-.nav-links {
-  display: flex;
-  gap: 80px; 
-}
-
-.nav-link {
-  color: #000; 
-  font-size: 32px;
-  text-decoration: none;
-}
-
-.container {
-  padding-top: 20px; 
-}
-
-.dots-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 90px; 
-}
-
-.dot-row {
-  display: flex;
-  gap:120px; 
-  align-items: center;
-}
-
-.dot {
-  width: 160px;
-  height: 160px;
-  background-color: #e60000; 
-  border-radius: 50%;
-}
-
-.center-logo {
-	width: 377px;
-	height: 180px;
-	display: inherit;
-	align-items: center;
-	justify-content: center;
-}
-
-.logo-placeholder {
-  width: 100%;
-  height: 100%;
-  background: url("../images/v1_18.png") center/contain no-repeat;
-  background-color: #e60000;
-}
-.site-footer {
-  color: #fff; /* 文字设为白色 */
-}
-
-.site-footer p,
-.site-footer .legal {
-  white-space: nowrap; /* 强制文字不换行，保持一行 */
-  text-align: center; /* 可选：文字居中 */
-}
-
-.site-footer a {
-  color: #fff; /* 链接也设为白色 */
-  text-decoration: underline; /* 可选：给链接加下划线以区分 */
-}
-/* ======= responsive base ======= */
-:root{
-  --page-max: 1260px;
-  --space: clamp(16px, 4vw, 48px);
-  --nav-h: clamp(52px, 7vw, 64px);
-  --dot-size: clamp(96px, 14vw, 180px); /* 圆点会随屏幕自适应 */
-  --dot-gap: clamp(16px, 3.2vw, 48px);
-}
-
-*{ box-sizing:border-box }
-html,body{ height:100% }
+/* ===== Reset / Base ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
 body{
-  margin:0;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  background:#000; /* 你的设计是黑底 */
+  background:#000;color:#fff;  /* 白字黑底，手机上不再“黑底黑字” */
+  font-family:'Playfair Display', serif;
+  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 
-/* 图片和视频在小屏不越界 */
-img, svg, video{ max-width:100%; height:auto }
-
-/* ======= 页面容器（首页 .v1_15） ======= */
-.v1_15{
-  min-height:100vh;
-  padding: calc(var(--nav-h) + var(--space)) var(--space) var(--space);
-  background:#000 !important;
+/* ===== Fixed Canvas (PDF-like) ===== */
+.frame-wrap{
+  height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:#000;
+}
+.stage-1440x900{
+  width:1440px;height:900px;                 /* 固定画布尺寸 */
+  transform-origin: top center;              /* 从上中缩放 */
 }
 
-/* ======= 导航（.v1_16 + 链接） ======= */
-.v1_16{
-  position: sticky; top:0; z-index:10;
-  height: var(--nav-h) !important;
-  display:flex !important; align-items:center !important; justify-content:flex-end !important;
-  padding: 0 clamp(12px, 2.4vw, 24px) !important;
-  background:#e6e6e6 !important;
-  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+/* ===== Your original layout (kept) ===== */
+.navbar{
+  width:100%;height:109px;
+  background:rgba(255,255,255,.85);
+  border:1px solid #000;
+  box-shadow:0 4px 4px rgba(0,0,0,1);
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 65px; position:relative; z-index:10;
 }
+.logo img{width:144px;height:68px;display:block}
 
-/* 旧导出层隐藏，避免挡住内容 */
-.v1_2, .v1_3, .v1_13, .v1_18{ display:none !important; background:none !important }
+.nav-links{display:flex;gap:80px}
+.nav-link{color:#000;font-size:32px;text-decoration:none}
+.nav-link:hover{opacity:.7}
 
-/* 导航文字（about / works / contact） */
-.v1_7, .v1_8, .v1_10{
-  position: static !important;
-  font-family: "Playfair Display", serif;
-  font-weight: 400;
-  font-size: clamp(14px, 2vw, 20px) !important;
-  color:#111 !important;
-  margin-left: clamp(16px, 3vw, 32px) !important;
-  text-decoration:none;
-  cursor:pointer;
-  transition: opacity .2s ease;
-}
-.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity:.65 }
+.container{padding-top:20px}
+.dots-container{display:flex;flex-direction:column;align-items:center;gap:90px}
 
-/* ======= 红点区域：建议把所有 v14_* 包在 .dots 容器里 ======= */
-/* 若你已经有 <div class="dots"> 包住所有 v14_*，则生效；如果没有，也会退化为整页网格布局 */
-.dots{
-  max-width: var(--page-max);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: var(--dot-gap);
-}
+.dot-row{display:flex;gap:120px;align-items:center}
+.dot{width:160px;height:160px;background:#e60000;border-radius:50%}
 
-/* 如果没有 .dots 容器，就把整页当作网格容器（兜底） */
-.v1_15:not(:has(.dots)){
-  display:grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
-  gap: var(--dot-gap) !important;
-  align-content:start !important;
-}
+.logo-wrapper{display:flex;align-items:center;justify-content:center}
+.center-logo{display:block;width:377px;height:180px}
 
-/* 彻底关闭 Figma 的绝对定位，让红点可自适应排布 */
-[class^="v14_"]{
-  position: static !important;
-  top:auto !important; left:auto !important;
-  width: clamp(96px, 14vw, 180px) !important;
-  height: clamp(96px, 14vw, 180px) !important;
-  border-radius: 50% !important;
-  background: #e60000 !important;
-  justify-self: center; /* 每个格子里居中 */
-}
+.site-footer{color:#fff;text-align:center;margin-top:32px}
+.site-footer a{color:#fff;text-decoration:underline}
+.site-footer p,.site-footer .legal{white-space:nowrap}
 
-/* ======= 版心段落/内容区（可用于 about/works 等页） ======= */
-.page, .section{
-  max-width: var(--page-max);
-  margin: 0 auto;
-  padding: var(--space);
-  background:#fff;
-  color:#111;
-}
-.section:nth-of-type(even){ background:#f6f6f6 }
-
-/* 自适应标题 */
-h1{ margin:0 0 .5em; font-size: clamp(28px, 5vw, 56px); line-height:1.1 }
-h2{ margin:0 0 .6em; font-size: clamp(22px, 3.6vw, 40px); line-height:1.2 }
-p , li{ font-size: clamp(14px, 2.2vw, 18px); line-height: 1.7 }
-
-/* iOS 安全区（避免刘海/底部遮挡） */
-@supports (padding: max(0px)) {
-  .v1_16{ padding-right: max(24px, env(safe-area-inset-right)); }
-  .v1_15{ padding-top: calc(var(--nav-h) + max(var(--space), env(safe-area-inset-top))); }
-}
-
+/* ===== 移除你之前的响应式补丁，避免与固定画布理念冲突 ===== */
+/* 不再需要 .v1_15 / .v1_16 / .dots 等响应式规则 */
