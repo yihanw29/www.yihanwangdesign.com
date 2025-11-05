@@ -4,28 +4,30 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
+  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
+  <meta name="theme-color" content="#000000"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
   <link href="./main.css" rel="stylesheet"/>
 </head>
 
 <body>
-  <!-- 全宽导航：sticky，不会遮住下面内容 -->
-  <div class="navbar">
-    <div class="logo">
-      <img src="v1_13.png" alt="yihan wang design logo" width="144" height="68">
-    </div>
-    <nav class="nav-links">
-      <a href="about.html" class="nav-link">about</a>
-      <a href="works.html" class="nav-link">works</a>
-      <a href="contact.html" class="nav-link">contact</a>
-    </nav>
-  </div>
-
-  <!-- 画布外层：等比缩放、在导航下方居中 -->
+  <!-- 固定画布外层：等比缩放，保持所有内容的比例不变 -->
   <div class="frame-wrap">
     <div id="stage" class="stage-1440x900">
-      <main class="container">
-        <section class="dots-container">
+      <!-- ===== 页面内容，包含导航、红点、logo 等 ===== -->
+      <div class="navbar">
+        <div class="logo">
+          <img src="v1_13.png" alt="yihan wang design logo" width="144" height="68">
+        </div>
+        <nav class="nav-links">
+          <a href="about.html" class="nav-link">about</a>
+          <a href="works.html" class="nav-link">works</a>
+          <a href="contact.html" class="nav-link">contact</a>
+        </nav>
+      </div>
+
+      <div class="container">
+        <div class="dots-container">
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -43,8 +45,8 @@
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-        </section>
-      </main>
+        </div>
+      </div>
 
       <footer class="site-footer">
         <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
@@ -55,7 +57,7 @@
     </div>
   </div>
 
-  <!-- 等比缩放（像 PDF 一样整体缩放画布） -->
+  <!-- 等比缩放（将所有内容按比例缩放） -->
   <script>
     (function(){
       const BASE_W = 1440, BASE_H = 900;
