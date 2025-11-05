@@ -46,5 +46,15 @@ body{
 .site-footer a{color:#fff;text-decoration:underline}
 .site-footer p,.site-footer .legal{white-space:nowrap}
 
-/* ===== 移除你之前的响应式补丁，避免与固定画布理念冲突 ===== */
-/* 不再需要 .v1_15 / .v1_16 / .dots 等响应式规则 */
+.navbar.fullwidth{
+  position:fixed;
+  top:0;left:0;
+  width:100vw;          /* 始终铺满屏幕宽度 */
+  height:109px;
+  background:#e6e6e6;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:0 65px;
+  z-index:100;
+  box-shadow:0 4px 4px rgba(0,0,0,0.25);
+}
+.frame-wrap{padding-top:109px;} /* 给下面内容留出导航高度 */
