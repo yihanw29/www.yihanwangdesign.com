@@ -98,3 +98,108 @@ body {
   color: #fff; /* 链接也设为白色 */
   text-decoration: underline; /* 可选：给链接加下划线以区分 */
 }
+/* ======= responsive base ======= */
+:root{
+  --page-max: 1260px;
+  --space: clamp(16px, 4vw, 48px);
+  --nav-h: clamp(52px, 7vw, 64px);
+  --dot-size: clamp(96px, 14vw, 180px); /* 圆点会随屏幕自适应 */
+  --dot-gap: clamp(16px, 3.2vw, 48px);
+}
+
+*{ box-sizing:border-box }
+html,body{ height:100% }
+body{
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  background:#000; /* 你的设计是黑底 */
+}
+
+/* 图片和视频在小屏不越界 */
+img, svg, video{ max-width:100%; height:auto }
+
+/* ======= 页面容器（首页 .v1_15） ======= */
+.v1_15{
+  min-height:100vh;
+  padding: calc(var(--nav-h) + var(--space)) var(--space) var(--space);
+  background:#000 !important;
+}
+
+/* ======= 导航（.v1_16 + 链接） ======= */
+.v1_16{
+  position: sticky; top:0; z-index:10;
+  height: var(--nav-h) !important;
+  display:flex !important; align-items:center !important; justify-content:flex-end !important;
+  padding: 0 clamp(12px, 2.4vw, 24px) !important;
+  background:#e6e6e6 !important;
+  box-shadow: 0 1px 0 rgba(0,0,0,.08);
+}
+
+/* 旧导出层隐藏，避免挡住内容 */
+.v1_2, .v1_3, .v1_13, .v1_18{ display:none !important; background:none !important }
+
+/* 导航文字（about / works / contact） */
+.v1_7, .v1_8, .v1_10{
+  position: static !important;
+  font-family: "Playfair Display", serif;
+  font-weight: 400;
+  font-size: clamp(14px, 2vw, 20px) !important;
+  color:#111 !important;
+  margin-left: clamp(16px, 3vw, 32px) !important;
+  text-decoration:none;
+  cursor:pointer;
+  transition: opacity .2s ease;
+}
+.v1_7:hover, .v1_8:hover, .v1_10:hover{ opacity:.65 }
+
+/* ======= 红点区域：建议把所有 v14_* 包在 .dots 容器里 ======= */
+/* 若你已经有 <div class="dots"> 包住所有 v14_*，则生效；如果没有，也会退化为整页网格布局 */
+.dots{
+  max-width: var(--page-max);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--dot-gap);
+}
+
+/* 如果没有 .dots 容器，就把整页当作网格容器（兜底） */
+.v1_15:not(:has(.dots)){
+  display:grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)) !important;
+  gap: var(--dot-gap) !important;
+  align-content:start !important;
+}
+
+/* 彻底关闭 Figma 的绝对定位，让红点可自适应排布 */
+[class^="v14_"]{
+  position: static !important;
+  top:auto !important; left:auto !important;
+  width: clamp(96px, 14vw, 180px) !important;
+  height: clamp(96px, 14vw, 180px) !important;
+  border-radius: 50% !important;
+  background: #e60000 !important;
+  justify-self: center; /* 每个格子里居中 */
+}
+
+/* ======= 版心段落/内容区（可用于 about/works 等页） ======= */
+.page, .section{
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: var(--space);
+  background:#fff;
+  color:#111;
+}
+.section:nth-of-type(even){ background:#f6f6f6 }
+
+/* 自适应标题 */
+h1{ margin:0 0 .5em; font-size: clamp(28px, 5vw, 56px); line-height:1.1 }
+h2{ margin:0 0 .6em; font-size: clamp(22px, 3.6vw, 40px); line-height:1.2 }
+p , li{ font-size: clamp(14px, 2.2vw, 18px); line-height: 1.7 }
+
+/* iOS 安全区（避免刘海/底部遮挡） */
+@supports (padding: max(0px)) {
+  .v1_16{ padding-right: max(24px, env(safe-area-inset-right)); }
+  .v1_15{ padding-top: calc(var(--nav-h) + max(var(--space), env(safe-area-inset-top))); }
+}
+
