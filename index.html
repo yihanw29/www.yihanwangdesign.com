@@ -4,32 +4,13 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
-  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
-  <meta name="theme-color" content="#000000"/>
-
-  <!-- 字体与样式 -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
   <link href="./main.css" rel="stylesheet"/>
 </head>
-<script>
-  // 读取导航真实高度（含字体变化/换行/缩放），写入 --navH，防止遮挡
-  (function(){
-    const nav = document.querySelector('.navbar.fullwidth');
-    function setNavH(){
-      if(!nav) return;
-      const h = Math.ceil(nav.getBoundingClientRect().height) + 'px';
-      document.documentElement.style.setProperty('--navH', h);
-    }
-    window.addEventListener('load', setNavH, {once:true});
-    window.addEventListener('resize', setNavH, {passive:true});
-    window.addEventListener('orientationchange', setNavH, {passive:true});
-    setNavH();
-  })();
-</script>
 
 <body>
-  <!-- 全宽固定导航（始终铺满屏幕） -->
-  <div class="navbar fullwidth">
+  <!-- 全宽导航：sticky，不会遮住下面内容 -->
+  <div class="navbar">
     <div class="logo">
       <img src="v1_13.png" alt="yihan wang design logo" width="144" height="68">
     </div>
@@ -40,20 +21,16 @@
     </nav>
   </div>
 
-  <!-- 固定画布外层：等比缩放、居中显示 -->
+  <!-- 画布外层：等比缩放、在导航下方居中 -->
   <div class="frame-wrap">
-    <!-- 固定画布：你的设计基准尺寸（1440×900） -->
     <div id="stage" class="stage-1440x900">
-      <!-- ===== 主页内容（保持你原有版式） ===== -->
       <main class="container">
         <section class="dots-container">
-          <!-- 第1行 -->
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-          <!-- 第2行（中间logo） -->
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="logo-wrapper">
@@ -61,7 +38,6 @@
             </div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
           </div>
-          <!-- 第3行 -->
           <div class="dot-row">
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
             <div class="dot"></div><div class="dot"></div><div class="dot"></div>
@@ -70,7 +46,6 @@
         </section>
       </main>
 
-      <!-- 页脚（在画布内） -->
       <footer class="site-footer">
         <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
           <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
@@ -80,15 +55,15 @@
     </div>
   </div>
 
-  <!-- 等比缩放脚本：把 1440×900 画布按窗口尺寸整体缩放（像 PDF 一样） -->
+  <!-- 等比缩放（像 PDF 一样整体缩放画布） -->
   <script>
     (function(){
-      const BASE_W = 1440, BASE_H = 900;      // 与 .stage-1440x900 保持一致
+      const BASE_W = 1440, BASE_H = 900;
       const stage  = document.getElementById('stage');
       const wrap   = document.querySelector('.frame-wrap');
       function fit(){
         const ww = wrap.clientWidth, wh = wrap.clientHeight;
-        const scale = Math.min(ww / BASE_W, wh / BASE_H);
+        const scale = Math.min(ww/BASE_W, wh/BASE_H);
         stage.style.transform = `scale(${scale})`;
       }
       addEventListener('resize', fit, {passive:true});
