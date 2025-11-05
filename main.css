@@ -1,60 +1,67 @@
 /* ===== Reset / Base ===== */
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{height:100%}
+*{ margin:0; padding:0; box-sizing:border-box }
+html, body{ height:100% }
 body{
-  background:#000;color:#fff;  /* 白字黑底，手机上不再“黑底黑字” */
+  background:#000; color:#fff;
   font-family:'Playfair Display', serif;
-  -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
-/* ===== Fixed Canvas (PDF-like) ===== */
-.frame-wrap{
-  height:100svh;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;background:#000;
-}
-.stage-1440x900{
-  width:1440px;height:900px;                 /* 固定画布尺寸 */
-  transform-origin: top center;              /* 从上中缩放 */
-}
-
-/* ===== Your original layout (kept) ===== */
-.navbar{
-  width:100%;height:109px;
-  background:rgba(255,255,255,.85);
-  border:1px solid #000;
-  box-shadow:0 4px 4px rgba(0,0,0,1);
-  display:flex;justify-content:space-between;align-items:center;
-  padding:0 65px; position:relative; z-index:10;
-}
-.logo img{width:144px;height:68px;display:block}
-
-.nav-links{display:flex;gap:80px}
-.nav-link{color:#000;font-size:32px;text-decoration:none}
-.nav-link:hover{opacity:.7}
-
-.container{padding-top:20px}
-.dots-container{display:flex;flex-direction:column;align-items:center;gap:90px}
-
-.dot-row{display:flex;gap:120px;align-items:center}
-.dot{width:160px;height:160px;background:#e60000;border-radius:50%}
-
-.logo-wrapper{display:flex;align-items:center;justify-content:center}
-.center-logo{display:block;width:377px;height:180px}
-
-.site-footer{color:#fff;text-align:center;margin-top:32px}
-.site-footer a{color:#fff;text-decoration:underline}
-.site-footer p,.site-footer .legal{white-space:nowrap}
-
+/* ===== 全宽固定导航（不随画布缩放，始终铺满） ===== */
 .navbar.fullwidth{
-  position:fixed;
-  top:0;left:0;
-  width:100vw;          /* 始终铺满屏幕宽度 */
-  height:109px;
-  background:#e6e6e6;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:0 65px;
-  z-index:100;
-  box-shadow:0 4px 4px rgba(0,0,0,0.25);
+  position:fixed; top:0; left:0; width:100vw; height:109px;
+  background:rgba(230,230,230,1);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 65px; z-index:1000;
+  box-shadow:0 4px 4px rgba(0,0,0,.25);
+  border-bottom:1px solid #000;
 }
-.frame-wrap{padding-top:109px;} /* 给下面内容留出导航高度 */
+.logo img{ display:block; width:144px; height:68px }
+.nav-links{ display:flex; gap:80px }
+.nav-link{
+  color:#000; text-decoration:none; font-size:32px; line-height:1;
+}
+.nav-link:hover{ opacity:.7 }
+
+/* ===== 固定画布容器：等比缩放、居中 ===== */
+.frame-wrap{
+  padding-top:109px;              /* 给画布让出导航高度 */
+  height:calc(100svh - 109px);    /* 视口高度减导航 */
+  display:flex; align-items:center; justify-content:center;
+  overflow:hidden; background:#000;
+}
+
+/* 固定画布：你的设计尺寸（像 PDF） */
+.stage-1440x900{
+  width:1440px; height:900px;
+  transform-origin: top center;
+}
+
+/* ===== 你的主页排版（保持原来风格） ===== */
+.container{ height:100%; display:flex; align-items:center; justify-content:center; }
+.dots-container{ display:flex; flex-direction:column; align-items:center; gap:90px; }
+
+.dot-row{ display:flex; align-items:center; gap:120px; }
+.dot{
+  width:160px; height:160px; border-radius:50%;
+  background:#e60000;
+}
+
+.logo-wrapper{ display:flex; align-items:center; justify-content:center }
+.center-logo{ width:377px; height:180px; display:block }
+
+/* 画布内页脚 */
+.site-footer{
+  position:absolute; left:0; right:0; bottom:18px;
+  text-align:center; color:#fff;
+}
+.site-footer a{ color:#fff; text-decoration:underline }
+.site-footer p, .site-footer .legal{ white-space:nowrap }
+
+/* ===== 可选：小屏时导航字号略微收缩（不影响画布） ===== */
+@media (max-width: 480px){
+  .nav-link{ font-size:24px }
+  .nav-links{ gap:36px }
+  .navbar.fullwidth{ padding:0 20px }
+}
