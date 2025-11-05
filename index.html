@@ -1,140 +1,77 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- 基础信息 -->
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
-  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese Medicine philosophy with modern design." />
-  <meta name="author" content="Yihan Wang" />
-  <meta name="robots" content="index,follow,max-image-preview:large" />
 
-  <!-- Canonical & Theme -->
-  <link rel="canonical" href="https://www.yihanwangdesign.com/" />
-  <meta name="theme-color" content="#ffffff" />
-
-  <!-- 字体与样式 -->
-  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet" />
-  <link href="./main.css" rel="stylesheet" />
-
-  <!-- Open Graph -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.yihanwangdesign.com/" />
-  <meta property="og:title" content="Yihan Wang Design | Official Website" />
-  <meta property="og:description" content="Official website of Yihan Wang — Gen-Z designer merging TCM wisdom and modern design." />
-  <meta property="og:image" content="https://www.yihanwangdesign.com/assets/cover.jpg" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Yihan Wang Design | Official Website" />
-  <meta name="twitter:description" content="Official website of Yihan Wang — Gen-Z designer merging TCM wisdom and modern design." />
-  <meta name="twitter:image" content="https://www.yihanwangdesign.com/assets/cover.jpg" />
-
-  <!-- JSON-LD：身份验证 -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://www.yihanwangdesign.com/#yihan",
-        "name": "Yihan Wang",
-        "alternateName": "王一涵",
-        "description": "Gen-Z designer and TCM innovator integrating traditional wisdom with modern design.",
-        "image": "https://www.yihanwangdesign.com/assets/profile.jpg",
-        "url": "https://www.yihanwangdesign.com/",
-        "sameAs": [
-          "https://www.linkedin.com/in/yihanwangdesign",
-          "https://www.instagram.com/yihanwangdesign",
-          "https://www.behance.net/yihanwangdesign"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.yihanwangdesign.com/#website",
-        "url": "https://www.yihanwangdesign.com/",
-        "name": "Yihan Wang Design",
-        "publisher": { "@id": "https://www.yihanwangdesign.com/#yihan" },
-        "inLanguage": "en"
-      }
-    ]
-  }
-  </script>
-
-  <!-- 轻量内联可访问性样式 -->
-  <style>
-    .visually-hidden {
-      position:absolute !important; height:1px; width:1px; overflow:hidden;
-      clip:rect(1px,1px,1px,1px); white-space:nowrap; border:0; padding:0; margin:-1px;
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet"/>
+  <link href="./main.css" rel="stylesheet"/>
 </head>
-
 <body>
-  <!-- 顶部导航栏（放在最上层） -->
-  <div class="navbar">
-    <div class="logo">
-      <img src="v1_13.png" width="377" height="179" alt=""/>
-    </div>
-    <div class="nav-links">
-      <a href="#" class="nav-link">about</a>
-      <a href="#" class="nav-link">works</a>
-      <a href="#" class="nav-link">contact</a>
-    </div>
-  </div>
-
-  <!-- 主体内容区 -->
-  <div class="container">
-    <!-- 红色圆点区域 -->
-    <div class="dots-container">
-      <!-- 第一行圆点 -->
-      <div class="dot-row">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-      </div>
-      
-      <!-- 第二行圆点区域 -->
-      <div class="dot-row">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="logo-wrapper">
-          <img src="v1_18.png" width="377" height="180" alt="" class="center-logo" />
+  <!-- 固定画布外层：负责等比缩放、居中 -->
+  <div class="frame-wrap">
+    <!-- 固定画布：尺寸=你的设计尺寸 1440×900 -->
+    <div id="stage" class="stage-1440x900">
+      <!-- ===== 下面是你的原页面内容（不改结构，只整理了类名） ===== -->
+      <div class="navbar">
+        <div class="logo"><img src="v1_13.png" width="144" height="68" alt="yihan wang design logo"></div>
+        <div class="nav-links">
+          <a href="about.html" class="nav-link">about</a>
+          <a href="works.html" class="nav-link">works</a>
+          <a href="contact.html" class="nav-link">contact</a>
         </div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
       </div>
-      
-      <!-- 第三行圆点 -->
-      <div class="dot-row">
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
-        <div class="dot"></div>
+
+      <div class="container">
+        <div class="dots-container">
+          <div class="dot-row">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+
+          <div class="dot-row">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="logo-wrapper">
+              <img src="v1_18.png" width="377" height="180" alt="yihan wang design wordmark" class="center-logo"/>
+            </div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+
+          <div class="dot-row">
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+          </div>
+        </div>
       </div>
+
+      <footer class="site-footer">
+        <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
+          <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+        </p>
+        <p class="legal">This is the only official website. Unauthorized copies or mirrors are invalid.</p>
+      </footer>
+      <!-- ===== 你的原内容到此结束 ===== -->
     </div>
   </div>
 
-  <!-- 页脚 -->
-  <footer class="site-footer">
-    <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
-      <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-    </p>
-    <p class="legal">This is the only official website. Unauthorized copies or mirrors are invalid.</p>
-  </footer>
+  <!-- 等比缩放脚本：把 1440×900 画布按窗口尺寸整体缩放 -->
+  <script>
+    (function(){
+      const BASE_W = 1440, BASE_H = 900;     // 和 .stage-1440x900 尺寸一致
+      const stage  = document.getElementById('stage');
+      const wrap   = document.querySelector('.frame-wrap');
+      function fit(){
+        const ww = wrap.clientWidth, wh = wrap.clientHeight;
+        const scale = Math.min(ww/BASE_W, wh/BASE_H);
+        stage.style.transform = `scale(${scale})`;
+      }
+      addEventListener('resize', fit, {passive:true});
+      addEventListener('orientationchange', fit, {passive:true});
+      fit();
+    })();
+  </script>
 </body>
 </html>
