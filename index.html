@@ -9,19 +9,22 @@
   <link href="./main.css" rel="stylesheet"/>
 </head>
 <body>
-  <!-- 固定画布外层：负责等比缩放、居中 -->
+
+  <!-- 导航放外面：始终全宽 -->
+  <div class="navbar fullwidth">
+    <div class="logo"><img src="v1_13.png" alt=""></div>
+    <div class="nav-links">
+      <a href="about.html" class="nav-link">about</a>
+      <a href="works.html" class="nav-link">works</a>
+      <a href="contact.html" class="nav-link">contact</a>
+    </div>
+  </div>
+
   <div class="frame-wrap">
-    <!-- 固定画布：尺寸=你的设计尺寸 1440×900 -->
     <div id="stage" class="stage-1440x900">
-      <!-- ===== 下面是你的原页面内容（不改结构，只整理了类名） ===== -->
-      <div class="navbar">
-        <div class="logo"><img src="v1_13.png" width="144" height="68" alt="yihan wang design logo"></div>
-        <div class="nav-links">
-          <a href="about.html" class="nav-link">about</a>
-          <a href="works.html" class="nav-link">works</a>
-          <a href="contact.html" class="nav-link">contact</a>
-        </div>
-      </div>
+      <!-- 你的红点 + logo + footer 内容 -->
+    </div>
+
 
       <div class="container">
         <div class="dots-container">
