@@ -29,202 +29,157 @@
   }
 
 
-  <!-- 字体 -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-  <!-- 若必须保留你的 main.css，请放在我这段样式“前面”，以便下面样式覆盖它 -->
-  <link href="./main.css" rel="stylesheet"/>
-
   <style>
     :root{
       --header-h: 109px;
-      --header-bg: rgba(240,240,240,0.95);
-      --text: #111;
-      --active: #333;
-      --accent: #e60012;
-      --maxw: 1200px;
+      --header-bg: rgba(240,240,240,0.95); /* 顶部“灰色框” */
     }
 
-    /* 基础与覆盖：防止外部CSS改黑底/字体等 */
-    html, body{ height:100% }
-    html{ scroll-behavior:smooth }
-    body{
-      margin:0 !important;
-      background:#000 !important;
-      color:#fff !important;
-      font-family:"Playfair Display", serif !important;
+    /* 全局：黑底+白字（强制覆盖） */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: "Playfair Display", serif;
     }
-    a{ color:inherit; text-decoration:none }
+    a { color: inherit; text-decoration: none; }
 
-    .anchor-target{ scroll-margin-top: var(--header-h) }
+    /* 固定顶部灰色导航 */
+    .site-header {
+      position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
+      background: var(--header-bg);
+      border-bottom: 1px solid #d9d9d9;
+      z-index: 1000;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      gap: 32px;
+      padding: 0 24px;
+    }
+    .logo a { display: inline-block; line-height: 0; }
+    .logo img { width: 144px; height: 68px; display: block; }
 
-    /* 顶部灰色固定导航 */
-    .site-header{
-      position:fixed; top:0; left:0; right:0; height:var(--header-h);
-      background:var(--header-bg);
-      border-bottom:1px solid #d9d9d9;
-      z-index:1000;
-      backdrop-filter:saturate(120%) blur(6px);
+    /* 导航：等分居中 + 自适应字号 + 高亮态 */
+    .nav { display: grid; grid-template-columns: repeat(3, 1fr); justify-items: center; }
+    .nav a {
+      color: #111;
+      font-weight: 500;
+      font-size: clamp(16px, 1.7vw, 22px);
+      letter-spacing: .3px;
+      padding: 12px 8px;
+      border-bottom: 2px solid transparent;
     }
-    .site-header .inner{
-      max-width:var(--maxw);
-      margin:0 auto;
-      height:100%;
-      display:grid;
-      grid-template-columns:auto 1fr;
-      align-items:center;
-      gap:32px;
-      padding:0 24px;
-    }
-    .logo a{ display:inline-block; line-height:0 }
-    .logo img{ width:144px; height:68px; display:block }
+    .nav a:hover { color: #333; }
+    .nav a.active { color: #333; border-bottom-color: #e60012; }
 
-    .nav-links{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      align-items:center;
-      justify-items:center;
+    /* 顶部占位，避免被固定头遮住 */
+    .spacer { height: var(--header-h); }
+
+    /* 锚点：滚动对齐时留出导航高度 */
+    .anchor { scroll-margin-top: var(--header-h); }
+
+    /* 首屏与各页：图片等比完整居中显示，空白处为黑色 */
+    .screen {
+      height: calc(100vh - var(--header-h));
+      display: flex; align-items: center; justify-content: center;
+      background: #000;
+      overflow: hidden;
     }
-    .nav-link{
-      color:var(--text) !important;
-      font-weight:500;
-      letter-spacing:.3px;
-      font-size:clamp(16px, 1.6vw, 22px) !important;
-      padding:12px 10px;
-      border-bottom:2px solid transparent;
-      transition:color .2s ease, border-color .2s ease, opacity .2s ease;
-      opacity:.95;
+    .screen img {
+      width: 100%; height: 100%;
+      object-fit: contain; object-position: center;
+      background: #000; display: block;
     }
-    .nav-link:hover{ color:var(--active) !important; opacity:1 }
-    .nav-link.active{
-      color:var(--active) !important;
-      border-bottom-color:var(--accent) !important;
-      opacity:1 !important;
+
+    /* 版权过渡段（介于首屏与第二页） */
+    .copyright {
+      background: #000; color: #aaa; text-align: center;
+      font-size: 14px; padding: 32px 16px; line-height: 1.6;
     }
+    .copyright a { color: #fff; }
 
     @media (max-width: 480px){
-      .site-header .inner{ gap:16px; padding:0 16px }
-      .logo img{ width:120px; height:auto }
-    }
-
-    .header-spacer{ height:var(--header-h) }
-
-    /* 首屏：等比完整显示，黑底补齐 */
-    .frame-wrap{
-      width:100vw; height:calc(100vh - var(--header-h));
-      display:flex; align-items:center; justify-content:center;
-      background:#000 !important; overflow:hidden;
-    }
-    .frame-wrap img{
-      width:100%; height:100%; object-fit:contain; object-position:center; display:block;
-      background:#000 !important;
-    }
-
-    /* 版权段 */
-    .copyright{
-      background:#000 !important; color:#aaa !important; text-align:center;
-      font-size:14px; padding:32px 16px; line-height:1.6;
-    }
-    .copyright a{ color:#fff !important }
-
-    /* 下方各页 */
-    .page-stack{ width:100%; background:#000 !important }
-    .page{
-      width:100%; height:calc(100vh - var(--header-h));
-      display:flex; align-items:center; justify-content:center;
-      background:#000 !important;
-    }
-    .page img{
-      width:100%; height:100%; object-fit:contain; object-position:center; display:block;
-      background:#000 !important;
+      .logo img { width: 120px; height: auto; }
+      .site-header { gap: 16px; padding: 0 16px; }
     }
   </style>
 </head>
 
 <body>
   <!-- 顶部灰色导航 -->
-  <header class="site-header" aria-label="Main">
-    <div class="inner">
-      <div class="logo">
-        <a href="#home"><img src="v1_13.png" alt="yihan wang design logo"></a>
-      </div>
-      <nav class="nav-links">
-        <a href="#about"   class="nav-link" data-target="about">about</a>
-        <a href="#works"   class="nav-link" data-target="works">works</a>
-        <a href="#contact" class="nav-link" data-target="contact">contact</a>
-      </nav>
-    </div>
+  <header class="site-header">
+    <div class="logo"><a href="#home"><img src="v1_13.png" alt="yihan wang design logo"></a></div>
+    <nav class="nav">
+      <a href="#about"   id="link-about">about</a>
+      <a href="#works"   id="link-works">works</a>
+      <a href="#contact" id="link-contact">contact</a>
+    </nav>
   </header>
 
-  <div class="header-spacer"></div>
+  <div class="spacer"></div>
 
   <!-- 首屏 -->
-  <section id="home" class="anchor-target">
-    <div class="frame-wrap">
-      <img src="home.png" alt="Home" loading="eager" decoding="async">
-    </div>
+  <section id="home" class="anchor">
+    <div class="screen"><img src="home.png" alt="Home" loading="eager" decoding="async"></div>
   </section>
 
-  <!-- 版权过渡段 -->
-  <div class="copyright anchor-target">
+  <!-- 版权过渡段（首屏下方） -->
+  <div class="copyright">
     © 2025 Yihan Wang Design. All rights reserved.
     <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
   </div>
 
-  <!-- 页面栈 -->
-  <main class="page-stack" aria-label="Pages">
-    <section id="about" class="page anchor-target">
-      <img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async">
-    </section>
-    <section class="page">
-      <img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async">
-    </section>
+  <!-- about 区域：第一张为锚点目标，第二张向下滚动即见 -->
+  <section id="about" class="anchor">
+    <div class="screen"><img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async"></div>
+  </section>
+  <section>
+    <div class="screen"><img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async"></div>
+  </section>
 
-    <section id="works" class="page anchor-target">
-      <!-- 如有作品图替换这张占位 -->
-      <img src="about-2.png" alt="Works" loading="lazy" decoding="async">
-    </section>
+  <!-- works（如暂无图，可先复用 about-2.png） -->
+  <section id="works" class="anchor">
+    <div class="screen"><img src="about-2.png" alt="Works" loading="lazy" decoding="async"></div>
+  </section>
 
-    <section id="contact" class="page anchor-target">
-      <img src="contact.png" alt="Contact Page" loading="lazy" decoding="async">
-    </section>
+  <!-- contact -->
+  <section id="contact" class="anchor">
+    <div class="screen"><img src="contact.png" alt="Contact" loading="lazy" decoding="async"></div>
+  </section>
 
-    <div class="copyright anchor-target">
-      © 2025 Yihan Wang Design. All rights reserved.
-      <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-    </div>
-  </main>
+  <!-- 尾部版权（可留可删） -->
+  <div class="copyright">
+    © 2025 Yihan Wang Design. All rights reserved.
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+  </div>
 
-  <!-- 简洁稳健的高亮脚本（defer，避免阻塞/报错导致空白） -->
-  <script defer>
+  <!-- 仅用很小一段脚本做“当前菜单高亮”（无任何依赖/风险） -->
+  <script>
     (function(){
-      function $all(sel){ return Array.prototype.slice.call(document.querySelectorAll(sel)); }
-      const links = $all('.nav-link');
-      const sections = ['home','about','works','contact'].map(id => document.getElementById(id)).filter(Boolean);
-      const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 109;
-
-      function setActive(id){
-        links.forEach(a => a.classList.toggle('active', a.dataset.target === id));
-      }
-
-      // 点击时立即高亮
-      links.forEach(a => a.addEventListener('click', ()=> setActive(a.dataset.target)));
-
-      // 滚动时按“离视口顶部最近并可见”的区块高亮
-      function onScroll(){
-        let best = {id:'home', dist: Infinity};
-        sections.forEach(sec=>{
-          const r = sec.getBoundingClientRect();
-          // 用区块顶部到导航底部的距离作为基准
-          const dist = Math.abs(r.top - headerH);
-          if(r.bottom > headerH && r.top < window.innerHeight) {
-            if(dist < best.dist) best = {id: sec.id, dist};
+      const map = [
+        {id:'about',   link: document.getElementById('link-about')},
+        {id:'works',   link: document.getElementById('link-works')},
+        {id:'contact', link: document.getElementById('link-contact')}
+      ];
+      function highlight(){
+        let best = null, bestDist = Infinity, headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||109;
+        map.forEach(m=>{
+          const el = document.getElementById(m.id);
+          if(!el) return;
+          const r = el.getBoundingClientRect();
+          const d = Math.abs(r.top - headerH);
+          if(r.bottom > headerH && r.top < window.innerHeight && d < bestDist){
+            best = m; bestDist = d;
           }
         });
-        setActive(best.id);
+        map.forEach(m=>m.link.classList.toggle('active', best && best.id === m.id));
       }
-      window.addEventListener('scroll', onScroll, {passive:true});
-      window.addEventListener('resize', onScroll, {passive:true});
-      onScroll(); // 初始运行
+      addEventListener('scroll', highlight, {passive:true});
+      addEventListener('resize', highlight, {passive:true});
+      highlight();
     })();
   </script>
 </body>
