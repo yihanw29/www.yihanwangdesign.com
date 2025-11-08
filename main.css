@@ -75,3 +75,4 @@ html,body{ height:100% }
   font-size: clamp(14px, 2vw, 32px);
   margin-left: var(--space);
 }
+<section class="page"><img src="about-3.png" alt="About Page 3"></section>
