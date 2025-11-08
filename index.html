@@ -35,157 +35,100 @@
 
 
   <style>
-    :root{
-      --header-h: 109px;
-      --header-bg: rgba(240,240,240,0.95); /* 顶部“灰色框” */
-    }
-
-    /* 全局：黑底+白字（强制覆盖） */
-    * { box-sizing: border-box; }
+    /* —— 全局黑底、白字 —— */
     html, body { height: 100%; }
     html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: "Playfair Display", serif;
+    body { margin: 0; background: #000; color: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif; }
+
+    /* —— 固定“灰色框”导航 —— */
+    :root{ --H: 96px; }
+    header{
+      position: fixed; top: 0; left: 0; right: 0; height: var(--H);
+      background: #e9e9e9; border-bottom: 1px solid #cfcfcf;
+      display: flex; align-items: center; gap: 32px; padding: 0 20px; z-index: 999;
     }
-    a { color: inherit; text-decoration: none; }
-
-    /* 固定顶部灰色导航 */
-    .site-header {
-      position: fixed; top: 0; left: 0; right: 0; height: var(--header-h);
-      background: var(--header-bg);
-      border-bottom: 1px solid #d9d9d9;
-      z-index: 1000;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      gap: 32px;
-      padding: 0 24px;
+    header .logo { line-height: 0; }
+    header .logo img { height: 64px; width: auto; display: block; }
+    header nav { display: flex; gap: min(8vw, 64px); margin: 0 auto; }
+    header nav a{
+      color: #111; text-decoration: none;
+      font-size: clamp(16px, 2.2vw, 24px); font-weight: 500; letter-spacing: .2px;
+      padding-bottom: 6px; border-bottom: 2px solid transparent;
     }
-    .logo a { display: inline-block; line-height: 0; }
-    .logo img { width: 144px; height: 68px; display: block; }
+    header nav a:hover { color: #333; }
+    header nav a:focus, header nav a:active { border-bottom-color: #e60012; }
 
-    /* 导航：等分居中 + 自适应字号 + 高亮态 */
-    .nav { display: grid; grid-template-columns: repeat(3, 1fr); justify-items: center; }
-    .nav a {
-      color: #111;
-      font-weight: 500;
-      font-size: clamp(16px, 1.7vw, 22px);
-      letter-spacing: .3px;
-      padding: 12px 8px;
-      border-bottom: 2px solid transparent;
-    }
-    .nav a:hover { color: #333; }
-    .nav a.active { color: #333; border-bottom-color: #e60012; }
+    /* —— 顶部占位，避免被固定头遮住 —— */
+    .spacer { height: var(--H); }
 
-    /* 顶部占位，避免被固定头遮住 */
-    .spacer { height: var(--header-h); }
-
-    /* 锚点：滚动对齐时留出导航高度 */
-    .anchor { scroll-margin-top: var(--header-h); }
-
-    /* 首屏与各页：图片等比完整居中显示，空白处为黑色 */
+    /* —— 全屏视窗：图片等比完整显示，空余补黑 —— */
     .screen {
-      height: calc(100vh - var(--header-h));
+      min-height: calc(100vh - var(--H));
       display: flex; align-items: center; justify-content: center;
-      background: #000;
-      overflow: hidden;
+      background: #000; overflow: hidden;
+      padding: 0; margin: 0;
     }
-    .screen img {
-      width: 100%; height: 100%;
-      object-fit: contain; object-position: center;
-      background: #000; display: block;
+    .screen > img {
+      max-width: 100vw;
+      max-height: calc(100vh - var(--H));
+      width: auto; height: auto; display: block; background: #000; object-fit: contain;
     }
 
-    /* 版权过渡段（介于首屏与第二页） */
+    /* —— 版权过渡段 —— */
     .copyright {
       background: #000; color: #aaa; text-align: center;
-      font-size: 14px; padding: 32px 16px; line-height: 1.6;
+      padding: 24px 12px; font-size: 14px;
     }
-    .copyright a { color: #fff; }
-
-    @media (max-width: 480px){
-      .logo img { width: 120px; height: auto; }
-      .site-header { gap: 16px; padding: 0 16px; }
-    }
+    .copyright a { color: #fff; text-decoration: none; }
   </style>
 </head>
 
 <body>
-  <!-- 顶部灰色导航 -->
-  <header class="site-header">
-    <div class="logo"><a href="#home"><img src="v1_13.png" alt="yihan wang design logo"></a></div>
-    <nav class="nav">
-      <a href="#about"   id="link-about">about</a>
-      <a href="#works"   id="link-works">works</a>
-      <a href="#contact" id="link-contact">contact</a>
+  <!-- 灰色框：logo=回首页；about/works/contact 跳到锚点 -->
+  <header>
+    <a class="logo" href="#home"><img src="v1_13.png" alt="yihan wang design"></a>
+    <nav>
+      <a href="#about">about</a>
+      <a href="#works">works</a>
+      <a href="#contact">contact</a>
     </nav>
   </header>
 
   <div class="spacer"></div>
 
-  <!-- 首屏 -->
-  <section id="home" class="anchor">
-    <div class="screen"><img src="home.png" alt="Home" loading="eager" decoding="async"></div>
+  <!-- 首屏：home.png（等比完整、居中、黑底补齐） -->
+  <section id="home" class="screen">
+    <img src="home.png" alt="Home">
   </section>
 
-  <!-- 版权过渡段（首屏下方） -->
+  <!-- 首屏与第二屏之间的版权文字 -->
   <div class="copyright">
     © 2025 Yihan Wang Design. All rights reserved.
     <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
   </div>
 
-  <!-- about 区域：第一张为锚点目标，第二张向下滚动即见 -->
-  <section id="about" class="anchor">
-    <div class="screen"><img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async"></div>
+  <!-- about（第一张是锚点目标，第二张向下可见） -->
+  <section id="about" class="screen">
+    <img src="about-1.png" alt="About 1">
   </section>
-  <section>
-    <div class="screen"><img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async"></div>
+  <section class="screen">
+    <img src="about-2.png" alt="About 2">
   </section>
 
-  <!-- works（如暂无图，可先复用 about-2.png） -->
-  <section id="works" class="anchor">
-    <div class="screen"><img src="about-2.png" alt="Works" loading="lazy" decoding="async"></div>
+  <!-- works（若暂无图，可临时复用一张） -->
+  <section id="works" class="screen">
+    <img src="about-2.png" alt="Works">
   </section>
 
   <!-- contact -->
-  <section id="contact" class="anchor">
-    <div class="screen"><img src="contact.png" alt="Contact" loading="lazy" decoding="async"></div>
+  <section id="contact" class="screen">
+    <img src="contact.png" alt="Contact">
   </section>
 
-  <!-- 尾部版权（可留可删） -->
+  <!-- 末尾版权（可删） -->
   <div class="copyright">
     © 2025 Yihan Wang Design. All rights reserved.
     <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
   </div>
-
-  <!-- 仅用很小一段脚本做“当前菜单高亮”（无任何依赖/风险） -->
-  <script>
-    (function(){
-      const map = [
-        {id:'about',   link: document.getElementById('link-about')},
-        {id:'works',   link: document.getElementById('link-works')},
-        {id:'contact', link: document.getElementById('link-contact')}
-      ];
-      function highlight(){
-        let best = null, bestDist = Infinity, headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-h'))||109;
-        map.forEach(m=>{
-          const el = document.getElementById(m.id);
-          if(!el) return;
-          const r = el.getBoundingClientRect();
-          const d = Math.abs(r.top - headerH);
-          if(r.bottom > headerH && r.top < window.innerHeight && d < bestDist){
-            best = m; bestDist = d;
-          }
-        });
-        map.forEach(m=>m.link.classList.toggle('active', best && best.id === m.id));
-      }
-      addEventListener('scroll', highlight, {passive:true});
-      addEventListener('resize', highlight, {passive:true});
-      highlight();
-    })();
-  </script>
 </body>
 </html>
