@@ -38,7 +38,7 @@
   <link href="./main.css" rel="stylesheet"/>
 
 
-   <style>
+  <style>
     :root {
       --header-h: 109px; /* 灰色框高度 */
     }
@@ -79,26 +79,41 @@
       height: var(--header-h);
     }
 
-    /* ===== 首屏：home.png 等比完整显示 ===== */
+    /* ===== 首屏 ===== */
     .frame-wrap {
       width: 100vw;
       height: calc(100vh - var(--header-h));
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #000;  /* 不足部分自动补黑 */
+      background-color: #000;
       overflow: hidden;
     }
     .frame-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: contain;          /* 等比完整显示 */
-      object-position: center;      /* 居中 */
-      background-color: #000;       /* 防止边缘透出 */
+      object-fit: contain;
+      object-position: center;
+      background-color: #000;
       display: block;
     }
 
-    /* ===== 下方页面：每张图同样居中显示 ===== */
+    /* ===== 版权文字过渡段 ===== */
+    .copyright {
+      background-color: #000;
+      color: #777;
+      text-align: center;
+      font-size: 14px;
+      padding: 32px 16px;
+      line-height: 1.6;
+      font-family: "Playfair Display", serif;
+    }
+    .copyright a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    /* ===== 下方页面 ===== */
     .page-stack {
       width: 100%;
       background: #000;
@@ -118,18 +133,6 @@
       object-position: center;
       background-color: #000;
       display: block;
-    }
-
-    /* ===== 页脚 ===== */
-    .site-footer {
-      text-align: center;
-      color: #777;
-      padding: 24px 16px;
-      font-size: 14px;
-      background: #000;
-    }
-    .site-footer a {
-      color: #fff;
     }
   </style>
 </head>
@@ -154,16 +157,16 @@
     <img src="home.png" alt="Home">
   </div>
 
-  <!-- ===== 下方图片页 ===== -->
+  <!-- ===== 版权文字过渡段 ===== -->
+  <div class="copyright">
+    © 2025 Yihan Wang Design. All rights reserved. 
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+  </div>
+
+  <!-- ===== 下方页面 ===== -->
   <main class="page-stack" aria-label="Pages">
     <section class="page"><img src="about-1.png" alt="About Page 1"></section>
     <section class="page"><img src="about-2.png" alt="About Page 2"></section>
   </main>
-
-  <footer class="site-footer">
-    <p>© 2025 Yihan Wang Design. All rights reserved.
-      <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-    </p>
-  </footer>
 </body>
 </html>
