@@ -38,7 +38,7 @@
   <link href="./main.css" rel="stylesheet"/>
 
 
-  <style>
+   <style>
     :root {
       --header-h: 109px; /* 灰色框高度 */
     }
@@ -74,31 +74,31 @@
       font-family: "Playfair Display", serif;
     }
 
-    /* 占位，防止内容被顶部遮挡 */
+    /* ===== 占位，防止被固定头遮住 ===== */
     .header-spacer {
       height: var(--header-h);
     }
 
-    /* ===== 首屏：home.png 全屏居中显示 ===== */
+    /* ===== 首屏：home.png 等比完整显示 ===== */
     .frame-wrap {
-      position: relative;
       width: 100vw;
       height: calc(100vh - var(--header-h));
-      overflow: hidden;
-      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
+      background-color: #000;  /* 不足部分自动补黑 */
+      overflow: hidden;
     }
     .frame-wrap img {
       width: 100%;
       height: 100%;
-      object-fit: cover;      /* 全屏铺满 */
-      object-position: center center; /* 居中 */
+      object-fit: contain;          /* 等比完整显示 */
+      object-position: center;      /* 居中 */
+      background-color: #000;       /* 防止边缘透出 */
       display: block;
     }
 
-    /* ===== 下方页面：一张图一屏，全屏居中 ===== */
+    /* ===== 下方页面：每张图同样居中显示 ===== */
     .page-stack {
       width: 100%;
       background: #000;
@@ -109,32 +109,33 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      background: #000;
     }
     .page img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center center;
+      object-fit: contain;
+      object-position: center;
+      background-color: #000;
       display: block;
     }
 
     /* ===== 页脚 ===== */
     .site-footer {
       text-align: center;
-      color: #444;
+      color: #777;
       padding: 24px 16px;
       font-size: 14px;
-      background: #fff;
+      background: #000;
     }
     .site-footer a {
-      color: #111;
+      color: #fff;
     }
   </style>
 </head>
 
 <body>
-  <!-- 固定灰色框 -->
+  <!-- 固定灰色导航栏 -->
   <header class="site-header">
     <div class="logo">
       <img src="v1_13.png" alt="yihan wang design logo">
