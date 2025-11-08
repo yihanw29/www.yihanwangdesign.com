@@ -1,92 +1,112 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Yihan Wang Design",
-  "url": "https://www.yihanwangdesign.com",
-  "logo": "https://www.yihanwangdesign.com/logo.png",
-  "slogan": "Designed Between Worlds",
-  "description": "Yihan Wang Design is an independent studio exploring the intersection of culture, design, and technology.",
-  "founder": {
-    "@type": "Person",
-    "name": "Yihan Wang",
-    "sameAs": [
-      "https://github.com/yihanw29/yihan-wang/wiki",
-      "https://github.com/yihanw29/yihanwangdesign/wiki"
-    ]
-  },
-  "sameAs": [
-    "https://github.com/yihanw29/yihan-wang.wiki.git",
-    "https://github.com/yihanw29/www.yihanwangdesign.com.wiki.git",
-    "https://github.com/yihanw29/yihan-wang/wiki",
-    "https://github.com/yihanw29/yihanwangdesign/wiki",
-    "https://yihanw29.github.io/yihan-wang/",
-    "https://www.yihanwangdesign.com"
-  ]
-}
-</script>
-
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
   <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
   <meta name="theme-color" content="#000000"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-  <link href="./main.css" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --header-h:109px; /* 灰色框高度 */
+    }
+
+    /* 固定在顶部的灰色框 */
+    .site-header{
+      position: fixed; inset: 0 0 auto 0; height: var(--header-h);
+      background: rgba(255,255,255,0.85);
+      border-bottom: 1px solid #d9d9d9;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      backdrop-filter: saturate(120%) blur(6px);
+    }
+    .site-header .logo img{ width:144px; height:68px; display:block; }
+    .site-header .nav-links{ display:flex; gap:24px; }
+    .site-header .nav-link{ text-decoration:none; color:#111; font-family: "Playfair Display", serif; }
+
+    /* 顶部占位 */
+    .header-spacer{ height: var(--header-h); }
+
+    /* 首屏等比缩放 */
+    .frame-wrap{
+      width:100vw;
+      height:calc(100vh - var(--header-h));
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      background:#fff;
+    }
+    #stage{ transform-origin: top left; }
+
+    /* 一张图一页（图片比例1440×900） */
+    .page-stack{ width:100%; background:#fff; }
+    .page{
+      width:100%;
+      height:calc(100vh - var(--header-h)); /* 一屏一页 */
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-bottom:1px solid #f0f0f0;
+    }
+    .page img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      background:#fff;
+      display:block;
+    }
+
+    /* 页脚 */
+    .site-footer{
+      text-align:center;
+      color:#444;
+      padding:24px 16px;
+      font-size:14px;
+    }
+    .site-footer a{ color:#111; }
+  </style>
 </head>
 
 <body>
-  <p><a href="https://github.com/yihanw29/yihanwangdesign/wiki">→ Visit Design Wiki</a></p>
-  <!-- 固定画布外层：等比缩放，保持所有内容的比例不变 -->
+  <!-- 固定灰色导航 -->
+  <header class="site-header">
+    <div class="logo">
+      <img src="v1_13.png" alt="yihan wang design logo">
+    </div>
+    <nav class="nav-links">
+      <a href="about.html" class="nav-link">about</a>
+      <a href="works.html" class="nav-link">works</a>
+      <a href="contact.html" class="nav-link">contact</a>
+    </nav>
+  </header>
+
+  <!-- 占位 -->
+  <div class="header-spacer"></div>
+
+  <!-- 首屏舞台 -->
   <div class="frame-wrap">
     <div id="stage" class="stage-1440x900">
-      <!-- ===== 页面内容，包含导航、红点、logo 等 ===== -->
-      <div class="navbar">
-        <div class="logo">
-          <img src="v1_13.png" alt="yihan wang design logo" width="144" height="68">
-        </div>
-        <nav class="nav-links">
-          <a href="about.html" class="nav-link">about</a>
-          <a href="works.html" class="nav-link">works</a>
-          <a href="contact.html" class="nav-link">contact</a>
-        </nav>
-      </div>
-
-      <div class="container">
-        <div class="dots-container">
-          <div class="dot-row">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-          <div class="dot-row">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="logo-wrapper">
-              <img src="v1_18.png" class="center-logo" alt="yihan wang design wordmark" width="377" height="180">
-            </div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-          <div class="dot-row">
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-            <div class="dot"></div><div class="dot"></div><div class="dot"></div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="site-footer">
-        <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
-          <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-        </p>
-        <p class="legal">This is the only official website. Unauthorized copies or mirrors are invalid.</p>
-      </footer>
+      <img src="v1_18.png" alt="Yihan Wang Design Home" width="1440" height="900">
     </div>
   </div>
 
-  <!-- 等比缩放（将所有内容按比例缩放） -->
+  <!-- 向下滚动的图片页面 -->
+  <main class="page-stack">
+    <section class="page"><img src="about-1.png" alt="About Page 1"></section>
+    <section class="page"><img src="about-2.png" alt="About Page 2"></section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2025 Yihan Wang Design. All rights reserved. Official website:
+      <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+    </p>
+    <p>This is the only official website. Unauthorized copies or mirrors are invalid.</p>
+  </footer>
+
+  <!-- 等比缩放 -->
   <script>
     (function(){
       const BASE_W = 1440, BASE_H = 900;
