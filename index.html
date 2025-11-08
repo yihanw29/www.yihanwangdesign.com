@@ -35,10 +35,18 @@
   <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
   <meta name="theme-color" content="#000000"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-  <link href="./main.css" rel="stylesheet"/>
 
   <style>
     :root { --header-h: 109px; }
+
+    /* ===== 全局黑底 ===== */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: "Playfair Display", serif;
+    }
 
     /* ===== 固定顶部灰色框 ===== */
     .site-header {
@@ -52,7 +60,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 64px; /* 增加左右留白，让导航更居中 */
+      padding: 0 64px;
       z-index: 1000;
       backdrop-filter: saturate(120%) blur(6px);
     }
@@ -63,10 +71,9 @@
       display: block;
     }
 
-    /* ===== 导航调整 ===== */
     .site-header .nav-links {
       display: flex;
-      gap: 64px; /* 导航按钮之间距离 */
+      gap: 64px;
       align-items: center;
     }
 
@@ -75,7 +82,7 @@
       color: #111;
       font-family: "Playfair Display", serif;
       font-weight: 500;
-      font-size: clamp(20px, 1.8vw, 26px); /* 自适应字号 */
+      font-size: clamp(20px, 1.8vw, 26px);
       letter-spacing: 0.4px;
       line-height: 1;
     }
@@ -113,13 +120,18 @@
       line-height: 1.6;
       font-family: "Playfair Display", serif;
     }
+
     .copyright a {
       color: #fff;
       text-decoration: none;
     }
 
     /* ===== 下方页面 ===== */
-    .page-stack { width: 100%; background: #000; }
+    .page-stack {
+      width: 100%;
+      background: #000;
+    }
+
     .page {
       width: 100%;
       height: calc(100vh - var(--header-h));
@@ -128,6 +140,7 @@
       justify-content: center;
       background: #000;
     }
+
     .page img {
       width: 100%;
       height: 100%;
@@ -138,15 +151,9 @@
     }
 
     @media (max-width: 768px) {
-      .site-header {
-        padding: 0 32px;
-      }
-      .site-header .nav-links {
-        gap: 32px;
-      }
-      .site-header .nav-link {
-        font-size: 18px;
-      }
+      .site-header { padding: 0 32px; }
+      .site-header .nav-links { gap: 32px; }
+      .site-header .nav-link { font-size: 18px; }
     }
   </style>
 </head>
