@@ -37,55 +37,105 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
   <link href="./main.css" rel="stylesheet"/>
 
-  <!-- 新增的最小样式：固定灰色框 + 首屏缩放 + 下方一页一图 -->
+
   <style>
-    :root{ --header-h:109px; }
+    :root {
+      --header-h: 109px; /* 灰色框高度 */
+    }
 
-    /* 顶部“灰色框”导航：固定 */
-    .site-header{
-      position: fixed; inset: 0 0 auto 0; height: var(--header-h);
-      background: rgba(255,255,255,0.85);
+    /* ===== 固定顶部灰色框 ===== */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--header-h);
+      background: rgba(255, 255, 255, 0.85);
       border-bottom: 1px solid #d9d9d9;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:0 24px; z-index:1000; backdrop-filter:saturate(120%) blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 1000;
+      backdrop-filter: saturate(120%) blur(6px);
     }
-    .site-header .logo img{ width:144px; height:68px; display:block; }
-    .site-header .nav-links{ display:flex; gap:24px; }
-    .site-header .nav-link{ text-decoration:none; color:#111; font-family:"Playfair Display", serif; }
-
-    /* 顶部占位，防止内容被固定导航遮住 */
-    .header-spacer{ height:var(--header-h); }
-
-    /* 首屏框：高度=视口-导航；内部舞台等比缩放 */
-    .frame-wrap{
-      width:100vw; height:calc(100vh - var(--header-h));
-      display:grid; place-items:center; overflow:hidden; background:#000;
+    .site-header .logo img {
+      width: 144px;
+      height: 68px;
+      display: block;
     }
-    #stage{ transform-origin: top left; }
-
-    /* 如果旧的 .navbar 仍在 stage 内，隐藏以免重复 */
-    .stage-1440x900 .navbar{ display:none !important; }
-
-    /* 下面的一页一图区域 */
-    .page-stack{ width:100%; background:#fff; }
-    .page{
-      width:100%; height:calc(100vh - var(--header-h));
-      display:flex; align-items:center; justify-content:center;
-      border-bottom:1px solid #f0f0f0; background:#fff;
+    .site-header .nav-links {
+      display: flex;
+      gap: 24px;
     }
-    .page img{
-      width:100%; height:100%; object-fit:contain; display:block; background:#fff;
+    .site-header .nav-link {
+      text-decoration: none;
+      color: #111;
+      font-family: "Playfair Display", serif;
     }
 
-    /* 页脚（如需可留） */
-    .site-footer{ text-align:center; color:#444; padding:24px 16px; font-size:14px; }
-    .site-footer a{ color:#111; }
+    /* 占位，防止内容被顶部遮挡 */
+    .header-spacer {
+      height: var(--header-h);
+    }
+
+    /* ===== 首屏：home.png 全屏居中显示 ===== */
+    .frame-wrap {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - var(--header-h));
+      overflow: hidden;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .frame-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;      /* 全屏铺满 */
+      object-position: center center; /* 居中 */
+      display: block;
+    }
+
+    /* ===== 下方页面：一张图一屏，全屏居中 ===== */
+    .page-stack {
+      width: 100%;
+      background: #000;
+    }
+    .page {
+      width: 100%;
+      height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+    }
+
+    /* ===== 页脚 ===== */
+    .site-footer {
+      text-align: center;
+      color: #444;
+      padding: 24px 16px;
+      font-size: 14px;
+      background: #fff;
+    }
+    .site-footer a {
+      color: #111;
+    }
   </style>
 </head>
 
 <body>
-  <!-- 新：固定在最顶部的灰色框 -->
-  <header class="site-header" aria-label="Main">
+  <!-- 固定灰色框 -->
+  <header class="site-header">
     <div class="logo">
       <img src="v1_13.png" alt="yihan wang design logo">
     </div>
@@ -96,17 +146,14 @@
     </nav>
   </header>
 
-  <!-- 顶部占位 -->
   <div class="header-spacer"></div>
 
-  <!-- 首屏：只显示 home.png（1440×900） -->
+  <!-- ===== 首屏：home.png ===== -->
   <div class="frame-wrap">
-    <div id="stage" class="stage-1440x900">
-      <img src="home.png" alt="Home" width="1440" height="900" style="display:block;">
-    </div>
+    <img src="home.png" alt="Home">
   </div>
 
-  <!-- 向下滚动页：一张图一屏 -->
+  <!-- ===== 下方图片页 ===== -->
   <main class="page-stack" aria-label="Pages">
     <section class="page"><img src="about-1.png" alt="About Page 1"></section>
     <section class="page"><img src="about-2.png" alt="About Page 2"></section>
@@ -117,22 +164,5 @@
       <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
     </p>
   </footer>
-
-  <!-- 修复后的等比缩放脚本（注意反引号） -->
-  <script>
-    (function(){
-      const BASE_W = 1440, BASE_H = 900;
-      const stage  = document.getElementById('stage');
-      const wrap   = document.querySelector('.frame-wrap');
-      function fit(){
-        const ww = wrap.clientWidth, wh = wrap.clientHeight;
-        const scale = Math.min(ww/BASE_W, wh/BASE_H);
-        stage.style.transform = `scale(${scale})`;
-      }
-      addEventListener('resize', fit, {passive:true});
-      addEventListener('orientationchange', fit, {passive:true});
-      fit();
-    })();
-  </script>
 </body>
 </html>
