@@ -35,143 +35,116 @@
   <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
   <meta name="theme-color" content="#000000"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-  <link href="./main.css" rel="stylesheet"/>
-
 
   <style>
-    :root {
-      --header-h: 109px; /* 灰色框高度 */
+    :root { --header-h: 109px; }
+
+    /* 全局平滑滚动 */
+    html { scroll-behavior: smooth; }
+
+    /* 固定顶部灰色框 */
+    .site-header{
+      position: fixed; top:0; left:0; width:100%; height:var(--header-h);
+      background: rgba(255,255,255,0.85);
+      border-bottom:1px solid #d9d9d9;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:0 24px; z-index:1000; backdrop-filter:saturate(120%) blur(6px);
+    }
+    .site-header .logo a{ display:inline-block; line-height:0; }
+    .site-header .logo img{ width:144px; height:68px; display:block; }
+    .site-header .nav-links{ display:flex; gap:24px; }
+    .site-header .nav-link{ text-decoration:none; color:#111; font-family:"Playfair Display", serif; }
+
+    /* 避免被固定头遮挡 */
+    .header-spacer{ height:var(--header-h); }
+
+    /* 让每个锚点目标在滚动对齐时留出顶部空间 */
+    .anchor-target{ scroll-margin-top: var(--header-h); }
+
+    /* 首屏（等比完整显示，黑底补齐） */
+    .frame-wrap{
+      width:100vw; height:calc(100vh - var(--header-h));
+      display:flex; align-items:center; justify-content:center;
+      background:#000; overflow:hidden;
+    }
+    .frame-wrap img{
+      width:100%; height:100%; object-fit:contain; object-position:center; background:#000; display:block;
     }
 
-    /* ===== 固定顶部灰色框 ===== */
-    .site-header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: var(--header-h);
-      background: rgba(255, 255, 255, 0.85);
-      border-bottom: 1px solid #d9d9d9;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 24px;
-      z-index: 1000;
-      backdrop-filter: saturate(120%) blur(6px);
+    /* 版权过渡段 */
+    .copyright{
+      background:#000; color:#777; text-align:center;
+      font-size:14px; padding:32px 16px; line-height:1.6;
+      font-family:"Playfair Display", serif;
     }
-    .site-header .logo img {
-      width: 144px;
-      height: 68px;
-      display: block;
-    }
-    .site-header .nav-links {
-      display: flex;
-      gap: 24px;
-    }
-    .site-header .nav-link {
-      text-decoration: none;
-      color: #111;
-      font-family: "Playfair Display", serif;
-    }
+    .copyright a{ color:#fff; text-decoration:none; }
 
-    /* ===== 占位，防止被固定头遮住 ===== */
-    .header-spacer {
-      height: var(--header-h);
+    /* 下方页面（等比完整显示，黑底补齐） */
+    .page-stack{ width:100%; background:#000; }
+    .page{
+      width:100%; height:calc(100vh - var(--header-h));
+      display:flex; align-items:center; justify-content:center; background:#000;
     }
-
-    /* ===== 首屏 ===== */
-    .frame-wrap {
-      width: 100vw;
-      height: calc(100vh - var(--header-h));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #000;
-      overflow: hidden;
-    }
-    .frame-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      background-color: #000;
-      display: block;
-    }
-
-    /* ===== 版权文字过渡段 ===== */
-    .copyright {
-      background-color: #000;
-      color: #777;
-      text-align: center;
-      font-size: 14px;
-      padding: 32px 16px;
-      line-height: 1.6;
-      font-family: "Playfair Display", serif;
-    }
-    .copyright a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* ===== 下方页面 ===== */
-    .page-stack {
-      width: 100%;
-      background: #000;
-    }
-    .page {
-      width: 100%;
-      height: calc(100vh - var(--header-h));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-    }
-    .page img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      background-color: #000;
-      display: block;
+    .page img{
+      width:100%; height:100%; object-fit:contain; object-position:center; background:#000; display:block;
     }
   </style>
 </head>
 
 <body>
-  <!-- 固定灰色导航栏 -->
-  <header class="site-header">
+  <!-- 顶部灰色导航 -->
+  <header class="site-header" aria-label="Main">
     <div class="logo">
-      <img src="v1_13.png" alt="yihan wang design logo">
+      <!-- 点击 logo 回到首页 home.png -->
+      <a href="#home"><img src="v1_13.png" alt="yihan wang design logo"></a>
     </div>
     <nav class="nav-links">
-      <a href="about.html" class="nav-link">about</a>
-      <a href="works.html" class="nav-link">works</a>
-      <a href="contact.html" class="nav-link">contact</a>
+      <a href="#about" class="nav-link">about</a>
+      <a href="#works" class="nav-link">works</a>
+      <a href="#contact" class="nav-link">contact</a>
     </nav>
   </header>
 
   <div class="header-spacer"></div>
 
-  <!-- ===== 首屏：home.png ===== -->
-  <div class="frame-wrap">
-    <img src="home.png" alt="Home">
-  </div>
+  <!-- 首屏：home.png -->
+  <section id="home" class="anchor-target">
+    <div class="frame-wrap">
+      <img src="home.png" alt="Home" loading="eager" decoding="async">
+    </div>
+  </section>
 
-  <!-- ===== 版权文字过渡段 ===== -->
-  <div class="copyright">
-    © 2025 Yihan Wang Design. All rights reserved. 
+  <!-- 版权过渡段（首屏与第二页之间） -->
+  <div class="copyright anchor-target">
+    © 2025 Yihan Wang Design. All rights reserved.
     <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
   </div>
 
-  <!-- ===== 下方页面 ===== -->
+  <!-- 下方页面 -->
   <main class="page-stack" aria-label="Pages">
-    <section class="page"><img src="about-1.png" alt="About Page 1"></section>
-    <section class="page"><img src="about-2.png" alt="About Page 2"></section>
-    <section class="page"><img src="contact.png" alt="Contact Page 1"></section>
-    <div class="copyright">
-    © 2025 Yihan Wang Design. All rights reserved. 
-    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-  </div>
+    <!-- about 区域：点击 about 跳到这里（about-1.png），下滑还有 about-2.png -->
+    <section id="about" class="page anchor-target">
+      <img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async">
+    </section>
+    <section class="page">
+      <img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async">
+    </section>
+
+    <!-- works（如果暂时没有，可先指向 about-2 或留空占位） -->
+    <section id="works" class="page anchor-target">
+      <img src="about-2.png" alt="Works (placeholder)" loading="lazy" decoding="async">
+    </section>
+
+    <!-- contact 页面：点击 contact 跳到这里 -->
+    <section id="contact" class="page anchor-target">
+      <img src="contact.png" alt="Contact Page" loading="lazy" decoding="async">
+    </section>
+
+    <!-- 末尾版权（如不需要可删除） -->
+    <div class="copyright anchor-target">
+      © 2025 Yihan Wang Design. All rights reserved.
+      <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+    </div>
   </main>
 </body>
 </html>
