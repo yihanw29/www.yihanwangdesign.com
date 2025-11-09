@@ -408,7 +408,12 @@
 </script>
 <script>
 (function () {
-  // 映射：hash -> 对应的 page 元素 ID
+  // 把 "page-home" / "home" 统一转成 "home"
+  function normalize(name) {
+    return (name || '').replace(/^page-/, '');
+  }
+
+  // 映射：标准键 -> 对应的 page 元素 ID
   const map = {
     home:    'page-home',
     about:   'page-about',
@@ -428,7 +433,8 @@
 
   // 初始：根据 URL hash 显示；没有则显示 home
   function initFromHash() {
-    const name = (location.hash || '#home').slice(1);
+    const raw  = (location.hash || '#home').slice(1);   // 可能是 "home" 或 "page-home"
+    const name = normalize(raw);                         // 统一成 "home"
     show(pages[name] ? name : 'home');
   }
 
@@ -436,11 +442,12 @@
   document.body.addEventListener('click', function(e){
     const a = e.target.closest('a[href^="#"]');
     if (!a) return;
-    const target = a.getAttribute('href').slice(1); // home/about/works/contact
+    const raw    = a.getAttribute('href').slice(1);     // e.g. "page-about"
+    const target = normalize(raw);                      // -> "about"
     if (pages[target]) {
       e.preventDefault();
       show(target);
-      history.replaceState(null, '', '#' + target);
+      history.replaceState(null, '', '#' + raw);        // 地址栏保持你写的 "#page-about"
       window.scrollTo(0, 0);
     }
   });
