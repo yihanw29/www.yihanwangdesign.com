@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- 结构化数据（可保留/可去掉，不影响显示） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -11,8 +10,17 @@
     "logo": "https://www.yihanwangdesign.com/logo.png",
     "slogan": "Designed Between Worlds",
     "description": "Yihan Wang Design is an independent studio exploring the intersection of culture, design, and technology.",
-    "founder": { "@type": "Person", "name": "Yihan Wang" },
+    "founder": {
+      "@type": "Person",
+      "name": "Yihan Wang",
+      "sameAs": [
+        "https://github.com/yihanw29/yihan-wang/wiki",
+        "https://github.com/yihanw29/yihanwangdesign/wiki"
+      ]
+    },
     "sameAs": [
+      "https://github.com/yihanw29/yihan-wang.wiki.git",
+      "https://github.com/yihanw29/www.yihanwangdesign.com.wiki.git",
       "https://github.com/yihanw29/yihan-wang/wiki",
       "https://github.com/yihanw29/yihanwangdesign/wiki",
       "https://yihanw29.github.io/yihan-wang/",
@@ -22,165 +30,393 @@
   </script>
 
   <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Yihan Wang Design | Official Website</title>
+  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
   <meta name="theme-color" content="#000000"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
 
   <style>
     :root { --header-h: 120px; } /* 导航高度 */
 
-    /* 全站黑底 + 禁止滚动 */
+    /* ===== 全站黑底 + 平滑滚动 ===== */
     html, body {
       height: 100%;
       margin: 0;
       background: #000;
       color: #fff;
       font-family: "Playfair Display", serif;
-      overflow: hidden; /* 不允许滚动 */
     }
+    html { scroll-behavior: smooth; }
 
-    /* 顶部灰色导航 */
+    /* ===== 固定顶部灰色导航 ===== */
     .site-header {
-      position: fixed; top:0; left:0; width:100%;
+      position: fixed;
+      top: 0; left: 0; width: 100%;
       min-height: var(--header-h);
       background: rgba(255,255,255,0.85);
       border-bottom: 1px solid #d9d9d9;
-      display: grid; grid-template-columns: auto 1fr;
-      align-items: center; padding: 12px 64px; z-index: 1000;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: center;
+      padding: 12px 64px;
+      z-index: 1000;
       backdrop-filter: saturate(120%) blur(6px);
     }
-    .logo a { display:inline-block; line-height:0; }
-    .logo img { height:68px; width:auto; display:block; }
+    .logo a { display: inline-block; line-height: 0; }
+    .logo img { height: 68px; width: auto; display: block; }
 
-    /* 三等分导航（桌面） */
-    .nav-links{
-      display:grid; grid-template-columns:repeat(3,1fr);
-      justify-items:center; align-items:center;
+    /* ===== 导航三等分、居中、自适应字体 ===== */
+    .nav-links {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      justify-items: center;
+      align-items: center;
     }
-    .nav-link{
-      color:#111; text-decoration:none; font-weight:500;
+    .nav-link {
+      color: #111;
+      text-decoration: none;
+      font-weight: 500;
       font-size: clamp(20px, 1.8vw, 26px);
-      letter-spacing:.4px; white-space:nowrap;
+      letter-spacing: .4px;
+      white-space: nowrap;
     }
 
-    /* 舞台视窗（不可滚动） */
+    /* ===== 顶部占位，防止被固定头遮住 ===== */
     .header-spacer { height: var(--header-h); }
-    .stage {
-      position: relative;
+
+    /* ===== 锚点滚动时预留导航高度 ===== */
+    .anchor-target { scroll-margin-top: var(--header-h); }
+
+    /* ===== 各区块（全屏显示图片） ===== */
+    .screen {
       width: 100vw;
       height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background: #000;
       overflow: hidden;
     }
-    @media (max-width:1024px){ .stage{ height: calc(100dvh - var(--header-h)); } }
-
-    /* 页面层叠：默认隐藏，只有一个显示 */
-    .page {
-      position: absolute; inset: 0;
-      display: none;
-      align-items:center; justify-content:center;
-      background:#000;
-    }
-    /* 默认显示 home（当没有 :target 时） */
-    .page#home { display: flex; }
-    /* 有 target 时，只有 target 显示 */
-    .page:target { display: flex; }
-    /* 为了让没 target 时不显示其他页，即使浏览器把 hash 清空也保持 home 显示 */
-    :target ~ .page#home { display: none; }
-
-    /* 图片等比完整、居中 */
-    .page img {
-      width:100%; height:100%;
-      object-fit:contain; object-position:center;
-      display:block; background:#000;
+    .screen img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      display: block;
+      background: #000;
     }
 
-    /* 首页底部版权（覆盖在视窗内，不引入滚动） */
-    .copyright-overlay{
-      position:absolute; left:0; right:0; bottom:10px;
-      text-align:center; color:#777; font-size:12px; line-height:1.4;
-      pointer-events:none;
+    /* ===== 版权过渡段 ===== */
+    .copyright {
+      background: #000;
+      color: #777;
+      text-align: center;
+      font-size: 14px;
+      padding: 32px 16px;
+      line-height: 1.6;
     }
-    .copyright-overlay a{ color:#fff; text-decoration:none; }
+    .copyright a { color: #fff; text-decoration: none; }
 
-    /* 手机端：上 logo、下三等分，强制居中对称 */
-    @media (max-width: 768px){
-      .site-header{
-        grid-template-columns: 1fr;
-        padding: 10px 0;
+    /* ===== 移动端导航修正：对称、居中、正规 ===== */
+    @media (max-width: 768px) {
+      .site-header {
+        grid-template-columns: 1fr; /* 一列布局 */
+        padding: 10px 16px;
         text-align: center;
       }
-      .site-header .logo{
-        width:100%; display:flex; justify-content:center; align-items:center;
-        margin:6px 0 8px;
+      .site-header .logo { margin: 6px auto 8px; }
+      .site-header .logo img { height: 56px; width: auto; }
+      .site-header .nav-links {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        align-items: center;
+        width: 100%;
+        gap: 0;
       }
-      .site-header .logo img{ height:56px; width:auto; }
-
-      .site-header .nav-links{
-        position: relative; left:50%; transform: translateX(-50%);
-        width:100vw; max-width:100vw; margin:0;
-        padding-left:max(16px, env(safe-area-inset-left));
-        padding-right:max(16px, env(safe-area-inset-right));
-        display:grid; grid-template-columns:1fr 1fr 1fr; gap:0;
-        justify-items:center; align-items:center; text-align:center; box-sizing:border-box;
-      }
-      .site-header .nav-link{
-        display:block; width:100%; text-align:center; white-space:nowrap;
-        padding:10px 0; font-size:18px; letter-spacing:.3px; color:#111;
+      .site-header .nav-link {
+        font-size: clamp(16px, 2.8vw, 20px);
+        letter-spacing: 0.3px;
+        line-height: 1.2;
+        padding: 8px 0;
+        white-space: nowrap;
+        display: block;
+        width: 100%;
+        text-align: center;
       }
     }
 
-    /* iPhone 安全区（桌面保持 64px padding） */
+    /* ===== 移动端“每页间隔”修正：用100dvh防止地址栏挤压 ===== */
+    @media (max-width: 1024px) {
+      .screen {
+        height: calc(100dvh - var(--header-h));
+      }
+      .screen img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+      .copyright {
+        padding: 16px 12px;
+        font-size: 13px;
+        color: #888;
+      }
+    }
+
+    /* ===== section 默认归零，避免空隙 ===== */
+    section { margin: 0; padding: 0; }
+
+    /* ===== iPhone 刘海安全区支持 ===== */
     @supports (padding: max(0px)) {
       .site-header {
-        padding-left: max(16px, env(safe-area-inset-left), 64px);
-        padding-right: max(16px, env(safe-area-inset-right), 64px);
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
       }
+    }
+
+    /* ========= MOBILE HOTFIX (paste at the end) ========= */
+
+    /* 黑底再保险 + iOS 可用高度支持 */
+    html, body {
+      background:#000 !important;
+      color:#fff !important;
+      height: 100% !important;
+      min-height: 100% !important;
+      /* iOS/Safari/Instagram */
+      height: -webkit-fill-available !important;
+    }
+
+    @media (max-width: 1024px){
+      /* 用 dvh 优先，iOS 退回 fill-available，最后再退回 vh */
+      .screen{
+        height: calc(100dvh - var(--header-h)) !important;
+        min-height: calc(-webkit-fill-available - var(--header-h)) !important;
+        /* 兜底 */
+        height: calc(100vh - var(--header-h)) !important;
+        background:#000 !important;
+      }
+      .screen img{
+        max-width:100% !important;
+        max-height:100% !important;
+        object-fit:contain !important;
+        display:block !important;
+        background:#000 !important;
+      }
+      /* 版权紧凑，避免“割裂感” */
+      .copyright{
+        padding:14px 10px !important;
+        font-size:13px !important;
+        color:#888 !important;
+        background:#000 !important;
+      }
+    }
+
+    /* 手机导航：上下两行 + 严格三等分 + 居中 */
+    @media (max-width: 768px){
+      .site-header{
+        grid-template-columns: 1fr !important;
+        padding: 10px 16px !important;
+        text-align: center !important;
+        min-height: var(--header-h) !important;
+      }
+      .site-header .logo{ margin: 6px auto 8px !important; }
+      .site-header .logo img{ height:56px !important; width:auto !important; }
+
+      .site-header .nav-links{
+        display:grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-items:center !important;
+        align-items:center !important;
+        gap:0 !important;
+        width:100% !important;
+      }
+      .site-header .nav-link{
+        display:block !important;
+        width:100% !important;
+        text-align:center !important;
+        white-space:nowrap !important;
+        padding:8px 0 !important;
+        font-size:18px !important; /* 不会太小 */
+        letter-spacing:.3px !important;
+        color:#111 !important;
+      }
+    }
+
+    /* 去掉任何多余外边距导致的“空缝” */
+    section{ margin:0 !important; padding:0 !important; }
+    .header-spacer{ height: var(--header-h) !important; }
+
+    /* 灰色导航保持 */
+    .site-header{
+      background: rgba(255,255,255,0.85) !important;
+      border-bottom: 1px solid #d9d9d9 !important;
+      backdrop-filter: saturate(120%) blur(6px) !important;
+    }
+
+    /* === Mobile nav perfect-centering fix === */
+    @media (max-width: 768px){
+      /* 顶栏去掉两侧 padding，避免挤偏 */
+      .site-header{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      /* 让导航三等分“满屏铺开”，忽略父容器padding */
+      .site-header .nav-links{
+        width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important; /* 水平居中满宽技巧 */
+        margin-right: calc(50% - 50vw) !important;
+        padding-left: max(16px, env(safe-area-inset-left)) !important;  /* 刘海安全区 */
+        padding-right: max(16px, env(safe-area-inset-right)) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        justify-items: center !important;
+        align-items: center !important;
+        text-align: center !important;
+      }
+      /* 三个词等宽可点，字体不变形 */
+      .site-header .nav-link{
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        letter-spacing: .3px !important;
+        font-size: 18px !important;
+        line-height: 1.2 !important;
+        padding: 10px 0 !important;
+        color: #111 !important;
+      }
+      /* 上面一行 logo 居中且不影响下方网格的对称性 */
+      .site-header .logo{
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 6px 0 8px !important;
+      }
+      .site-header .logo img{ height: 56px !important; width: auto !important; }
+    }
+
+    /* 保险：全站黑底+分屏高度稳定 */
+    @media (max-width: 1024px){
+      .screen{
+        height: calc(100dvh - var(--header-h)) !important;
+        background:#000 !important;
+      }
+      html, body{ background:#000 !important; color:#fff !important; }
+    }
+
+    /* ==== Mobile nav hard-center & equal columns ==== */
+    @media (max-width: 768px){
+      /* 顶栏左右不留内边距，避免视觉向右挤 */
+      .site-header{
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      /* LOGO 居中单独一行 */
+      .site-header .logo{
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        margin: 8px 0 6px !important;
+      }
+      /* 导航三项：满屏铺开 + 绝对居中，不受父级 padding/安全区影响 */
+      .site-header .nav-links{
+        position: relative !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 100vw !important;           /* 用视口宽度做三等分 */
+        max-width: 100vw !important;
+        margin: 0 !important;
+        padding-left: max(16px, env(safe-area-inset-left)) !important;
+        padding-right: max(16px, env(safe-area-inset-right)) !important;
+        display: grid !important;
+        grid-template-columns: 1fr 1fr 1fr !important; /* 等宽三列 */
+        justify-items: center !important;
+        align-items: center !important;
+        gap: 0 !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
+      }
+      .site-header .nav-link{
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        padding: 10px 0 !important;
+        font-size: 18px !important;
+        letter-spacing: .3px !important;
+        color: #111 !important;
+      }
+    }
+
+    /* 保险：分屏高度稳定，避免看起来有“大片间隙” */
+    @media (max-width: 1024px){
+      .screen{ height: calc(100dvh - var(--header-h)) !important; background:#000 !important; }
     }
   </style>
 </head>
 
 <body>
-  <!-- 顶部灰色导航（锚点跳转，纯 CSS 切换） -->
+  <!-- ===== 固定顶部导航 ===== -->
   <header class="site-header" aria-label="Main">
     <div class="logo">
+      <!-- 点击 logo 返回首页 -->
       <a href="#home"><img src="v1_13.png" alt="yihan wang design logo"></a>
     </div>
     <nav class="nav-links">
-      <a href="#about"   class="nav-link">about</a>
-      <a href="#works"   class="nav-link">works</a>
+      <a href="#about" class="nav-link">about</a>
+      <a href="#works" class="nav-link">works</a>
       <a href="#contact" class="nav-link">contact</a>
     </nav>
   </header>
 
   <div class="header-spacer"></div>
 
-  <!-- 视窗舞台（不可滚动） -->
-  <main class="stage">
-    <!-- home（默认显示） -->
-    <section id="home" class="page" aria-label="Home">
+  <!-- ===== 首屏 ===== -->
+  <section id="home" class="anchor-target">
+    <div class="screen">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
-      <div class="copyright-overlay">
-        © 2025 Yihan Wang Design. All rights reserved.
-        <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- about -->
-    <section id="about" class="page" aria-label="About">
-      <img src="about-1.png" alt="About">
-    </section>
+  <!-- ===== 版权过渡段 ===== -->
+  <div class="copyright">
+    © 2025 Yihan Wang Design. All rights reserved.
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+  </div>
 
-    <!-- works（可换为你的作品图） -->
-    <section id="works" class="page" aria-label="Works">
-      <img src="about-2.png" alt="Works">
-    </section>
+  <!-- ===== about 区域 ===== -->
+  <section id="about" class="anchor-target">
+    <div class="screen">
+      <img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async">
+    </div>
+  </section>
 
-    <!-- contact -->
-    <section id="contact" class="page" aria-label="Contact">
-      <img src="contact.png" alt="Contact">
-    </section>
-  </main>
+  <section>
+    <div class="screen">
+      <img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- ===== works 区域 ===== -->
+  <section id="works" class="anchor-target">
+    <div class="screen">
+      <img src="about-2.png" alt="Works (placeholder)" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- ===== contact 区域 ===== -->
+  <section id="contact" class="anchor-target">
+    <div class="screen">
+      <img src="contact.png" alt="Contact Page" loading="lazy" decoding="async">
+    </div>
+  </section>
+
+  <!-- ===== 尾部版权 ===== -->
+  <div class="copyright">
+    © 2025 Yihan Wang Design. All rights reserved.
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+  </div>
 </body>
 </html>
