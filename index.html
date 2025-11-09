@@ -367,6 +367,20 @@
     @media (max-width: 1024px){
       .screen{ height: calc(100dvh - var(--header-h)) !important; background:#000 !important; }
     }
+    /* —— 切页的最终版（覆盖旧的 active / #page-home 强制显示） —— */
+
+/* 统一：默认全部隐藏 */
+.page { display: none; }
+
+/* 命中 :target 的那一页显示 */
+.page:target { display: flex !important; }
+
+/* 只有“没有任何 hash”时，才显示首页 */
+body:not(:has(.page:target)) #page-home { display: flex; }
+
+/* 保险：如果你还有 .page.active 的旧规则，直接让它失效 */
+.page.active { display: none !important; }
+
   </style>
 </head>
 
