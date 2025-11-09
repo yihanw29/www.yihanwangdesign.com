@@ -373,45 +373,66 @@
 
   <div class="header-spacer"></div>
 
-  <!-- ===== 首屏 ===== -->
-  <section id="home" class="anchor-target">
-    <div class="screen">
+  <main class="stage" id="stage">
+    <!-- home：默认显示 -->
+    <section class="page active" id="page-home" aria-label="Home">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
-    </div>
-  </section>
+      <div class="copyright-overlay">
+        © 2025 Yihan Wang Design. All rights reserved.
+        <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+      </div>
+    </section>
 
-  <!-- ===== 版权过渡段 ===== -->
-  <div class="copyright">
-    © 2025 Yihan Wang Design. All rights reserved.
-    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-  </div>
+    <!-- about：如果你想显示 about-1 / about-2 两张，我可以再加左右切换；这里先放 about-1 -->
+    <section class="page" id="page-about" aria-label="About">
+      <img src="about-1.png" alt="About">
+      <img src="about-2.png" alt="About">
+    </section>
 
-  <!-- ===== about 区域 ===== -->
-  <section id="about" class="anchor-target">
-    <div class="screen">
-      <img src="about-1.png" alt="About Page 1" loading="lazy" decoding="async">
-    </div>
-  </section>
+    <!-- works（占位：你后续换成作品图） -->
+    <section class="page" id="page-works" aria-label="Works">
+      <img src="about-2.png" alt="Works">
+    </section>
 
-  <section>
-    <div class="screen">
-      <img src="about-2.png" alt="About Page 2" loading="lazy" decoding="async">
-    </div>
-  </section>
+    <!-- contact -->
+    <section class="page" id="page-contact" aria-label="Contact">
+      <img src="contact.png" alt="Contact">
+    </section>
+  </main>
 
-  <!-- ===== works 区域 ===== -->
-  <section id="works" class="anchor-target">
-    <div class="screen">
-      <img src="about-2.png" alt="Works (placeholder)" loading="lazy" decoding="async">
-    </div>
-  </section>
+  <!-- ===== 极简切页脚本（无动画，只显示/隐藏） ===== -->
+  <script>
+    (function(){
+      const pages = {
+        home:    document.getElementById('page-home'),
+        about:   document.getElementById('page-about'),
+        works:   document.getElementById('page-works'),
+        contact: document.getElementById('page-contact')
+      };
 
-  <!-- ===== contact 区域 ===== -->
-  <section id="contact" class="anchor-target">
-    <div class="screen">
-      <img src="contact.png" alt="Contact Page" loading="lazy" decoding="async">
-    </div>
-  </section>
+      function show(which){
+        Object.keys(pages).forEach(k => pages[k].classList.toggle('active', k === which));
+      }
+
+      // 导航点击切换
+      document.querySelectorAll('[data-page]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const target = a.getAttribute('data-page');
+          show(target);
+          history.replaceState(null, '', '#'+target); // URL hash 更新（可直接分享）
+          // 防止某些内置浏览器“惯性滚动”
+          window.scrollTo(0,0);
+        });
+      });
+
+      // 允许直接访问 hash（如 index.html#contact）
+      const initial = (location.hash || '#home').replace('#','');
+      show(pages[initial] ? initial : 'home');
+
+      // 保底：加载后回到顶部，禁绝滚动条残留
+      window.addEventListener('load', ()=>window.scrollTo(0,0), {once:true});
+    })();
 
   <!-- ===== 尾部版权 ===== -->
   <div class="copyright">
