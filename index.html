@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+<head>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -27,19 +28,10 @@
       "https://www.yihanwangdesign.com"
     ]
   }
-  </script>
-
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-  <title>Yihan Wang Design | Official Website</title>
-  <meta name="description" content="Official website of Yihan Wang — Gen-Z designer integrating Traditional Chinese culture with modern design."/>
-  <meta name="theme-color" content="#000000"/>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet"/>
-
   <style>
     :root { --header-h: 120px; } /* 导航高度 */
 
-    /* ===== 全站黑底 + 禁止滚动（只能通过导航切页） ===== */
+    /* 全站黑底 + 禁止滚动（只能通过导航切页） */
     html, body {
       height: 100%;
       margin: 0;
@@ -49,71 +41,53 @@
       overflow: hidden; /* 关键：禁用滚动 */
     }
 
-    /* ===== 固定顶部灰色导航 ===== */
+    /* 固定顶部灰色导航 */
     .site-header {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
+      position: fixed; top: 0; left: 0; width: 100%;
       min-height: var(--header-h);
       background: rgba(255,255,255,0.85);
       border-bottom: 1px solid #d9d9d9;
-      display: grid;
-      grid-template-columns: auto 1fr;
-      align-items: center;
-      padding: 12px 64px;
-      z-index: 1000;
+      display: grid; grid-template-columns: auto 1fr;
+      align-items: center; padding: 12px 64px; z-index: 1000;
       backdrop-filter: saturate(120%) blur(6px);
     }
     .logo a { display: inline-block; line-height: 0; }
     .logo img { height: 68px; width: auto; display: block; }
 
-    /* ===== 导航三等分、居中、自适应字体 ===== */
+    /* 导航三等分、居中 */
     .nav-links {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      justify-items: center;
-      align-items: center;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      justify-items: center; align-items: center;
     }
     .nav-link {
-      color: #111;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: clamp(20px, 1.8vw, 26px);
-      letter-spacing: .4px;
-      white-space: nowrap;
+      color: #111; text-decoration: none; font-weight: 500;
+      font-size: clamp(20px, 1.8vw, 26px); letter-spacing: .4px; white-space: nowrap;
     }
 
-    /* ===== 占位（内部布局使用，不产生滚动） ===== */
+    /* 占位（不滚动，仅用于计算视窗） */
     .header-spacer { height: var(--header-h); }
 
-    /* ===== 舞台视窗：承载所有“页面”，彼此重叠 ===== */
+    /* 舞台视窗：承载所有“页面”，彼此重叠 */
     .stage{
-      position: relative;
-      width: 100vw;
-      height: calc(100vh - var(--header-h));
-      background: #000;
-      overflow: hidden; /* 禁止内部滚动 */
+      position: relative; width: 100vw; height: calc(100vh - var(--header-h));
+      background: #000; overflow: hidden;
     }
-    @media (max-width: 1024px){
-      .stage{ height: calc(100dvh - var(--header-h)); }
-    }
+    @media (max-width: 1024px){ .stage{ height: calc(100dvh - var(--header-h)); } }
 
-    /* ===== 单个“页面”：绝对定位铺满，默认隐藏，仅 .active 显示 ===== */
+    /* 单个“页面”：绝对定位铺满，默认隐藏，仅 .active 显示 */
     .page{
-      position: absolute; inset: 0;
-      display: none;
-      align-items: center; justify-content: center;
-      background:#000;
+      position: absolute; inset: 0; display: none;
+      align-items: center; justify-content: center; background:#000;
     }
     .page.active{ display: flex; }
 
-    /* 图片等比完整、居中，空白补黑 */
+    /* 图片等比完整、居中 */
     .page img{
-      width: 100%; height: 100%;
-      object-fit: contain; object-position: center;
+      width: 100%; height: 100%; object-fit: contain; object-position: center;
       display: block; background:#000;
     }
 
-    /* ===== 首页底部版权覆盖（不引入滚动） ===== */
+    /* 首页底部版权覆盖（不会引入滚动） */
     .copyright-overlay{
       position: absolute; left:0; right:0; bottom: 10px;
       text-align:center; color:#777; font-size: 12px; line-height:1.4;
@@ -121,34 +95,22 @@
     }
     .copyright-overlay a{ color:#fff; text-decoration:none; }
 
-    /* ===== 手机端导航：上logo、下三等分，绝对居中对称 ===== */
+    /* 手机端导航：上logo、下三等分，绝对居中对称 */
     @media (max-width: 768px){
-      .site-header{
-        grid-template-columns: 1fr;
-        padding: 10px 0;
-        text-align: center;
-      }
+      .site-header{ grid-template-columns: 1fr; padding: 10px 0; text-align: center; }
       .site-header .logo{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        width: 100%; display: flex; justify-content: center; align-items: center;
         margin: 6px 0 8px;
       }
       .site-header .logo img{ height:56px; width:auto; }
 
-      /* nav 满屏三等分，忽略父 padding，保证完美居中 */
       .site-header .nav-links{
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%);
+        position: relative; left: 50%; transform: translateX(-50%);
         width: 100vw; max-width: 100vw; margin: 0;
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-items: center; align-items: center; gap: 0;
-        text-align: center; box-sizing: border-box;
+        display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0;
+        justify-items: center; align-items: center; text-align: center; box-sizing: border-box;
       }
       .site-header .nav-link{
         display:block; width:100%; text-align:center; white-space:nowrap;
@@ -167,7 +129,7 @@
 </head>
 
 <body>
-  <!-- ===== 固定顶部导航（点击切换页面） ===== -->
+  <!-- 顶部导航（点击切换页面） -->
   <header class="site-header" aria-label="Main">
     <div class="logo">
       <a href="#home" data-page="home"><img src="v1_13.png" alt="yihan wang design logo"></a>
@@ -181,9 +143,9 @@
 
   <div class="header-spacer"></div>
 
-  <!-- ===== 舞台视窗（无滚动） ===== -->
+  <!-- 视窗舞台（不可滚动） -->
   <main class="stage" id="stage">
-    <!-- home：默认显示 -->
+    <!-- home（默认显示） -->
     <section class="page active" id="page-home" aria-label="Home">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
       <div class="copyright-overlay">
@@ -192,12 +154,12 @@
       </div>
     </section>
 
-    <!-- about：如果你想显示 about-1 / about-2 两张，我可以再加左右切换；这里先放 about-1 -->
+    <!-- about -->
     <section class="page" id="page-about" aria-label="About">
       <img src="about-1.png" alt="About">
     </section>
 
-    <!-- works（占位：你后续换成作品图） -->
+    <!-- works（占位） -->
     <section class="page" id="page-works" aria-label="Works">
       <img src="about-2.png" alt="Works">
     </section>
@@ -208,7 +170,7 @@
     </section>
   </main>
 
-  <!-- ===== 极简切页脚本（无动画，只显示/隐藏） ===== -->
+  <!-- 极简切页脚本 -->
   <script>
     (function(){
       const pages = {
@@ -228,17 +190,16 @@
           e.preventDefault();
           const target = a.getAttribute('data-page');
           show(target);
-          history.replaceState(null, '', '#'+target); // URL hash 更新（可直接分享）
-          // 防止某些内置浏览器“惯性滚动”
-          window.scrollTo(0,0);
+          history.replaceState(null, '', '#'+target); // 更新URL hash
+          window.scrollTo(0,0); // 保底：禁止产生滚动偏移
         });
       });
 
-      // 允许直接访问 hash（如 index.html#contact）
+      // 支持直接访问 #hash
       const initial = (location.hash || '#home').replace('#','');
       show(pages[initial] ? initial : 'home');
 
-      // 保底：加载后回到顶部，禁绝滚动条残留
+      // 加载完成后回到顶部（某些内置浏览器会保留滚动）
       window.addEventListener('load', ()=>window.scrollTo(0,0), {once:true});
     })();
   </script>
