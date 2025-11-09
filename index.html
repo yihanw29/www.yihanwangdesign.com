@@ -402,35 +402,35 @@
   display: block;
 }
 
-
 <body>
-  <!-- ===== 固定顶部导航 ===== -->
+  <!-- 顶部灰色导航（点击切换“页面”） -->
   <header class="site-header" aria-label="Main">
     <div class="logo">
-      <!-- 点击 logo 返回首页 -->
-      <a href="#page-home"><img src="v1_13.png" alt="yihan wang design logo"></a>
+      <a href="#page-home" data-page="home"><img src="v1_13.png" alt="yihan wang design logo"></a>
     </div>
     <nav class="nav-links">
-      <a href="#page-about" class="nav-link">about</a>
-      <a href="#page-works" class="nav-link">works</a>
-      <a href="#page-contact" class="nav-link">contact</a>
+      <a href="#page-about"   class="nav-link" data-page="about">about</a>
+      <a href="#page-works"   class="nav-link" data-page="works">works</a>
+      <a href="#page-contact" class="nav-link" data-page="contact">contact</a>
     </nav>
   </header>
 
   <div class="header-spacer"></div>
 
-   <!-- 视窗舞台：所有页面重叠，默认只显示 home -->
+  <!-- 视窗舞台：所有页面重叠，默认只显示 home -->
   <main class="stage" id="stage">
     <!-- home（默认显示） -->
     <section class="page active" id="page-home" aria-label="Home">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
-      
+      <div class="copyright-overlay">
+        © 2025 Yihan Wang Design. All rights reserved.
+        <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+      </div>
     </section>
 
     <!-- about（两张图合并为一个“页面”可选：这里只先放第1张；如需轮换我可再加切换） -->
     <section class="page" id="page-about" aria-label="About">
       <img src="about-1.png" alt="About">
-      <img src="about-2.png" alt="About">
     </section>
 
     <!-- works（先用占位图，后续你换成作品图） -->
@@ -443,6 +443,39 @@
       <img src="contact.png" alt="Contact">
     </section>
   </main>
+
+  <!-- 极简页面切换脚本：不改变颜色、不做动画，仅显示/隐藏 -->
+  <script>
+    (function(){
+      const pages = {
+        home:    document.getElementById('page-home'),
+        about:   document.getElementById('page-about'),
+        works:   document.getElementById('page-works'),
+        contact: document.getElementById('page-contact')
+      };
+
+      function show(which){
+        Object.keys(pages).forEach(k => pages[k].classList.toggle('active', k === which));
+      }
+
+      // 导航点击切换
+      document.querySelectorAll('[data-page]').forEach(a=>{
+        a.addEventListener('click', e=>{
+          e.preventDefault();
+          const target = a.getAttribute('data-page');
+          show(target);
+          history.replaceState(null, '', '#'+target); // 更新URL哈希（可选）
+        });
+      });
+
+      // 支持直接访问 hash（如 index.html#contact）
+      const initial = (location.hash || '#home').replace('#','');
+      show(pages[initial] ? initial : 'home');
+
+      // 防止某些内置浏览器误触发滚动
+      window.scrollTo(0,0);
+    })();
+  </script>
 
  
   <!-- ===== 尾部版权 ===== -->
