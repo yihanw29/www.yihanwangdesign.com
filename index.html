@@ -369,6 +369,43 @@
     }
   </style>
 </head>
+<script>
+(function () {
+  const pages = {
+    home:    document.getElementById('page-home'),
+    about:   document.getElementById('page-about'),
+    works:   document.getElementById('page-works'),
+    contact: document.getElementById('page-contact')
+  };
+
+  function show(name) {
+    Object.keys(pages).forEach(k => {
+      // 直接控制内联 display，覆盖掉默认的 .page/.active 样式
+      pages[k].style.display = (k === name) ? 'flex' : 'none';
+    });
+  }
+
+  // 初始：根据 URL hash 显示对应页；没有 hash 则显示 home
+  const initial = (location.hash || '#home').slice(1);
+  show(pages[initial] ? initial : 'home');
+
+  // 绑定导航点击（包含左上角 logo）
+  document.querySelectorAll('.nav-links a, .logo a').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href') || '';
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = href.slice(1);   // 'home' | 'about' | 'works' | 'contact'
+        if (pages[target]) {
+          show(target);
+          history.replaceState(null, '', href); // 更新地址栏 hash（可直达）
+          window.scrollTo(0, 0);               // 保持不可滚动视图置顶
+        }
+      }
+    });
+  });
+})();
+</script>
 
 <body>
   <!-- ===== 固定顶部导航 ===== -->
