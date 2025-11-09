@@ -254,6 +254,60 @@ section{ margin:0 !important; padding:0 !important; }
   border-bottom: 1px solid #d9d9d9 !important;
   backdrop-filter: saturate(120%) blur(6px) !important;
 }
+    /* === Mobile nav perfect-centering fix === */
+@media (max-width: 768px){
+  /* 顶栏去掉两侧 padding，避免挤偏 */
+  .site-header{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* 让导航三等分“满屏铺开”，忽略父容器padding */
+  .site-header .nav-links{
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important; /* 水平居中满宽技巧 */
+    margin-right: calc(50% - 50vw) !important;
+    padding-left: max(16px, env(safe-area-inset-left)) !important;  /* 刘海安全区 */
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    justify-items: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  /* 三个词等宽可点，字体不变形 */
+  .site-header .nav-link{
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    letter-spacing: .3px !important;
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+    padding: 10px 0 !important;
+    color: #111 !important;
+  }
+
+  /* 上面一行 logo 居中且不影响下方网格的对称性 */
+  .site-header .logo{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 6px 0 8px !important;
+  }
+  .site-header .logo img{ height: 56px !important; width: auto !important; }
+}
+
+/* 保险：全站黑底+分屏高度稳定 */
+@media (max-width: 1024px){
+  .screen{
+    height: calc(100dvh - var(--header-h)) !important;
+    background:#000 !important;
+  }
+  html, body{ background:#000 !important; color:#fff !important; }
+}
+
 
   </style>
 </head>
