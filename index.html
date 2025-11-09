@@ -176,6 +176,85 @@
         padding-right: max(16px, env(safe-area-inset-right));
       }
     }
+    /* ========= MOBILE HOTFIX (paste at the end) ========= */
+
+/* 黑底再保险 + iOS 可用高度支持 */
+html, body { 
+  background:#000 !important; 
+  color:#fff !important; 
+  height: 100% !important; 
+  min-height: 100% !important;
+  /* iOS/Safari/Instagram */
+  height: -webkit-fill-available !important;
+}
+
+@media (max-width: 1024px){
+  /* 用 dvh 优先，iOS 退回 fill-available，最后再退回 vh */
+  .screen{
+    height: calc(100dvh - var(--header-h)) !important;
+    min-height: calc(-webkit-fill-available - var(--header-h)) !important;
+    /* 兜底 */
+    height: calc(100vh - var(--header-h)) !important;
+    background:#000 !important;
+  }
+  .screen img{
+    max-width:100% !important;
+    max-height:100% !important;
+    object-fit:contain !important;
+    display:block !important;
+    background:#000 !important;
+  }
+  /* 版权紧凑，避免“割裂感” */
+  .copyright{
+    padding:14px 10px !important;
+    font-size:13px !important;
+    color:#888 !important;
+    background:#000 !important;
+  }
+}
+
+/* 手机导航：上下两行 + 严格三等分 + 居中 */
+@media (max-width: 768px){
+  .site-header{
+    grid-template-columns: 1fr !important;
+    padding: 10px 16px !important;
+    text-align: center !important;
+    min-height: var(--header-h) !important;
+  }
+  .site-header .logo{ margin: 6px auto 8px !important; }
+  .site-header .logo img{ height:56px !important; width:auto !important; }
+
+  .site-header .nav-links{
+    display:grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    justify-items:center !important;
+    align-items:center !important;
+    gap:0 !important;
+    width:100% !important;
+  }
+  .site-header .nav-link{
+    display:block !important;
+    width:100% !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    padding:8px 0 !important;
+    font-size:18px !important; /* 不会太小 */
+    letter-spacing:.3px !important;
+    color:#111 !important;
+  }
+}
+
+/* 去掉任何多余外边距导致的“空缝” */
+section{ margin:0 !important; padding:0 !important; }
+.header-spacer{ height: var(--header-h) !important; }
+
+/* 灰色导航保持 */
+.site-header{
+  background: rgba(255,255,255,0.85) !important;
+  border-bottom: 1px solid #d9d9d9 !important;
+  backdrop-filter: saturate(120%) blur(6px) !important;
+}
+
   </style>
 </head>
 
