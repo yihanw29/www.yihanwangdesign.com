@@ -307,6 +307,63 @@ section{ margin:0 !important; padding:0 !important; }
   }
   html, body{ background:#000 !important; color:#fff !important; }
 }
+/* ==== Mobile nav hard-center & equal columns ==== */
+@media (max-width: 768px){
+
+  /* 顶栏左右不留内边距，避免视觉向右挤 */
+  .site-header{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* LOGO 居中单独一行 */
+  .site-header .logo{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    margin: 8px 0 6px !important;
+  }
+
+  /* 导航三项：满屏铺开 + 绝对居中，不受父级 padding/安全区影响 */
+  .site-header .nav-links{
+    position: relative !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    width: 100vw !important;             /* 用视口宽度做三等分 */
+    max-width: 100vw !important;
+    margin: 0 !important;
+
+    padding-left: max(16px, env(safe-area-inset-left)) !important;
+    padding-right: max(16px, env(safe-area-inset-right)) !important;
+
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr !important; /* 等宽三列 */
+    justify-items: center !important;
+    align-items: center !important;
+    gap: 0 !important;
+
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  .site-header .nav-link{
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    padding: 10px 0 !important;
+    font-size: 18px !important;
+    letter-spacing: .3px !important;
+    color: #111 !important;
+  }
+}
+
+/* 保险：分屏高度稳定，避免看起来有“大片间隙” */
+@media (max-width: 1024px){
+  .screen{ height: calc(100dvh - var(--header-h)) !important; background:#000 !important; }
+}
 
 
   </style>
