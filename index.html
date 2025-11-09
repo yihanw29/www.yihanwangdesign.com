@@ -406,6 +406,56 @@
   });
 })();
 </script>
+<script>
+(function () {
+  // 映射：hash -> 对应的 page 元素 ID
+  const map = {
+    home:    'page-home',
+    about:   'page-about',
+    works:   'page-works',
+    contact: 'page-contact'
+  };
+
+  const pages = {};
+  Object.keys(map).forEach(k => { pages[k] = document.getElementById(map[k]); });
+
+  function show(name) {
+    Object.keys(pages).forEach(k => {
+      const el = pages[k];
+      if (el) el.style.display = (k === name) ? 'flex' : 'none';
+    });
+  }
+
+  // 初始：根据 URL hash 显示；没有则显示 home
+  function initFromHash() {
+    const name = (location.hash || '#home').slice(1);
+    show(pages[name] ? name : 'home');
+  }
+
+  // 监听导航（包含左上角 logo）
+  document.body.addEventListener('click', function(e){
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const target = a.getAttribute('href').slice(1); // home/about/works/contact
+    if (pages[target]) {
+      e.preventDefault();
+      show(target);
+      history.replaceState(null, '', '#' + target);
+      window.scrollTo(0, 0);
+    }
+  });
+
+  // 监听地址栏 hash 变化（浏览器前进/后退）
+  window.addEventListener('hashchange', initFromHash);
+
+  // DOM 就绪后初始化
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFromHash);
+  } else {
+    initFromHash();
+  }
+})();
+</script>
 
 <body>
   <!-- ===== 固定顶部导航 ===== -->
