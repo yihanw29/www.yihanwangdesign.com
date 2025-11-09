@@ -64,6 +64,67 @@
       .logo{ margin-bottom:8px; }
       .nav-link{ font-size: clamp(16px, 2.8vw, 22px); }
     }
+    /* === 移动端导航修正：对称、居中、正规 === */
+@media (max-width: 768px) {
+  /* 1) 顶栏改为上下两行：第一行居中 logo，第二行三等分导航 */
+  .site-header {
+    grid-template-columns: 1fr;         /* 一列布局 */
+    padding: 10px 16px;                 /* 收窄内边距 */
+    text-align: center;
+  }
+  .site-header .logo { margin: 6px auto 8px; }
+  .site-header .logo img { height: 56px; width: auto; }
+
+  .site-header .nav-links {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr);  /* about/works/contact 等宽 */
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    gap: 0;                                  /* 去掉多余空隙，严格对齐 */
+  }
+  .site-header .nav-link {
+    font-size: clamp(16px, 2.8vw, 20px);     /* 自适应但不显小 */
+    letter-spacing: 0.3px;
+    line-height: 1.2;
+    padding: 8px 0;                          /* 统一上下内边距 */
+    white-space: nowrap;
+    display: block;
+    width: 100%;                              /* 使三项等宽可点击 */
+    text-align: center;
+  }
+}
+
+/* === 移动端“每页间隔很大”修正 === */
+/* 用 100svh 适配移动端可视高，避免地址栏导致的多余空白 */
+@media (max-width: 1024px) {
+  .screen { 
+    height: calc(100svh - var(--header-h));  /* 原来是 100vh */
+  }
+  .screen img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  /* 版权区域在手机上收紧，避免割裂感 */
+  .copyright {
+    padding: 16px 12px;
+    font-size: 13px;
+    color: #888;
+  }
+}
+
+/* === 全局小优化：任何 section 默认外边距归零，避免被主题或外链样式拉开 === */
+section { margin: 0; padding: 0; }
+
+/* iOS 刘海安全区支持（可选） */
+@supports (padding: max(0px)) {
+  .site-header {
+    padding-left: max(16px, env(safe-area-inset-left));
+    padding-right: max(16px, env(safe-area-inset-right));
+  }
+}
+
   </style>
 </head>
 
