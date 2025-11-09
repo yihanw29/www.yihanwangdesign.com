@@ -88,25 +88,38 @@
     /* ===== 锚点滚动时预留导航高度 ===== */
     .anchor-target { scroll-margin-top: var(--header-h); }
 
-    /* ===== 各区块（全屏显示图片） ===== */
-    .screen {
+   /* 视窗舞台：承载各“页面”，彼此叠放 */
+    .stage{
+      position: relative;
       width: 100vw;
-      height: calc(100vh - var(--header-h));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      overflow: hidden;
-    }
-    .screen img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-      display: block;
-      background: #000;
+      height: calc(100vh - var(--header-h));  /* 视窗高度 */
+      background:#000;
+      overflow: hidden;                        /* 防止内部溢出产生滚动 */
     }
 
+    /* 每个 page 绝对定位铺满，默认隐藏，仅 .active 显示 */
+    .page{
+      position: absolute; inset: 0;
+      display: none;
+      align-items: center; justify-content: center;
+      background:#000;
+    }
+    .page.active{ display: flex; }
+
+    /* 图片等比完整、居中，空白补黑 */
+    .page img{
+      width: 100%; height: 100%;
+      object-fit: contain; object-position: center;
+      display: block; background:#000;
+    }
+
+    /* 叠加式版权（放在舞台底部，不产生滚动） */
+    .copyright-overlay{
+      position: absolute; left:0; right:0; bottom: 8px;
+      text-align:center; color:#777; font-size: 12px; line-height:1.4;
+      pointer-events: none;                   /* 不阻挡点击 */
+    }
+    .copyright-overlay a{ color:#fff; text-decoration:none; }
     /* ===== 版权过渡段 ===== */
     .copyright {
       background: #000;
@@ -373,8 +386,9 @@
 
   <div class="header-spacer"></div>
 
+   <!-- 视窗舞台：所有页面重叠，默认只显示 home -->
   <main class="stage" id="stage">
-    <!-- home：默认显示 -->
+    <!-- home（默认显示） -->
     <section class="page active" id="page-home" aria-label="Home">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
       <div class="copyright-overlay">
@@ -383,13 +397,12 @@
       </div>
     </section>
 
-    <!-- about：如果你想显示 about-1 / about-2 两张，我可以再加左右切换；这里先放 about-1 -->
+    <!-- about（两张图合并为一个“页面”可选：这里只先放第1张；如需轮换我可再加切换） -->
     <section class="page" id="page-about" aria-label="About">
       <img src="about-1.png" alt="About">
-      <img src="about-2.png" alt="About">
     </section>
 
-    <!-- works（占位：你后续换成作品图） -->
+    <!-- works（先用占位图，后续你换成作品图） -->
     <section class="page" id="page-works" aria-label="Works">
       <img src="about-2.png" alt="Works">
     </section>
@@ -400,7 +413,7 @@
     </section>
   </main>
 
-  <!-- ===== 极简切页脚本（无动画，只显示/隐藏） ===== -->
+  <!-- 极简页面切换脚本：不改变颜色、不做动画，仅显示/隐藏 -->
   <script>
     (function(){
       const pages = {
@@ -420,19 +433,18 @@
           e.preventDefault();
           const target = a.getAttribute('data-page');
           show(target);
-          history.replaceState(null, '', '#'+target); // URL hash 更新（可直接分享）
-          // 防止某些内置浏览器“惯性滚动”
-          window.scrollTo(0,0);
+          history.replaceState(null, '', '#'+target); // 更新URL哈希（可选）
         });
       });
 
-      // 允许直接访问 hash（如 index.html#contact）
+      // 支持直接访问 hash（如 index.html#contact）
       const initial = (location.hash || '#home').replace('#','');
       show(pages[initial] ? initial : 'home');
 
-      // 保底：加载后回到顶部，禁绝滚动条残留
-      window.addEventListener('load', ()=>window.scrollTo(0,0), {once:true});
+      // 防止某些内置浏览器误触发滚动
+      window.scrollTo(0,0);
     })();
+  </script>
 
   <!-- ===== 尾部版权 ===== -->
   <div class="copyright">
