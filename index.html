@@ -404,32 +404,37 @@
 }
 <script>
 (function(){
-  const ids = ['page-home','page-about','page-works','page-contact'];
+  const ids   = ['page-home','page-about','page-works','page-contact'];
   const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
 
-  function show(hash){
+  function showByHash(hash){
     const id = (hash || '#page-home').slice(1);
     pages.forEach(el => { el.style.display = (el.id === id) ? 'flex' : 'none'; });
   }
 
-  // 初始：根据地址栏 hash 显示对应页，没有就显示 home
-  show(location.hash);
+  // 初始：根据地址栏 hash，默认 home
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
+  } else {
+    showByHash(location.hash);
+  }
 
-  // 监听导航点击（只拦截指向 #page- 的链接）
+  // 截获点击：只处理 href 以 #page- 开头的链接
   document.addEventListener('click', function(e){
     const a = e.target.closest('a[href^="#page-"]');
     if (!a) return;
     e.preventDefault();
-    const h = a.getAttribute('href');
-    history.replaceState(null, '', h);  // 更新 hash（可前进/后退）
-    show(h);
-    window.scrollTo(0, 0);              // 置顶
+    const h = a.getAttribute('href');       // 如 #page-about
+    history.replaceState(null, '', h);      // 更新地址栏
+    showByHash(h);                          // 切页
+    window.scrollTo(0, 0);                  // 置顶（防止出现滚动）
   });
 
-  // 浏览器前进/后退时切换
-  window.addEventListener('hashchange', () => show(location.hash));
+  // 前进/后退
+  window.addEventListener('hashchange', () => showByHash(location.hash));
 })();
 </script>
+
 
 <body>
   <!-- 顶部灰色导航（点击切换“页面”） -->
