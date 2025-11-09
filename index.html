@@ -444,39 +444,6 @@
     </section>
   </main>
 
-  <!-- 极简页面切换脚本：不改变颜色、不做动画，仅显示/隐藏 -->
-  <script>
-    (function(){
-      const pages = {
-        home:    document.getElementById('page-home'),
-        about:   document.getElementById('page-about'),
-        works:   document.getElementById('page-works'),
-        contact: document.getElementById('page-contact')
-      };
-
-      function show(which){
-        Object.keys(pages).forEach(k => pages[k].classList.toggle('active', k === which));
-      }
-
-      // 导航点击切换
-      document.querySelectorAll('[data-page]').forEach(a=>{
-        a.addEventListener('click', e=>{
-          e.preventDefault();
-          const target = a.getAttribute('data-page');
-          show(target);
-          history.replaceState(null, '', '#'+target); // 更新URL哈希（可选）
-        });
-      });
-
-      // 支持直接访问 hash（如 index.html#contact）
-      const initial = (location.hash || '#home').replace('#','');
-      show(pages[initial] ? initial : 'home');
-
-      // 防止某些内置浏览器误触发滚动
-      window.scrollTo(0,0);
-    })();
-  </script>
-
  
   <!-- ===== 尾部版权 ===== -->
   <div class="copyright">
