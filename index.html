@@ -211,23 +211,24 @@
       <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
- <section class="page" id="page-about" aria-label="About"
-         style="overflow-y:auto; overflow-x:hidden; flex-direction:column; align-items:center; justify-content:flex-start; background:#000;">
-  <div style="width:100%; height:calc(100vh - var(--header-h));
+<section class="page" id="page-about" aria-label="About"
+         style="overflow-y:auto; overflow-x:hidden; flex-direction:column; align-items:stretch; justify-content:flex-start; background:#000;">
+  <!-- 屏1：左右各 6vw 内边距，视觉尺寸对齐 works -->
+  <div style="width:100vw; height:calc(100vh - var(--header-h));
+              padding:0 6vw; box-sizing:border-box;
               display:flex; align-items:center; justify-content:center; background:#000;">
     <img src="about-1.png" alt="About 1"
-         style="width:100%; height:100%; object-fit:contain; object-position:center; background:#000; display:block;">
+         style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#000;">
   </div>
 
-  <div style="width:100%; height:calc(100vh - var(--header-h));
+  <!-- 屏2：同样的内边距 -->
+  <div style="width:100vw; height:calc(100vh - var(--header-h));
+              padding:0 6vw; box-sizing:border-box;
               display:flex; align-items:center; justify-content:center; background:#000;">
     <img src="about-2.png" alt="About 2"
-         style="width:100%; height:100%; object-fit:contain; object-position:center; background:#000; display:block;">
+         style="width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#000;">
   </div>
 </section>
-
-
-
 
     <section class="page" id="page-works" aria-label="Works">
       <img src="about-2.png" alt="Works">
