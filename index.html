@@ -141,6 +141,30 @@
   background: #000;
   display: block;
 }
+/* === About：按原比例显示，绝不裁切（覆盖全局 .page img 规则） === */
+#page-about{
+  /* 页面本身仍由脚本设为 display:flex，这里只管布局与滚动 */
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  overflow-y: auto !important;      /* 允许上下滚动 */
+  overflow-x: hidden !important;     /* 禁止横向滚动 */
+}
+
+#page-about .about-scroll{
+  display: block;                    /* 竖直文档流 */
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#page-about img{
+  width: 100% !important;            /* 随容器等比缩放宽度 */
+  height: auto !important;           /* 按原比例自动高度 */
+  max-width: 100% !important;        /* 不超过容器 */
+  object-fit: contain !important;    /* 以防外部规则影响 */
+  object-position: top center !important;
+  display: block !important;
+  background: #000 !important;       /* 空白处仍为黑底 */
+}
 
   </style>
 </head>
