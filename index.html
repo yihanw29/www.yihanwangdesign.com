@@ -123,6 +123,25 @@
       .screen{ height:calc(100dvh - var(--header-h)) !important; background:#000 !important; }
       html, body{ background:#000 !important; color:#fff !important; }
     }
+    /* About 页面上下滚动查看两张图 */
+#page-about {
+  overflow-y: auto;           /* 可垂直滚动 */
+  flex-direction: column;     /* 图片上下排列 */
+}
+#page-about .about-scroll {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+#page-about img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
   </style>
 </head>
 
@@ -145,10 +164,13 @@
       <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
-    <section class="page" id="page-about" aria-label="About">
-      <img src="about-1.png" alt="About">
-      <img src="about-2.png" alt="About">
-    </section>
+   <section class="page" id="page-about" aria-label="About">
+  <div class="about-scroll">
+    <img src="about-1.png" alt="About 1">
+    <img src="about-2.png" alt="About 2">
+  </div>
+</section>
+
 
     <section class="page" id="page-works" aria-label="Works">
       <img src="about-2.png" alt="Works">
