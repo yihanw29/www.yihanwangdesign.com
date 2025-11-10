@@ -188,32 +188,6 @@
   background: #000;
   display: block;
 }
-/* === 修正 About 页图片大小与其他页面一致 === */
-#page-about {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  display: block !important;              /* 允许滚动 */
-  background: #000 !important;
-}
-
-#page-about .about-scroll {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  background: #000;
-}
-
-/* 每张图单独占一屏高度，显示比例与其他页面一致 */
-#page-about img {
-  width: 100%;
-  height: calc(100vh - var(--header-h));  /* 与其他页面相同高度 */
-  object-fit: contain !important;         /* 保持比例不裁切 */
-  object-position: center !important;     /* 居中显示 */
-  background: #000 !important;
-  display: block;
-}
 
   </style>
 </head>
