@@ -40,19 +40,41 @@
     html, body { height:100%; margin:0; background:#000; color:#fff; font-family:"Playfair Display", serif; }
     html { scroll-behavior:smooth; }
 
-    .site-header{
-      position:fixed; top:0; left:0; width:100%;
-      min-height:var(--header-h);
-      background:rgba(255,255,255,.85);
-      border-bottom:1px solid #d9d9d9;
-      display:grid; grid-template-columns:auto 1fr; align-items:center;
-      padding:12px 64px; z-index:1000; backdrop-filter:saturate(120%) blur(6px);
-    }
-    .logo a{ display:inline-block; line-height:0; }
-    .logo img{ height:68px; width:auto; display:block; }
+  /* 导航栏主样式 */
+.site-header{
+  position:fixed; top:0; left:0; width:100%;
+  min-height:var(--header-h);
+  background:rgba(0,0,0,.85) !important;    /* ← 已改成黑色透明 */
+  border-bottom:1px solid #d9d9d9;
+  display:grid; grid-template-columns:auto 1fr; align-items:center;
+  padding:12px 64px; z-index:1000; 
+  backdrop-filter:saturate(120%) blur(6px);
+}
 
-    .nav-links{ display:grid; grid-template-columns:repeat(3,1fr); justify-items:center; align-items:center; }
-    .nav-link{ color:#111; text-decoration:none; font-weight:500; font-size:clamp(20px,1.8vw,26px); letter-spacing:.4px; white-space:nowrap; }
+/* 导航栏文字 */
+.nav-link{
+  color:#fff !important;                  /* ← 已改为白色 */
+  text-decoration:none; 
+  font-weight:500;
+  font-size:clamp(20px,1.8vw,26px);
+  letter-spacing:.4px;
+  white-space:nowrap;
+}
+
+/* 手机端样式同步更新 */
+@media (max-width:768px){
+  .site-header{ background:rgba(0,0,0,.85) !important; }
+  .site-header .nav-link{
+    display:block !important;
+    width:100% !important;
+    text-align:center !important;
+    white-space:nowrap !important;
+    padding:10px 0 !important;
+    font-size:18px !important;
+    line-height:1.2 !important;
+    color:#fff !important;               /* ← 这里改成白色 */
+  }
+}
 
     .header-spacer{ height:var(--header-h); }
 
