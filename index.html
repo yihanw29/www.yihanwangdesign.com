@@ -40,49 +40,32 @@
     html, body { height:100%; margin:0; background:#000; color:#fff; font-family:"Playfair Display", serif; }
     html { scroll-behavior:smooth; }
 
-  /* 导航栏主样式 */
-.site-header{
-  position:fixed; top:0; left:0; width:100%;
-  min-height:var(--header-h);
-  background:rgba(0,0,0,.85) !important;    /* ← 已改成黑色透明 */
-  border-bottom:1px solid #d9d9d9;
-  display:grid; grid-template-columns:auto 1fr; align-items:center;
-  padding:12px 64px; z-index:1000; 
-  backdrop-filter:saturate(120%) blur(6px);
-}
+    .site-header{
+      position:fixed; top:0; left:0; width:100%;
+      min-height:var(--header-h);
+      background:rgba(0,0,0,.85) !important;     /* ← 改成黑色透明 */
+      border-bottom:1px solid #d9d9d9;
+      display:grid; grid-template-columns:auto 1fr; align-items:center;
+      padding:12px 64px; z-index:1000; backdrop-filter:saturate(120%) blur(6px);
+    }
+    .logo a{ display:inline-block; line-height:0; }
+    .logo img{ height:68px; width:auto; display:block; }
 
-/* 导航栏文字 */
-.nav-link{
-  color:#fff !important;                  /* ← 已改为白色 */
-  text-decoration:none; 
-  font-weight:500;
-  font-size:clamp(20px,1.8vw,26px);
-  letter-spacing:.4px;
-  white-space:nowrap;
-}
-
-/* 手机端样式同步更新 */
-@media (max-width:768px){
-  .site-header{ background:rgba(0,0,0,.85) !important; }
-  .site-header .nav-link{
-    display:block !important;
-    width:100% !important;
-    text-align:center !important;
-    white-space:nowrap !important;
-    padding:10px 0 !important;
-    font-size:18px !important;
-    line-height:1.2 !important;
-    color:#fff !important;               /* ← 这里改成白色 */
-  }
-}
+    .nav-links{ display:grid; grid-template-columns:repeat(3,1fr); justify-items:center; align-items:center; }
+    .nav-link{ 
+      color:#fff !important;      /* ← 导航栏文字变白 */
+      text-decoration:none; 
+      font-weight:500; 
+      font-size:clamp(20px,1.8vw,26px); 
+      letter-spacing:.4px; 
+      white-space:nowrap; 
+    }
 
     .header-spacer{ height:var(--header-h); }
 
     .stage{ position:relative; width:100vw; height:calc(100vh - var(--header-h)); background:#000; overflow:hidden; }
-
     .page{ position:absolute; inset:0; display:none; align-items:center; justify-content:center; background:#000; }
     .page.active{ display:flex; }
-
     .page img{ width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#000; }
 
     .copyright-overlay{ position:absolute; left:0; right:0; bottom:8px; text-align:center; color:#777; font-size:12px; line-height:1.4; pointer-events:none; }
@@ -94,8 +77,17 @@
       .site-header{ grid-template-columns:1fr; padding:10px 16px; text-align:center; }
       .site-header .logo{ margin:6px auto 8px; }
       .site-header .logo img{ height:56px; width:auto; }
-      .site-header .nav-links{ display:grid !important; grid-template-columns:repeat(3,1fr); justify-items:center; align-items:center; width:100%; gap:0; }
-      .site-header .nav-link{ font-size:clamp(16px,2.8vw,20px); letter-spacing:.3px; line-height:1.2; padding:8px 0; display:block; width:100%; text-align:center; white-space:nowrap; }
+      .site-header .nav-link{
+        font-size:clamp(16px,2.8vw,20px);
+        letter-spacing:.3px;
+        line-height:1.2;
+        padding:8px 0;
+        display:block;
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+        color:#fff !important;  /* ← 手机端文字也白色 */
+      }
     }
 
     @media (max-width:1024px){
@@ -109,7 +101,6 @@
       .site-header{ padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right)); }
     }
 
-    /* 移动端黑底与高度兜底 */
     html, body{ background:#000 !important; color:#fff !important; height:100% !important; min-height:100% !important; height:-webkit-fill-available !important; }
     @media (max-width:1024px){
       .screen{ height:calc(100dvh - var(--header-h)) !important; min-height:calc(-webkit-fill-available - var(--header-h)) !important; height:calc(100vh - var(--header-h)) !important; background:#000 !important; }
@@ -121,96 +112,17 @@
       .site-header{ grid-template-columns:1fr !important; padding:10px 16px !important; text-align:center !important; min-height:var(--header-h) !important; }
       .site-header .logo{ margin:6px auto 8px !important; }
       .site-header .logo img{ height:56px !important; width:auto !important; }
-      .site-header .nav-links{ display:grid !important; grid-template-columns:repeat(3,1fr) !important; justify-items:center !important; align-items:center !important; gap:0 !important; width:100% !important; }
-      .site-header .nav-link{ display:block !important; width:100% !important; text-align:center !important; white-space:nowrap !important; padding:8px 0 !important; font-size:18px !important; letter-spacing:.3px !important; color:#111 !important; }
-    }
-
-    section{ margin:0 !important; padding:0 !important; }
-    .header-spacer{ height:var(--header-h) !important; }
-    .site-header{ background:rgba(255,255,255,.85) !important; border-bottom:1px solid #d9d9d9 !important; backdrop-filter:saturate(120%) blur(6px) !important; }
-
-    @media (max-width:768px){
-      .site-header{ padding-left:0 !important; padding-right:0 !important; }
-      .site-header .nav-links{
-        width:100vw !important; margin-left:calc(50% - 50vw) !important; margin-right:calc(50% - 50vw) !important;
-        padding-left:max(16px, env(safe-area-inset-left)) !important; padding-right:max(16px, env(safe-area-inset-right)) !important;
-        grid-template-columns:repeat(3,1fr) !important; justify-items:center !important; align-items:center !important; text-align:center !important;
+      .site-header .nav-link{
+        display:block !important;
+        width:100% !important;
+        text-align:center !important;
+        white-space:nowrap !important;
+        padding:10px 0 !important;
+        font-size:18px !important;
+        line-height:1.2 !important;
+        color:#fff !important; /* ← 改为白色 */
       }
-      .site-header .logo{ width:100% !important; display:flex !important; justify-content:center !important; align-items:center !important; margin:6px 0 8px !important; }
-      .site-header .logo img{ height:56px !important; width:auto !important; }
-      .site-header .nav-link{ display:block !important; width:100% !important; text-align:center !important; white-space:nowrap !important; padding:10px 0 !important; font-size:18px !important; line-height:1.2 !important; color:#111 !important; }
     }
-
-    @media (max-width:1024px){
-      .screen{ height:calc(100dvh - var(--header-h)) !important; background:#000 !important; }
-      html, body{ background:#000 !important; color:#fff !important; }
-    }
-    /* About 页面上下滚动查看两张图 */
-#page-about {
-  overflow-y: auto;           /* 可垂直滚动 */
-  flex-direction: column;     /* 图片上下排列 */
-}
-#page-about .about-scroll {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-}
-#page-about img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  background: #000;
-  display: block;
-}
-/* === About：按原比例显示，绝不裁切（覆盖全局 .page img 规则） === */
-#page-about{
-  /* 页面本身仍由脚本设为 display:flex，这里只管布局与滚动 */
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
-  overflow-y: auto !important;      /* 允许上下滚动 */
-  overflow-x: hidden !important;     /* 禁止横向滚动 */
-}
-
-#page-about .about-scroll{
-  display: block;                    /* 竖直文档流 */
-  width: 100%;
-  box-sizing: border-box;
-}
-
-#page-about img{
-  width: 100% !important;            /* 随容器等比缩放宽度 */
-  height: auto !important;           /* 按原比例自动高度 */
-  max-width: 100% !important;        /* 不超过容器 */
-  object-fit: contain !important;    /* 以防外部规则影响 */
-  object-position: top center !important;
-  display: block !important;
-  background: #000 !important;       /* 空白处仍为黑底 */
-}
-/* === About 页两图同其它页面等大（每张占一屏高度） === */
-#page-about {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
-}
-
-#page-about .about-scroll {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: auto;
-}
-
-#page-about img {
-  width: 100vw;                     /* 与其它页面相同宽度 */
-  height: calc(100vh - var(--header-h)); /* 每张占一屏视窗高度 */
-  object-fit: contain;              /* 保留比例，不裁切 */
-  object-position: center;
-  background: #000;
-  display: block;
-}
-
   </style>
 </head>
 
@@ -233,24 +145,21 @@
       <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
-<<section class="page" id="page-about" aria-label="About"
+    <section class="page" id="page-about" aria-label="About"
          style="overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; background:#000;">
 
-  <!-- 屏 1：与 works 一样的舞台大小，但图片不被放大，留 8% 边距 -->
-  <div style="width:100vw; height:calc(100vh - var(--header-h));
-              display:flex; align-items:center; justify-content:center; background:#000;">
-    <img src="about-1.png" alt="About 1"
-         style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
-  </div>
+      <div style="width:100vw; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-1.png" alt="About 1"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+      </div>
 
-  <!-- 屏 2：同上 -->
-  <div style="width:100vw; height:calc(100vh - var(--header-h));
-              display:flex; align-items:center; justify-content:center; background:#000;">
-    <img src="about-2.png" alt="About 2"
-         style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
-  </div>
-</section>
-
+      <div style="width:100vw; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-2.png" alt="About 2"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+      </div>
+    </section>
 
     <section class="page" id="page-works" aria-label="Works">
       <img src="about-2.png" alt="Works">
