@@ -43,17 +43,18 @@
     .site-header{
       position:fixed; top:0; left:0; width:100%;
       min-height:var(--header-h);
-      background:rgba(0,0,0,.85) !important;     /* ← 改成黑色透明 */
-      border-bottom:1px solid #d9d9d9;
+      background:rgba(0,0,0,.85) !important;
+      border-bottom:1px solid transparent !important;  /* ← 白线已删除 */
       display:grid; grid-template-columns:auto 1fr; align-items:center;
-      padding:12px 64px; z-index:1000; backdrop-filter:saturate(120%) blur(6px);
+      padding:12px 64px; z-index:1000; 
+      backdrop-filter:saturate(120%) blur(6px);
     }
     .logo a{ display:inline-block; line-height:0; }
     .logo img{ height:68px; width:auto; display:block; }
 
     .nav-links{ display:grid; grid-template-columns:repeat(3,1fr); justify-items:center; align-items:center; }
     .nav-link{ 
-      color:#fff !important;      /* ← 导航栏文字变白 */
+      color:#fff !important;
       text-decoration:none; 
       font-weight:500; 
       font-size:clamp(20px,1.8vw,26px); 
@@ -86,7 +87,7 @@
         width:100%;
         text-align:center;
         white-space:nowrap;
-        color:#fff !important;  /* ← 手机端文字也白色 */
+        color:#fff !important;
       }
     }
 
@@ -96,22 +97,10 @@
       .copyright{ padding:16px 12px; font-size:13px; color:#888; }
     }
 
-    section{ margin:0; padding:0; }
-    @supports (padding:max(0px)){
-      .site-header{ padding-left:max(16px, env(safe-area-inset-left)); padding-right:max(16px, env(safe-area-inset-right)); }
-    }
-
     html, body{ background:#000 !important; color:#fff !important; height:100% !important; min-height:100% !important; height:-webkit-fill-available !important; }
-    @media (max-width:1024px){
-      .screen{ height:calc(100dvh - var(--header-h)) !important; min-height:calc(-webkit-fill-available - var(--header-h)) !important; height:calc(100vh - var(--header-h)) !important; background:#000 !important; }
-      .screen img{ max-width:100% !important; max-height:100% !important; object-fit:contain !important; display:block !important; background:#000 !important; }
-      .copyright{ padding:14px 10px !important; font-size:13px !important; color:#888 !important; background:#000 !important; }
-    }
 
     @media (max-width:768px){
-      .site-header{ grid-template-columns:1fr !important; padding:10px 16px !important; text-align:center !important; min-height:var(--header-h) !important; }
-      .site-header .logo{ margin:6px auto 8px !important; }
-      .site-header .logo img{ height:56px !important; width:auto !important; }
+      .site-header{ padding-left:0 !important; padding-right:0 !important; }
       .site-header .nav-link{
         display:block !important;
         width:100% !important;
@@ -120,7 +109,7 @@
         padding:10px 0 !important;
         font-size:18px !important;
         line-height:1.2 !important;
-        color:#fff !important; /* ← 改为白色 */
+        color:#fff !important;
       }
     }
   </style>
