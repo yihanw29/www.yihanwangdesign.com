@@ -78,4 +78,193 @@
       display:none;
       align-items:center;
       justify-content:center;
-      backgro
+      background:#000;
+    }
+    .page.active{ display:flex; }
+
+    .page img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      background:#000;
+    }
+
+    /* -------- works 页：强制块级布局 + 图片居中 -------- */
+    #page-works{
+      position:absolute;
+      inset:0;
+      display:block !important;   /* 覆盖 .page.active 的 flex */
+      background:#000;
+      overflow-y:auto;
+      overflow-x:hidden;
+      text-align:center;
+    }
+
+    #page-works img{
+      display:block;
+      margin:32px auto 40px;      /* 水平居中 */
+      width:auto;
+      height:auto;
+      max-width:92vw;             /* 和 about 页视觉接近 */
+      max-height:none;
+      object-fit:contain;
+      background:#000;
+    }
+    /* -------------------------------------------------- */
+
+    .copyright-overlay{
+      position:absolute;
+      left:0; right:0; bottom:8px;
+      text-align:center;
+      color:#777;
+      font-size:12px;
+      line-height:1.4;
+      pointer-events:none;
+    }
+    .copyright-overlay a{ color:#fff; text-decoration:none; }
+
+    .copyright{
+      background:#000;
+      color:#777;
+      text-align:center;
+      font-size:14px;
+      padding:32px 16px;
+      line-height:1.6;
+    }
+    .copyright a{ color:#fff; text-decoration:none; }
+
+    @media (max-width:768px){
+      .site-header{ grid-template-columns:1fr; padding:10px 16px; text-align:center; }
+      .site-header .logo{ margin:6px auto 8px; }
+      .site-header .logo img{ height:56px; width:auto; }
+      .site-header .nav-link{
+        font-size:clamp(16px,2.8vw,20px);
+        letter-spacing:.3px;
+        line-height:1.2;
+        padding:8px 0;
+        display:block;
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+        color:#fff !important;
+      }
+    }
+
+    @media (max-width:1024px){
+      .screen{ height:calc(100dvh - var(--header-h)); }
+      .screen img{ max-width:100%; max-height:100%; object-fit:contain; }
+      .copyright{ padding:16px 12px; font-size:13px; color:#888; }
+    }
+
+    html, body{
+      background:#000 !important;
+      color:#fff !important;
+      height:100% !important;
+      min-height:100% !important;
+      height:-webkit-fill-available !important;
+    }
+
+    @media (max-width:768px){
+      .site-header{ padding-left:0 !important; padding-right:0 !important; }
+      .site-header .nav-link{
+        display:block !important;
+        width:100% !important;
+        text-align:center !important;
+        white-space:nowrap !important;
+        padding:10px 0 !important;
+        font-size:18px !important;
+        line-height:1.2 !important;
+        color:#fff !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header" aria-label="Main">
+    <div class="logo">
+      <a href="#page-home" data-page="home"><img src="v1_18.png" alt="yihan wang design logo"></a>
+    </div>
+    <nav class="nav-links">
+      <a href="#page-about"   class="nav-link" data-page="about">about</a>
+      <a href="#page-works"   class="nav-link" data-page="works">works</a>
+      <a href="#page-contact" class="nav-link" data-page="contact">contact</a>
+    </nav>
+  </header>
+
+  <div class="header-spacer"></div>
+
+  <main class="stage" id="stage">
+    <section class="page active" id="page-home" aria-label="Home">
+      <img src="home.png" alt="Home" loading="eager" decoding="async">
+    </section>
+
+    <section class="page" id="page-about" aria-label="About"
+         style="overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; background:#000;">
+
+      <div style="width:100vw; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-1.png" alt="About 1"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+      </div>
+
+      <div style="width:100vw; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-2.png" alt="About 2"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+      </div>
+    </section>
+
+    <section class="page" id="page-works" aria-label="Works">
+      <img src="works.png" alt="Works">
+    </section>
+
+    <section class="page" id="page-contact" aria-label="Contact">
+      <img src="contact.png" alt="Contact">
+    </section>
+  </main>
+
+  <div class="copyright">
+    © 2025 Yihan Wang Design. All rights reserved.
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
+  </div>
+
+  <script>
+  (function(){
+    const ids   = ['page-home','page-about','page-works','page-contact'];
+    const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
+
+    function showByHash(hash){
+      const id = (hash || '#page-home').slice(1);
+      pages.forEach(el => { el.style.display = (el.id === id) ? 'flex' : 'none'; });
+
+      // works 页特殊：虽然这里写的是 flex，但 CSS 里有 display:block !important 会覆盖
+      const works = document.getElementById('page-works');
+      if (works && id === 'page-works') {
+        works.style.display = 'flex'; // 实际最终生效的是 CSS 的 block!important
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
+    } else {
+      showByHash(location.hash);
+    }
+
+    document.addEventListener('click', function(e){
+      const a = e.target.closest('a[href^="#page-"]');
+      if (!a) return;
+      e.preventDefault();
+      const h = a.getAttribute('href');
+      history.replaceState(null, '', h);
+      showByHash(h);
+      window.scrollTo(0, 0);
+    });
+
+    window.addEventListener('hashchange', () => showByHash(location.hash));
+  })();
+  </script>
+</body>
+</html>
