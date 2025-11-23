@@ -37,29 +37,45 @@
   <style>
     :root { --header-h: 120px; }
 
-    html, body { height:100%; margin:0; background:#000; color:#fff; font-family:"Playfair Display", serif; }
+    html, body {
+      height:100%;
+      margin:0;
+      background:#000;
+      color:#fff;
+      font-family:"Playfair Display", serif;
+    }
     html { scroll-behavior:smooth; }
 
     .site-header{
-      position:fixed; top:0; left:0; width:100%;
+      position:fixed;
+      top:0; left:0;
+      width:100%;
       min-height:var(--header-h);
-      background:rgba(0,0,0,.85) !important;
-      border-bottom:1px solid transparent !important;
-      display:grid; grid-template-columns:auto 1fr; align-items:center;
-      padding:12px 64px; z-index:1000; 
+      background:rgba(0,0,0,.85);
+      border-bottom:1px solid transparent;
+      display:grid;
+      grid-template-columns:auto 1fr;
+      align-items:center;
+      padding:12px 64px;
+      z-index:1000;
       backdrop-filter:saturate(120%) blur(6px);
     }
     .logo a{ display:inline-block; line-height:0; }
     .logo img{ height:68px; width:auto; display:block; }
 
-    .nav-links{ display:grid; grid-template-columns:repeat(3,1fr); justify-items:center; align-items:center; }
-    .nav-link{ 
-      color:#fff !important;
-      text-decoration:none; 
-      font-weight:500; 
-      font-size:clamp(20px,1.8vw,26px); 
-      letter-spacing:.4px; 
-      white-space:nowrap; 
+    .nav-links{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      justify-items:center;
+      align-items:center;
+    }
+    .nav-link{
+      color:#fff;
+      text-decoration:none;
+      font-weight:500;
+      font-size:clamp(20px,1.8vw,26px);
+      letter-spacing:.4px;
+      white-space:nowrap;
     }
 
     .header-spacer{ height:var(--header-h); }
@@ -91,39 +107,36 @@
       background:#000;
     }
 
-    /* -------- works 页：强制块级布局 + 图片居中 -------- */
-    #page-works{
-      position:absolute;
-      inset:0;
-      display:block !important;   /* 覆盖 .page.active 的 flex */
-      background:#000;
+    /* ---------- ABOUT：竖向滚动两张图 ---------- */
+    #page-about{
       overflow-y:auto;
       overflow-x:hidden;
-      text-align:center;
-    }
-
-    #page-works img{
-      display:block;
-      margin:32px auto 40px;      /* 水平居中 */
-      width:auto;
-      height:auto;
-      max-width:92vw;             /* 和 about 页视觉接近 */
-      max-height:none;
-      object-fit:contain;
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
       background:#000;
     }
-    /* -------------------------------------------------- */
 
-    .copyright-overlay{
-      position:absolute;
-      left:0; right:0; bottom:8px;
-      text-align:center;
-      color:#777;
-      font-size:12px;
-      line-height:1.4;
-      pointer-events:none;
+    /* ---------- WORKS：长图，居中显示，可滚动 ---------- */
+    #page-works{
+      overflow-y:auto;
+      overflow-x:hidden;
+      display:flex;
+      align-items:flex-start;
+      justify-content:center;
+      background:#000;
     }
-    .copyright-overlay a{ color:#fff; text-decoration:none; }
+    #page-works img{
+      width:auto;
+      height:auto;
+      max-width:92% !important;
+      max-height:none !important;
+      object-fit:contain;
+      margin:32px auto 40px;
+      display:block;
+    }
+    /* -------------------------------------------- */
 
     .copyright{
       background:#000;
@@ -136,7 +149,11 @@
     .copyright a{ color:#fff; text-decoration:none; }
 
     @media (max-width:768px){
-      .site-header{ grid-template-columns:1fr; padding:10px 16px; text-align:center; }
+      .site-header{
+        grid-template-columns:1fr;
+        padding:10px 16px;
+        text-align:center;
+      }
       .site-header .logo{ margin:6px auto 8px; }
       .site-header .logo img{ height:56px; width:auto; }
       .site-header .nav-link{
@@ -148,35 +165,15 @@
         width:100%;
         text-align:center;
         white-space:nowrap;
-        color:#fff !important;
+        color:#fff;
       }
     }
 
     @media (max-width:1024px){
-      .screen{ height:calc(100dvh - var(--header-h)); }
-      .screen img{ max-width:100%; max-height:100%; object-fit:contain; }
-      .copyright{ padding:16px 12px; font-size:13px; color:#888; }
-    }
-
-    html, body{
-      background:#000 !important;
-      color:#fff !important;
-      height:100% !important;
-      min-height:100% !important;
-      height:-webkit-fill-available !important;
-    }
-
-    @media (max-width:768px){
-      .site-header{ padding-left:0 !important; padding-right:0 !important; }
-      .site-header .nav-link{
-        display:block !important;
-        width:100% !important;
-        text-align:center !important;
-        white-space:nowrap !important;
-        padding:10px 0 !important;
-        font-size:18px !important;
-        line-height:1.2 !important;
-        color:#fff !important;
+      .copyright{
+        padding:16px 12px;
+        font-size:13px;
+        color:#888;
       }
     }
   </style>
@@ -185,7 +182,9 @@
 <body>
   <header class="site-header" aria-label="Main">
     <div class="logo">
-      <a href="#page-home" data-page="home"><img src="v1_18.png" alt="yihan wang design logo"></a>
+      <a href="#page-home" data-page="home">
+        <img src="v1_18.png" alt="yihan wang design logo">
+      </a>
     </div>
     <nav class="nav-links">
       <a href="#page-about"   class="nav-link" data-page="about">about</a>
@@ -197,30 +196,32 @@
   <div class="header-spacer"></div>
 
   <main class="stage" id="stage">
+    <!-- HOME -->
     <section class="page active" id="page-home" aria-label="Home">
       <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
-    <section class="page" id="page-about" aria-label="About"
-         style="overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; align-items:stretch; justify-content:flex-start; background:#000;">
-
+    <!-- ABOUT：两屏滚动 -->
+    <section class="page" id="page-about" aria-label="About">
       <div style="width:100vw; height:calc(100vh - var(--header-h));
                   display:flex; align-items:center; justify-content:center; background:#000;">
         <img src="about-1.png" alt="About 1"
-             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
       </div>
 
       <div style="width:100vw; height:calc(100vh - var(--header-h));
                   display:flex; align-items:center; justify-content:center; background:#000;">
         <img src="about-2.png" alt="About 2"
-             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block; background:#000;">
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
       </div>
     </section>
 
+    <!-- WORKS：长图，居中 + 向下滚动 -->
     <section class="page" id="page-works" aria-label="Works">
       <img src="works.png" alt="Works">
     </section>
 
+    <!-- CONTACT -->
     <section class="page" id="page-contact" aria-label="Contact">
       <img src="contact.png" alt="Contact">
     </section>
@@ -232,39 +233,35 @@
   </div>
 
   <script>
-  (function(){
-    const ids   = ['page-home','page-about','page-works','page-contact'];
-    const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
+    (function(){
+      const ids   = ['page-home','page-about','page-works','page-contact'];
+      const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
 
-    function showByHash(hash){
-      const id = (hash || '#page-home').slice(1);
-      pages.forEach(el => { el.style.display = (el.id === id) ? 'flex' : 'none'; });
-
-      // works 页特殊：虽然这里写的是 flex，但 CSS 里有 display:block !important 会覆盖
-      const works = document.getElementById('page-works');
-      if (works && id === 'page-works') {
-        works.style.display = 'flex'; // 实际最终生效的是 CSS 的 block!important
+      function showByHash(hash){
+        const id = (hash || '#page-home').slice(1);
+        pages.forEach(el => {
+          el.classList.toggle('active', el.id === id);
+        });
+        window.scrollTo(0, 0);
       }
-    }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
-    } else {
-      showByHash(location.hash);
-    }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
+      } else {
+        showByHash(location.hash);
+      }
 
-    document.addEventListener('click', function(e){
-      const a = e.target.closest('a[href^="#page-"]');
-      if (!a) return;
-      e.preventDefault();
-      const h = a.getAttribute('href');
-      history.replaceState(null, '', h);
-      showByHash(h);
-      window.scrollTo(0, 0);
-    });
+      document.addEventListener('click', function(e){
+        const a = e.target.closest('a[href^="#page-"]');
+        if (!a) return;
+        e.preventDefault();
+        const h = a.getAttribute('href');
+        history.replaceState(null, '', h);
+        showByHash(h);
+      });
 
-    window.addEventListener('hashchange', () => showByHash(location.hash));
-  })();
+      window.addEventListener('hashchange', () => showByHash(location.hash));
+    })();
   </script>
 </body>
 </html>
