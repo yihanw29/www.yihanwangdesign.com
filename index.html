@@ -45,6 +45,7 @@
       font-family:"Playfair Display", serif;
     }
     html { scroll-behavior:smooth; }
+    body { overflow-x:hidden; }  /* ✅ 防止横向滚动 */
 
     .site-header{
       position:fixed;
@@ -82,7 +83,7 @@
 
     .stage{
       position:relative;
-      width:100vw;
+      width:100%;                     /* ✅ 由 100vw 改成 100% */
       height:calc(100vh - var(--header-h));
       background:#000;
       overflow:hidden;
@@ -203,13 +204,13 @@
 
     <!-- ABOUT：两屏滚动 -->
     <section class="page" id="page-about" aria-label="About">
-      <div style="width:100vw; height:calc(100vh - var(--header-h));
+      <div style="width:100%; height:calc(100vh - var(--header-h));
                   display:flex; align-items:center; justify-content:center; background:#000;">
         <img src="about-1.png" alt="About 1"
              style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
       </div>
 
-      <div style="width:100vw; height:calc(100vh - var(--header-h));
+      <div style="width:100%; height:calc(100vh - var(--header-h));
                   display:flex; align-items:center; justify-content:center; background:#000;">
         <img src="about-2.png" alt="About 2"
              style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
