@@ -175,15 +175,20 @@
       text-decoration: none;
     }
 
+    /* ⭐ 按照“白底版本”手机导航的设置来写，但保留黑底 + 白字风格 */
     @media (max-width: 768px) {
       .site-header {
         grid-template-columns: 1fr;
-        padding: 10px 16px;
+        padding: 10px 0;
         text-align: center;
       }
 
       .site-header .logo {
-        margin: 6px auto 8px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 6px 0 8px;
       }
 
       .site-header .logo img {
@@ -191,20 +196,28 @@
         width: auto;
       }
 
-      /* ⭐ 手机端：整组导航改为 flex 居中 + 均匀间距 */
       .nav-links {
-        display: flex;
-        justify-content: center;
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
         align-items: center;
-        gap: 40px;
+        text-align: center;
       }
 
       .site-header .nav-link {
-        font-size: clamp(16px, 2.8vw, 20px);
-        letter-spacing: .3px;
-        line-height: 1.2;
-        padding: 0;
+        display: block;
+        width: 100%;
+        text-align: center;
         white-space: nowrap;
+        padding: 10px 0;
+        font-size: 18px;
+        line-height: 1.2;
+        letter-spacing: .3px;
         color: #fff;
       }
 
