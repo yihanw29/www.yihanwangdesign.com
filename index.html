@@ -45,7 +45,7 @@
       font-family:"Playfair Display", serif;
     }
     html { scroll-behavior:smooth; }
-    body { overflow-x:hidden; }  /* ✅ 防止横向滚动 */
+    body { overflow-x:hidden; }
 
     .site-header{
       position:fixed;
@@ -83,7 +83,7 @@
 
     .stage{
       position:relative;
-      width:100%;                     /* ✅ 由 100vw 改成 100% */
+      width:100%;  /* 用 100%，避免横向滚动条 */
       height:calc(100vh - var(--header-h));
       background:#000;
       overflow:hidden;
@@ -136,6 +136,7 @@
       object-fit:contain;
       margin:32px auto 40px;
       display:block;
+      transform:translateX(-7px);  /* ⭐ 把整张图往左挪 7 像素，视觉居中 */
     }
     /* -------------------------------------------- */
 
@@ -217,7 +218,7 @@
       </div>
     </section>
 
-    <!-- WORKS：长图，居中 + 向下滚动 -->
+    <!-- WORKS：长图 -->
     <section class="page" id="page-works" aria-label="Works">
       <img src="works.png" alt="Works">
     </section>
