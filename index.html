@@ -44,7 +44,7 @@
       position:fixed; top:0; left:0; width:100%;
       min-height:var(--header-h);
       background:rgba(0,0,0,.85) !important;
-      border-bottom:1px solid transparent !important;  /* ← 白线已删除 */
+      border-bottom:1px solid transparent !important;
       display:grid; grid-template-columns:auto 1fr; align-items:center;
       padding:12px 64px; z-index:1000; 
       backdrop-filter:saturate(120%) blur(6px);
@@ -68,6 +68,23 @@
     .page{ position:absolute; inset:0; display:none; align-items:center; justify-content:center; background:#000; }
     .page.active{ display:flex; }
     .page img{ width:100%; height:100%; object-fit:contain; object-position:center; display:block; background:#000; }
+
+    /* ---- WORKS PAGE: long image, same width as other pages, scroll down to view ---- */
+    #page-works{
+      align-items:flex-start;
+      justify-content:center;
+      overflow-y:auto;
+    }
+    #page-works img{
+      width:auto;
+      height:auto;
+      max-width:92% !important;
+      max-height:none !important;
+      object-fit:contain;
+      margin:32px auto 40px;
+      display:block;
+    }
+    /* -------------------------------------------------------------- */
 
     .copyright-overlay{ position:absolute; left:0; right:0; bottom:8px; text-align:center; color:#777; font-size:12px; line-height:1.4; pointer-events:none; }
     .copyright-overlay a{ color:#fff; text-decoration:none; }
