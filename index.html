@@ -10,7 +10,9 @@
     "logo": "https://www.yihanwangdesign.com/logo.png",
     "slogan": "Designed Between Worlds",
     "description": "Yihan Wang Design is an independent studio exploring the intersection of culture, design, and technology.",
-    "founder": { "@type": "Person", "name": "Yihan Wang",
+    "founder": {
+      "@type": "Person",
+      "name": "Yihan Wang",
       "sameAs": [
         "https://github.com/yihanw29/yihan-wang/wiki",
         "https://github.com/yihanw29/yihanwangdesign/wiki"
@@ -44,12 +46,14 @@
       color:#fff;
       font-family:"Playfair Display", serif;
     }
+
     html { scroll-behavior:smooth; }
     body { overflow-x:hidden; }
 
     .site-header{
       position:fixed;
-      top:0; left:0;
+      top:0;
+      left:0;
       width:100%;
       min-height:var(--header-h);
       background:rgba(0,0,0,.85);
@@ -61,8 +65,17 @@
       z-index:1000;
       backdrop-filter:saturate(120%) blur(6px);
     }
-    .logo a{ display:inline-block; line-height:0; }
-    .logo img{ height:68px; width:auto; display:block; }
+
+    .logo a{
+      display:inline-block;
+      line-height:0;
+    }
+
+    .logo img{
+      height:68px;
+      width:auto;
+      display:block;
+    }
 
     .nav-links{
       display:grid;
@@ -70,6 +83,7 @@
       justify-items:center;
       align-items:center;
     }
+
     .nav-link{
       color:#fff;
       text-decoration:none;
@@ -79,7 +93,9 @@
       white-space:nowrap;
     }
 
-    .header-spacer{ height:var(--header-h); }
+    .header-spacer{
+      height:var(--header-h);
+    }
 
     .stage{
       position:relative;
@@ -97,7 +113,10 @@
       justify-content:center;
       background:#000;
     }
-    .page.active{ display:flex; }
+
+    .page.active{
+      display:flex;
+    }
 
     .page img{
       width:100%;
@@ -128,6 +147,7 @@
       justify-content:center;
       background:#000;
     }
+
     #page-works img{
       width:auto;
       height:auto;
@@ -136,7 +156,7 @@
       object-fit:contain;
       margin:32px auto 40px;
       display:block;
-      transform:translateX(-52px);  /* 桌面端：略微左移，视觉居中 */
+      transform:translateX(-7px); /* ⭐ 把整张图往左挪 7 像素，视觉居中 */
     }
     /* -------------------------------------------- */
 
@@ -148,7 +168,11 @@
       padding:32px 16px;
       line-height:1.6;
     }
-    .copyright a{ color:#fff; text-decoration:none; }
+
+    .copyright a{
+      color:#fff;
+      text-decoration:none;
+    }
 
     @media (max-width:768px){
       .site-header{
@@ -156,8 +180,16 @@
         padding:10px 16px;
         text-align:center;
       }
-      .site-header .logo{ margin:6px auto 8px; }
-      .site-header .logo img{ height:56px; width:auto; }
+
+      .site-header .logo{
+        margin:6px auto 8px;
+      }
+
+      .site-header .logo img{
+        height:56px;
+        width:auto;
+      }
+
       .site-header .nav-link{
         font-size:clamp(16px,2.8vw,20px);
         letter-spacing:.3px;
@@ -168,11 +200,6 @@
         text-align:center;
         white-space:nowrap;
         color:#fff;
-      }
-
-      /* ⭐ 手机端：取消 -7px 偏移，让图片重新回到正中 */
-      #page-works img{
-        transform:translateX(0);
       }
     }
 
@@ -194,8 +221,8 @@
       </a>
     </div>
     <nav class="nav-links">
-      <a href="#page-about"   class="nav-link" data-page="about">about</a>
-      <a href="#page-works"   class="nav-link" data-page="works">works</a>
+      <a href="#page-about" class="nav-link" data-page="about">about</a>
+      <a href="#page-works" class="nav-link" data-page="works">works</a>
       <a href="#page-contact" class="nav-link" data-page="contact">contact</a>
     </nav>
   </header>
@@ -210,16 +237,50 @@
 
     <!-- ABOUT：两屏滚动 -->
     <section class="page" id="page-about" aria-label="About">
-      <div style="width:100%; height:calc(100vh - var(--header-h));
-                  display:flex; align-items:center; justify-content:center; background:#000;">
-        <img src="about-1.png" alt="About 1"
-             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
+      <div style="
+        width:100%;
+        height:calc(100vh - var(--header-h));
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#000;
+      ">
+        <img
+          src="about-1.png"
+          alt="About 1"
+          style="
+            width:auto !important;
+            height:auto !important;
+            max-width:92% !important;
+            max-height:92% !important;
+            object-fit:contain;
+            object-position:center;
+            display:block;
+          "
+        >
       </div>
 
-      <div style="width:100%; height:calc(100vh - var(--header-h));
-                  display:flex; align-items:center; justify-content:center; background:#000;">
-        <img src="about-2.png" alt="About 2"
-             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
+      <div style="
+        width:100%;
+        height:calc(100vh - var(--header-h));
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        background:#000;
+      ">
+        <img
+          src="about-2.png"
+          alt="About 2"
+          style="
+            width:auto !important;
+            height:auto !important;
+            max-width:92% !important;
+            max-height:92% !important;
+            object-fit:contain;
+            object-position:center;
+            display:block;
+          "
+        >
       </div>
     </section>
 
