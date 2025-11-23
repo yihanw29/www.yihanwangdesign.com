@@ -99,7 +99,7 @@
 
     .stage {
       position: relative;
-      width: 100%; /* 用 100%，避免横向滚动条 */
+      width: 100%;
       height: calc(100vh - var(--header-h));
       background: #000;
       overflow: hidden;
@@ -156,7 +156,7 @@
       object-fit: contain;
       margin: 32px auto 40px;
       display: block;
-      transform: translateX(-7px);  /* 桌面端：略微左移，视觉居中 */
+      transform: translateX(-2%);  /* 统一向左微调，桌面 + 手机都居中 */
     }
 
     /* -------------------------------------------- */
@@ -175,7 +175,7 @@
       text-decoration: none;
     }
 
-    /* ⭐ 按照“白底版本”手机导航的设置来写，但保留黑底 + 白字风格 */
+    /* 手机端导航和布局 */
     @media (max-width: 768px) {
       .site-header {
         grid-template-columns: 1fr;
@@ -196,12 +196,11 @@
         width: auto;
       }
 
+      /* 让三个按钮真正左右等分居中，去掉不对称的 safe-area padding 和 100vw 技巧 */
       .nav-links {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 24px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         justify-items: center;
@@ -221,9 +220,9 @@
         color: #fff;
       }
 
-      /* 手机端：取消 -7px 偏移，让作品长图居中 */
+      /* 手机端同样保持 works.png 向左微调 */
       #page-works img {
-        transform: translateX(0);
+        transform: translateX(-2%);
       }
     }
 
