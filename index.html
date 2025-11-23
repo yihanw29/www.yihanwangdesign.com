@@ -75,6 +75,7 @@
       text-decoration:none;
       font-weight:500;
       font-size:clamp(20px,1.8vw,26px);
+      letter-spacing:.4px;
       white-space:nowrap;
     }
 
@@ -82,7 +83,7 @@
 
     .stage{
       position:relative;
-      width:100%;
+      width:100%; /* 用 100%，避免横向滚动条 */
       height:calc(100vh - var(--header-h));
       background:#000;
       overflow:hidden;
@@ -98,56 +99,46 @@
     }
     .page.active{ display:flex; }
 
-    /* ---------- ABOUT（不动） ---------- */
+    .page img{
+      width:100%;
+      height:100%;
+      object-fit:contain;
+      object-position:center;
+      display:block;
+      background:#000;
+    }
+
+    /* ---------- ABOUT：竖向滚动两张图 ---------- */
     #page-about{
       overflow-y:auto;
       overflow-x:hidden;
       display:flex;
       flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+      background:#000;
     }
 
-    /* ---------- WORKS：长图 ---------- */
+    /* ---------- WORKS：长图，居中显示，可滚动 ---------- */
     #page-works{
       overflow-y:auto;
       overflow-x:hidden;
       display:flex;
-      justify-content:center;
       align-items:flex-start;
+      justify-content:center;
       background:#000;
     }
-
-    /* 桌面 —— 你调整的最佳值：-52px */
     #page-works img{
       width:auto;
       height:auto;
       max-width:92% !important;
+      max-height:none !important;
+      object-fit:contain;
       margin:32px auto 40px;
       display:block;
-      object-fit:contain;
-      transform:translateX(-52px);
+      transform:translateX(-7px);  /* 桌面端：略微左移，视觉居中 */
     }
-
-    /* 平板（自动减半） */
-    @media (max-width:1024px){
-      #page-works img{
-        transform:translateX(-26px) !important;
-      }
-    }
-
-    /* 大屏手机（轻微调整） */
-    @media (max-width:768px){
-      #page-works img{
-        transform:translateX(-8px) !important;
-        max-width:94% !important; 
-      }
-    }
-
-    /* 小屏手机（完全不偏移） */
-    @media (max-width:480px){
-      #page-works img{
-        transform:translateX(0px) !important;
-      }
-    }
+    /* -------------------------------------------- */
 
     .copyright{
       background:#000;
@@ -155,86 +146,129 @@
       text-align:center;
       font-size:14px;
       padding:32px 16px;
+      line-height:1.6;
+    }
+    .copyright a{ color:#fff; text-decoration:none; }
+
+    @media (max-width:768px){
+      .site-header{
+        grid-template-columns:1fr;
+        padding:10px 16px;
+        text-align:center;
+      }
+      .site-header .logo{ margin:6px auto 8px; }
+      .site-header .logo img{ height:56px; width:auto; }
+      .site-header .nav-link{
+        font-size:clamp(16px,2.8vw,20px);
+        letter-spacing:.3px;
+        line-height:1.2;
+        padding:8px 0;
+        display:block;
+        width:100%;
+        text-align:center;
+        white-space:nowrap;
+        color:#fff;
+      }
+
+      /* ⭐ 手机端：取消 -7px 偏移，让图片重新回到正中 */
+      #page-works img{
+        transform:translateX(0);
+      }
+    }
+
+    @media (max-width:1024px){
+      .copyright{
+        padding:16px 12px;
+        font-size:13px;
+        color:#888;
+      }
     }
   </style>
 </head>
 
 <body>
-  <header class="site-header">
+  <header class="site-header" aria-label="Main">
     <div class="logo">
-      <a href="#page-home"><img src="v1_18.png" alt="yihan wang design logo"></a>
+      <a href="#page-home" data-page="home">
+        <img src="v1_18.png" alt="yihan wang design logo">
+      </a>
     </div>
     <nav class="nav-links">
-      <a href="#page-about" class="nav-link">about</a>
-      <a href="#page-works" class="nav-link">works</a>
-      <a href="#page-contact" class="nav-link">contact</a>
+      <a href="#page-about"   class="nav-link" data-page="about">about</a>
+      <a href="#page-works"   class="nav-link" data-page="works">works</a>
+      <a href="#page-contact" class="nav-link" data-page="contact">contact</a>
     </nav>
   </header>
 
   <div class="header-spacer"></div>
 
   <main class="stage" id="stage">
-
     <!-- HOME -->
-    <section class="page active" id="page-home">
-      <img src="home.png" alt="Home">
+    <section class="page active" id="page-home" aria-label="Home">
+      <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
-    <!-- ABOUT -->
-    <section class="page" id="page-about">
-      <div style="width:100%; height:calc(100vh - var(--header-h)); display:flex; justify-content:center;">
-        <img src="about-1.png" alt="About 1" style="max-width:92%; height:auto;">
+    <!-- ABOUT：两屏滚动 -->
+    <section class="page" id="page-about" aria-label="About">
+      <div style="width:100%; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-1.png" alt="About 1"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
       </div>
-      <div style="width:100%; height:calc(100vh - var(--header-h)); display:flex; justify-content:center;">
-        <img src="about-2.png" alt="About 2" style="max-width:92%; height:auto;">
+
+      <div style="width:100%; height:calc(100vh - var(--header-h));
+                  display:flex; align-items:center; justify-content:center; background:#000;">
+        <img src="about-2.png" alt="About 2"
+             style="width:auto !important; height:auto !important; max-width:92% !important; max-height:92% !important; object-fit:contain; object-position:center; display:block;">
       </div>
     </section>
 
-    <!-- WORKS -->
-    <section class="page" id="page-works">
+    <!-- WORKS：长图 -->
+    <section class="page" id="page-works" aria-label="Works">
       <img src="works.png" alt="Works">
     </section>
 
     <!-- CONTACT -->
-    <section class="page" id="page-contact">
+    <section class="page" id="page-contact" aria-label="Contact">
       <img src="contact.png" alt="Contact">
     </section>
-
   </main>
 
   <div class="copyright">
     © 2025 Yihan Wang Design. All rights reserved.
+    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
   </div>
 
   <script>
     (function(){
       const ids = ['page-home','page-about','page-works','page-contact'];
-      const pages = ids.map(id => document.getElementById(id));
+      const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
 
-      function showPage(hash){
+      function showByHash(hash){
         const id = (hash || '#page-home').slice(1);
-        pages.forEach(p => p.classList.toggle('active', p.id === id));
-        window.scrollTo(0,0);
+        pages.forEach(el => {
+          el.classList.toggle('active', el.id === id);
+        });
+        window.scrollTo(0, 0);
       }
 
-      if(document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', () => showPage(location.hash));
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
       } else {
-        showPage(location.hash);
+        showByHash(location.hash);
       }
 
-      document.addEventListener('click', e => {
+      document.addEventListener('click', function(e){
         const a = e.target.closest('a[href^="#page-"]');
-        if(!a) return;
+        if (!a) return;
         e.preventDefault();
         const h = a.getAttribute('href');
-        history.replaceState(null,'',h);
-        showPage(h);
+        history.replaceState(null, '', h);
+        showByHash(h);
       });
 
-      window.addEventListener('hashchange', () => showPage(location.hash));
+      window.addEventListener('hashchange', () => showByHash(location.hash));
     })();
   </script>
-
 </body>
 </html>
