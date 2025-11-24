@@ -48,7 +48,11 @@
     }
 
     html { scroll-behavior: smooth; }
-    body { overflow-x: hidden; }
+
+    /* 只隐藏横向滚动，竖向还在（下面再把 body 的主滚动条视觉上隐藏） */
+    body { 
+      overflow-x: hidden; 
+    }
 
     .site-header {
       position: fixed;
@@ -156,7 +160,7 @@
       object-fit: contain;
       margin: 32px auto 40px;
       display: block;
-      transform: translateX(-40px);  /* 向左更大幅度微调，桌面端居中 */
+      transform: translateX(-60px);  /* 再向左一点（桌面端） */
     }
 
     /* -------------------------------------------- */
@@ -175,7 +179,16 @@
       text-decoration: none;
     }
 
-    /* 手机端导航和布局 */
+    /* ⭐ 隐藏主页面右侧滚动条（不影响内部容器的滚动） */
+    body::-webkit-scrollbar {
+      width: 0px;
+      background: transparent;
+    }
+    body {
+      scrollbar-width: none; /* Firefox */
+    }
+
+    /* ---------- 手机端 ---------- */
     @media (max-width: 768px) {
       .site-header {
         grid-template-columns: 1fr;
@@ -196,15 +209,14 @@
         width: auto;
       }
 
-      /* 手机端改用 flex，让 about/works/contact 三个键真正居中等距 */
+      /* 用 flex + space-evenly，让 about / works / contact 等分居中 */
       .nav-links {
         width: 100%;
-        margin: 0 auto;
-        padding: 0;
+        margin: 0;
+        padding: 0 16px;
         display: flex;
-        justify-content: center;
+        justify-content: space-evenly;
         align-items: center;
-        gap: 48px;
         text-align: center;
       }
 
@@ -219,9 +231,9 @@
         color: #fff;
       }
 
-      /* 手机端 works.png 也向左微调，但幅度小一点 */
+      /* 手机端 works.png 也略微左移，但幅度小一点 */
       #page-works img {
-        transform: translateX(-20px);
+        transform: translateX(-30px);
       }
     }
 
