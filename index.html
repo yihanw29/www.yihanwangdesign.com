@@ -49,9 +49,8 @@
 
     html { scroll-behavior: smooth; }
 
-    /* 只隐藏横向滚动，竖向还在（下面再把 body 的主滚动条视觉上隐藏） */
     body { 
-      overflow-x: hidden; 
+      overflow-x: hidden;
     }
 
     .site-header {
@@ -131,7 +130,7 @@
       background: #000;
     }
 
-    /* ---------- ABOUT：竖向滚动两张图 ---------- */
+    /* ABOUT：竖向滚动两张图 */
     #page-about {
       overflow-y: auto;
       overflow-x: hidden;
@@ -142,7 +141,7 @@
       background: #000;
     }
 
-    /* ---------- WORKS：长图，居中显示，可滚动 ---------- */
+    /* WORKS：长图，居中显示，可滚动 */
     #page-works {
       overflow-y: auto;
       overflow-x: hidden;
@@ -160,10 +159,8 @@
       object-fit: contain;
       margin: 32px auto 40px;
       display: block;
-      transform: translateX(-60px);  /* 再向左一点（桌面端） */
+      transform: translateX(-60px);  /* 桌面端再略微左移 */
     }
-
-    /* -------------------------------------------- */
 
     .copyright {
       background: #000;
@@ -179,16 +176,16 @@
       text-decoration: none;
     }
 
-    /* ⭐ 隐藏主页面右侧滚动条（不影响内部容器的滚动） */
+    /* 隐藏主页面右侧滚动条 */
     body::-webkit-scrollbar {
       width: 0px;
       background: transparent;
     }
     body {
-      scrollbar-width: none; /* Firefox */
+      scrollbar-width: none;
     }
 
-    /* ---------- 手机端 ---------- */
+    /* 手机端 */
     @media (max-width: 768px) {
       .site-header {
         grid-template-columns: 1fr;
@@ -209,14 +206,15 @@
         width: auto;
       }
 
-      /* 用 flex + space-evenly，让 about / works / contact 等分居中 */
+      /* 文字整体作为一组，居中 + 等间距 */
       .nav-links {
         width: 100%;
-        margin: 0;
-        padding: 0 16px;
+        margin: 0 auto;
+        padding: 0;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         align-items: center;
+        gap: 64px;       /* 控制 about / works / contact 之间间距 */
         text-align: center;
       }
 
@@ -231,9 +229,10 @@
         color: #fff;
       }
 
-      /* 手机端 works.png 也略微左移，但幅度小一点 */
+      /* 手机端作品图完全居中，不再偏移 */
       #page-works img {
-        transform: translateX(-30px);
+        margin: 32px auto 40px;
+        transform: none;
       }
     }
 
