@@ -115,10 +115,12 @@
       align-items: center;
       justify-content: center;
       background: #000;
+      z-index: 0;       /* ✅ 默认在底层 */
     }
 
     .page.active {
       display: flex;
+      z-index: 1;       /* ✅ 当前页在最上层 */
     }
 
     .page img {
@@ -346,7 +348,10 @@
       function showByHash(hash){
         const id = (hash || '#page-home').slice(1);
         pages.forEach(el => {
-          el.classList.toggle('active', el.id === id);
+          const isActive = (el.id === id);
+          el.classList.toggle('active', isActive);
+          // ✅ 强制只有当前页显示，其余全部隐藏
+          el.style.display = isActive ? 'flex' : 'none';
         });
         window.scrollTo(0, 0);
       }
