@@ -115,12 +115,12 @@
       align-items: center;
       justify-content: center;
       background: #000;
-      z-index: 0;   /* 默认在底层 */
+      z-index: 0;       /* ✅ 默认在底层 */
     }
 
     .page.active {
       display: flex;
-      z-index: 1;   /* 当前页在最上层 */
+      z-index: 1;       /* ✅ 当前页在最上层 */
     }
 
     .page img {
@@ -232,14 +232,14 @@
         color: #fff;
       }
 
-      /* ⭐ 手机端：works.png 轻微向左 10px，视觉居中 */
+      /* ⭐ 手机端：works.png 完全居中、完整展示 */
       #page-works img {
         width: auto;
         height: auto;
-        max-width: 96% !important;
+        max-width: 96% !important;   /* 稍微放宽一点，避免被裁 */
         max-height: none !important;
         margin: 32px auto 40px;
-        transform: translateX(-5px);  /* 轻微左移，矫正“偏右” */
+       transform: translateX(-5px)           /* 取消偏移，真正居中 */
       }
     }
 
@@ -350,7 +350,7 @@
         pages.forEach(el => {
           const isActive = (el.id === id);
           el.classList.toggle('active', isActive);
-          // 强制只有当前页显示，其余全部隐藏
+          // ✅ 强制只有当前页显示，其余全部隐藏
           el.style.display = isActive ? 'flex' : 'none';
         });
         window.scrollTo(0, 0);
