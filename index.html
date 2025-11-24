@@ -48,10 +48,7 @@
     }
 
     html { scroll-behavior: smooth; }
-
-    body { 
-      overflow-x: hidden;
-    }
+    body { overflow-x: hidden; }
 
     .site-header {
       position: fixed;
@@ -69,24 +66,13 @@
       backdrop-filter: saturate(120%) blur(6px);
     }
 
-    .logo a {
-      display: inline-block;
-      line-height: 0;
-    }
-
-    .logo img {
-      height: 68px;
-      width: auto;
-      display: block;
-    }
-
+    .logo img { height: 68px; width: auto; display: block; }
     .nav-links {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       justify-items: center;
       align-items: center;
     }
-
     .nav-link {
       color: #fff;
       text-decoration: none;
@@ -96,9 +82,7 @@
       white-space: nowrap;
     }
 
-    .header-spacer {
-      height: var(--header-h);
-    }
+    .header-spacer { height: var(--header-h); }
 
     .stage {
       position: relative;
@@ -115,77 +99,38 @@
       align-items: center;
       justify-content: center;
       background: #000;
-      z-index: 0;       /* ✅ 默认在底层 */
+      z-index: 0;
     }
+    .page.active { display: flex; z-index: 1; }
 
-    .page.active {
-      display: flex;
-      z-index: 1;       /* ✅ 当前页在最上层 */
-    }
-
+    /* 默认图片样式 */
     .page img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-      object-position: center;
       display: block;
-      background: #000;
     }
 
-    /* ABOUT：竖向滚动两张图 */
+    /* ABOUT：竖向滚动两屏 */
     #page-about {
       overflow-y: auto;
-      overflow-x: hidden;
       display: flex;
       flex-direction: column;
-      align-items: stretch;
-      justify-content: flex-start;
-      background: #000;
     }
 
-    /* WORKS：长图，居中显示，可滚动 */
+    /* WORKS：桌面端 */
     #page-works {
       overflow-y: auto;
-      overflow-x: hidden;
       display: flex;
-      align-items: flex-start;
       justify-content: center;
       background: #000;
     }
-
-    /* 桌面端：保持你原来的微左位置 */
     #page-works img {
       width: auto;
       height: auto;
       max-width: 92% !important;
-      max-height: none !important;
-      object-fit: contain;
       margin: 32px auto 40px;
-      display: block;
-      transform: translateX(-60px);
-    }
-
-    .copyright {
-      background: #000;
-      color: #777;
-      text-align: center;
-      font-size: 14px;
-      padding: 32px 16px;
-      line-height: 1.6;
-    }
-
-    .copyright a {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    /* 隐藏主页面右侧滚动条（只是隐藏，不影响滚动） */
-    body::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
-    }
-    body {
-      scrollbar-width: none;
+      transform: translateX(-60px);  /* 桌面端微左 */
     }
 
     /* 手机端 */
@@ -195,70 +140,29 @@
         padding: 10px 0;
         text-align: center;
       }
+      .logo img { height: 56px; }
 
-      .site-header .logo {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 6px 0 8px;
-      }
-
-      .site-header .logo img {
-        height: 56px;
-        width: auto;
-      }
-
-      /* 按你现在这版导航栏来，不再动它 */
       .nav-links {
-        width: 100%;
-        margin: 0 auto;
-        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 72px;
-        text-align: center;
       }
 
-      .site-header .nav-link {
-        display: block;
-        text-align: center;
-        white-space: nowrap;
-        padding: 10px 0;
-        font-size: 18px;
-        line-height: 1.2;
-        letter-spacing: .3px;
-        color: #fff;
-      }
-
-      /* ⭐ 手机端：works.png 完全居中、完整展示 */
+      /* ⭐ 手机端 works：居中微左修正 */
       #page-works img {
-        width: auto;
-        height: auto;
-        max-width: 96% !important;   /* 稍微放宽一点，避免被裁 */
-        max-height: none !important;
+        max-width: 96% !important;
         margin: 32px auto 40px;
-        transform: none;             /* 取消偏移，真正居中 */
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .copyright {
-        padding: 16px 12px;
-        font-size: 13px;
-        color: #888;
+        transform: translateX(-10px);   /* 只修改这一条 */
       }
     }
   </style>
 </head>
 
 <body>
-  <header class="site-header" aria-label="Main">
+  <header class="site-header">
     <div class="logo">
-      <a href="#page-home" data-page="home">
-        <img src="v1_18.png" alt="yihan wang design logo">
-      </a>
+      <a href="#page-home" data-page="home"><img src="v1_18.png" alt=""></a>
     </div>
     <nav class="nav-links">
       <a href="#page-about" class="nav-link" data-page="about">about</a>
@@ -269,109 +173,42 @@
 
   <div class="header-spacer"></div>
 
-  <main class="stage" id="stage">
-    <!-- HOME -->
-    <section class="page active" id="page-home" aria-label="Home">
-      <img src="home.png" alt="Home" loading="eager" decoding="async">
+  <main class="stage">
+    <section class="page active" id="page-home"><img src="home.png" alt=""></section>
+    <section class="page" id="page-about">
+      <img src="about-1.png" alt="">
+      <img src="about-2.png" alt="">
     </section>
-
-    <!-- ABOUT：两屏滚动 -->
-    <section class="page" id="page-about" aria-label="About">
-      <div style="
-        width: 100%;
-        height: calc(100vh - var(--header-h));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #000;
-      ">
-        <img
-          src="about-1.png"
-          alt="About 1"
-          style="
-            width: auto !important;
-            height: auto !important;
-            max-width: 92% !important;
-            max-height: 92% !important;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-          "
-        >
-      </div>
-
-      <div style="
-        width: 100%;
-        height: calc(100vh - var(--header-h));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #000;
-      ">
-        <img
-          src="about-2.png"
-          alt="About 2"
-          style="
-            width: auto !important;
-            height: auto !important;
-            max-width: 92% !important;
-            max-height: 92% !important;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-          "
-        >
-      </div>
-    </section>
-
-    <!-- WORKS：长图 -->
-    <section class="page" id="page-works" aria-label="Works">
-      <img src="works.png" alt="Works">
-    </section>
-
-    <!-- CONTACT -->
-    <section class="page" id="page-contact" aria-label="Contact">
-      <img src="contact.png" alt="Contact">
-    </section>
+    <section class="page" id="page-works"><img src="works.png" alt=""></section>
+    <section class="page" id="page-contact"><img src="contact.png" alt=""></section>
   </main>
 
-  <div class="copyright">
-    © 2025 Yihan Wang Design. All rights reserved.
-    <a href="https://www.yihanwangdesign.com/">www.yihanwangdesign.com</a>
-  </div>
+  <div class="copyright">© 2025 Yihan Wang Design.</div>
 
   <script>
     (function(){
-      const ids   = ['page-home','page-about','page-works','page-contact'];
-      const pages = ids.map(id => document.getElementById(id)).filter(Boolean);
+      const pages = ['page-home','page-about','page-works','page-contact']
+        .map(id => document.getElementById(id));
 
-      function showByHash(hash){
+      function showPage(hash){
         const id = (hash || '#page-home').slice(1);
-        pages.forEach(el => {
-          const isActive = (el.id === id);
-          el.classList.toggle('active', isActive);
-          // ✅ 强制只有当前页显示，其余全部隐藏
-          el.style.display = isActive ? 'flex' : 'none';
+        pages.forEach(p => {
+          const isActive = (p.id === id);
+          p.classList.toggle('active', isActive);
+          p.style.display = isActive ? 'flex' : 'none';
         });
-        window.scrollTo(0, 0);
+        window.scrollTo(0,0);
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => showByHash(location.hash));
-      } else {
-        showByHash(location.hash);
-      }
-
-      document.addEventListener('click', function(e){
+      document.addEventListener('DOMContentLoaded', () => showPage(location.hash));
+      window.addEventListener('hashchange', () => showPage(location.hash));
+      document.addEventListener('click', e => {
         const a = e.target.closest('a[href^="#page-"]');
-        if (!a) return;
+        if(!a) return;
         e.preventDefault();
-        const h = a.getAttribute('href');
-        history.replaceState(null, '', h);
-        showByHash(h);
+        history.replaceState(null, '', a.getAttribute('href'));
+        showPage(a.getAttribute('href'));
       });
-
-      window.addEventListener('hashchange', () => showByHash(location.hash));
     })();
   </script>
 </body>
