@@ -233,15 +233,75 @@
       }
 
       /* ⭐ 手机端：works.png 完全居中、完整展示 */
-      #page-works img {
-        width: auto;
-        height: auto;
-        max-width: 96% !important;   /* 稍微放宽一点，避免被裁 */
-        max-height: none !important;
-        margin: 32px auto 40px;
-       transform: none ;           /* 取消偏移，真正居中 */
-      }
-    }
+    /* 手机端 */
+@media (max-width: 768px) {
+  .site-header {
+    grid-template-columns: 1fr;
+    padding: 10px 0;
+    text-align: center;
+  }
+
+  .site-header .logo {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 6px 0 8px;
+  }
+
+  .site-header .logo img {
+    height: 56px;
+    width: auto;
+  }
+
+  .nav-links {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;             /* 可以顺便把 72px 改小点，避免横向挤压 */
+    text-align: center;
+  }
+
+  .site-header .nav-link {
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px 0;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: .3px;
+    color: #fff;
+  }
+
+  /* ⭐ 手机端：让 works.png 占满宽度 + 完全居中 */
+  .stage {
+    height: auto;                                /* 不再强行锁死高度 */
+    min-height: calc(100vh - var(--header-h));
+  }
+
+  #page-works {
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: #000;
+    padding: 16px 0 24px;
+  }
+
+  #page-works img {
+    display: block;
+    width: 100%;                                 /* 宽度占满 */
+    max-width: 100% !important;                  /* 保证不再缩小 */
+    height: auto;
+    margin: 0 auto;                              /* 居中 */
+    transform: none !important;                  /* 覆盖桌面的 -60px 平移 */
+  }
+}
+
 
     @media (max-width: 1024px) {
       .copyright {
