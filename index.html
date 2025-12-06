@@ -49,9 +49,7 @@
 
     html { scroll-behavior: smooth; }
 
-    body { 
-      overflow-x: hidden;
-    }
+    body { overflow-x: hidden; }
 
     .site-header {
       position: fixed;
@@ -69,10 +67,7 @@
       backdrop-filter: saturate(120%) blur(6px);
     }
 
-    .logo a {
-      display: inline-block;
-      line-height: 0;
-    }
+    .logo a { display: inline-block; line-height: 0; }
 
     .logo img {
       height: 68px;
@@ -96,9 +91,7 @@
       white-space: nowrap;
     }
 
-    .header-spacer {
-      height: var(--header-h);
-    }
+    .header-spacer { height: var(--header-h); }
 
     .stage {
       position: relative;
@@ -115,12 +108,12 @@
       align-items: center;
       justify-content: center;
       background: #000;
-      z-index: 0;       /* ✅ 默认在底层 */
+      z-index: 0;
     }
 
     .page.active {
       display: flex;
-      z-index: 1;       /* ✅ 当前页在最上层 */
+      z-index: 1;
     }
 
     .page img {
@@ -153,7 +146,6 @@
       background: #000;
     }
 
-    /* 桌面端：保持你原来的微左位置 */
     #page-works img {
       width: auto;
       height: auto;
@@ -162,7 +154,7 @@
       object-fit: contain;
       margin: 32px auto 40px;
       display: block;
-      transform: translateX(-60px);
+      transform: translateX(-60px); /* PC 端风格 */
     }
 
     .copyright {
@@ -179,16 +171,10 @@
       text-decoration: none;
     }
 
-    /* 隐藏主页面右侧滚动条（只是隐藏，不影响滚动） */
-    body::-webkit-scrollbar {
-      width: 0px;
-      background: transparent;
-    }
-    body {
-      scrollbar-width: none;
-    }
+    body::-webkit-scrollbar { width: 0px; background: transparent; }
+    body { scrollbar-width: none; }
 
-    /* 手机端 */
+    /* ░░░░░░░░░░ 手机端：按你要求改过的版本 ░░░░░░░░░░ */
     @media (max-width: 768px) {
       .site-header {
         grid-template-columns: 1fr;
@@ -209,7 +195,6 @@
         width: auto;
       }
 
-      /* 按你现在这版导航栏来，不再动它 */
       .nav-links {
         width: 100%;
         margin: 0 auto;
@@ -217,7 +202,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 72px;
+        gap: 24px;
         text-align: center;
       }
 
@@ -232,76 +217,36 @@
         color: #fff;
       }
 
-      /* ⭐ 手机端：works.png 完全居中、完整展示 */
-    /* 手机端 */
-@media (max-width: 768px) {
-  .site-header {
-    grid-template-columns: 1fr;
-    padding: 10px 0;
-    text-align: center;
-  }
+      /* ⭐ works 页面手机端 = 完全继承桌面端的样式 */
+      .stage {
+        position: relative;
+        width: 100%;
+        height: calc(100vh - var(--header-h));
+        background: #000;
+        overflow: hidden;
+      }
 
-  .site-header .logo {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 6px 0 8px;
-  }
+      #page-works {
+        overflow-y: auto;
+        overflow-x: hidden;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        background: #000;
+        padding: 0;
+      }
 
-  .site-header .logo img {
-    height: 56px;
-    width: auto;
-  }
-
-  .nav-links {
-    width: 100%;
-    margin: 0 auto;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 72px;             /* 可以顺便把 72px 改小点，避免横向挤压 */
-    text-align: center;
-  }
-
-  .site-header .nav-link {
-    display: block;
-    text-align: center;
-    white-space: nowrap;
-    padding: 10px 0;
-    font-size: 18px;
-    line-height: 1.2;
-    letter-spacing: .3px;
-    color: #fff;
-  }
-
-  /* ⭐ 手机端：让 works.png 占满宽度 + 完全居中 */
-  .stage {
-    height: auto;                                /* 不再强行锁死高度 */
-    min-height: calc(100vh - var(--header-h));
-  }
-
-  #page-works {
-    overflow-y: auto;
-    overflow-x: hidden;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    background: #000;
-    padding: 16px 0 24px;
-  }
-
-  #page-works img {
-    display: block;
-    width: 100%;                                 /* 宽度占满 */
-    max-width: 100% !important;                  /* 保证不再缩小 */
-    height: auto;
-    margin: 0 auto;                              /* 居中 */
-    transform: none !important;                  /* 覆盖桌面的 -60px 平移 */
-  }
-}
-
+      #page-works img {
+        display: block;
+        width: auto;
+        height: auto;
+        max-width: 92% !important;
+        max-height: none !important;
+        margin: 32px auto 40px;
+        object-fit: contain;
+        transform: translateX(-60px); /* ⭐ 完全和电脑端一致 */
+      }
+    }
 
     @media (max-width: 1024px) {
       .copyright {
@@ -335,7 +280,7 @@
       <img src="home.png" alt="Home" loading="eager" decoding="async">
     </section>
 
-    <!-- ABOUT：两屏滚动 -->
+    <!-- ABOUT -->
     <section class="page" id="page-about" aria-label="About">
       <div style="
         width: 100%;
@@ -343,21 +288,9 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #000;
-      ">
-        <img
-          src="about-1.png"
-          alt="About 1"
-          style="
-            width: auto !important;
-            height: auto !important;
-            max-width: 92% !important;
-            max-height: 92% !important;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-          "
-        >
+        background: #000;">
+        <img src="about-1.png" alt="About 1"
+          style="width:auto; height:auto; max-width:92%; max-height:92%; object-fit:contain;">
       </div>
 
       <div style="
@@ -366,25 +299,13 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: #000;
-      ">
-        <img
-          src="about-2.png"
-          alt="About 2"
-          style="
-            width: auto !important;
-            height: auto !important;
-            max-width: 92% !important;
-            max-height: 92% !important;
-            object-fit: contain;
-            object-position: center;
-            display: block;
-          "
-        >
+        background: #000;">
+        <img src="about-2.png" alt="About 2"
+          style="width:auto; height:auto; max-width:92%; max-height:92%; object-fit:contain;">
       </div>
     </section>
 
-    <!-- WORKS：长图 -->
+    <!-- WORKS -->
     <section class="page" id="page-works" aria-label="Works">
       <img src="works.png" alt="Works">
     </section>
@@ -410,7 +331,6 @@
         pages.forEach(el => {
           const isActive = (el.id === id);
           el.classList.toggle('active', isActive);
-          // ✅ 强制只有当前页显示，其余全部隐藏
           el.style.display = isActive ? 'flex' : 'none';
         });
         window.scrollTo(0, 0);
