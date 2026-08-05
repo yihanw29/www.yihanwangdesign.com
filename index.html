@@ -139,12 +139,14 @@
 
     /* WORKS：长图，居中显示，可滚动 */
     #page-works {
-      overflow-y: auto;
-      overflow-x: hidden;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      background: #000;
+      width: auto;
+      height: auto;
+      max-width: 92% !important;
+      max-height: none !important;
+      object-fit: contain;
+      margin: 32px auto 40px;
+      display: block;
+      transform: translateX(-50px);
     }
 
     #page-works img {
